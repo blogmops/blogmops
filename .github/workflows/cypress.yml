@@ -1,25 +1,48 @@
 name: cypress
 
 on: [ push, pull_request ]
+
 jobs:
   cypress-run:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [ 14.5.x ]
+        node-version: [ 14.5.0 ]
         os: [ ubuntu-latest, windows-latest, macOS-latest ]
 
     steps:
-    - run: git config --global core.autocrlf false
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run test
-      env:
-		CI: true
-		GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-		# CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+	  - run: git config --global core.autocrlf false
+	  - uses: actions/checkout@v2
+	  - uses: actions/cache@v2
+        with:
+          path: |
+            ~/cache
+            !~/cache/exclude
+            **/node_modules
+            **/.archive
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+	  - name: Run nodeJS v.${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run server
+        uses: actions/setup-node@v1
+        with:
+		  node-version: ${{ matrix.node-version }}
+          working-directory: ./
+          start: npm run test
+		  wait-on: 'http://localhost:${{ process.env.PORT }}'
+		  env:
+        	CI: true
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+	  - name: Run cypress
+        uses: cypress-io/github-action@v2
+        with:
+          record: false
+          tag: node-${{ matrix.node }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
