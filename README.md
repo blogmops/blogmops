@@ -1,23 +1,31 @@
+![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&label=blogmops&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
 ![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg?branch=master)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size)
 
-# sapper-blog-template
+---
 
-A starter template for building markdown-powered blogs with [Sapper](https://github.com/sveltejs/sapper) and [Svelte](https://github.com/sveltejs/svelte).
+# 🧾 blogmops wiki
 
-### 👉 [Hompage](https://blogmops.vercel.app/)
+Simple markdown (*.md) powered blog posts with [Sapper](https://github.com/sveltejs/sapper) and [Svelte](https://github.com/sveltejs/svelte).
+
+### 🧷 [Hompage](https://blogmops.vercel.app/)
+
 
 ## ✨ Getting started
 
-```bash
+To run cypress locally follow the [setup instructions](https://cypress.io)!
+Then open terminal run:
+
+```shell
 npx degit jsbase/blogmops blog
-cd blog
-npm install # or yarn!
-npm run dev
+cd blog && touch .env
+echo "PORT=3000" >> .env
+npm i && npm run dev
 ```
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
-
 Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
+
 
 ## 🏗 Structure
 
@@ -39,10 +47,10 @@ This is where your markdown posts live in. All `.md` files in this directory are
 - Everything between the start of the post and the `<!-- more -->` tag becomes the article's "excerpt".
 - Frontmatter properties supported are `title` and `date`.
 
+
 ## 🚀 Deploy
 
-[![Deploy to Vercel](/button)](/import/project?template=https://github.com/jsbase/blogmops/master)
-
+Fork and import this repo on [vercel.com](https://www.vercel.com/).
 
 ## 🐛 Bugs and feedback
 
