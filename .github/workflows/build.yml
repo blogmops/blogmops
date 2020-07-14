@@ -1,29 +1,20 @@
 name: Build action runner
-
-on:
-  pull_request:
-    paths-ignore:
-      - '**/*.md'
-
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    
     strategy:
       matrix:
         os: [ubuntu-latest]
-
     steps:
       - name: Checkout project
         uses: actions/checkout@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Checkout nodeJS
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node }}
-
       - name: Caching
         uses: actions/cache@master
         with:
@@ -33,10 +24,8 @@ jobs:
             ~/.static
             !~/.exclude
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-
       - name: Install dependencies
         run: npm i
-
       - name: Install project
         run: npm run export
         env:
