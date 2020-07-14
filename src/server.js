@@ -7,7 +7,7 @@ import helmet from 'helmet';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const { PORT = 3000, NODE_ENV } = process.env;
+const { PORT = 5000, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
 polka()
