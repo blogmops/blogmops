@@ -37,7 +37,7 @@
     "@cypress/code-coverage": "^3.8.1",
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "@rollup/plugin-babel": "^5.1.0",
-    "@rollup/plugin-commonjs": "^13.0.1",
+    "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "@rollup/plugin-replace": "^2.3.3",
