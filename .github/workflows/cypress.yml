@@ -10,13 +10,13 @@ jobs:
       - name: Install ffmpeg and mplayer on Ubuntu
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg && ffmpeg -version
-          sudo apt-get install -y mplayer && mplayer -version
+          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y mplayer
         if:  startsWith(matrix.os, 'ubuntu')
       - name: Install ffmpeg on MacOS
         run: |
-          brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/ && ffmpeg -version
-          brew install mplayer && ls -lhtr /usr/local/opt/mplayer/ && mplayer -version
+          brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
+          brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
         if:  startsWith(matrix.os, 'macos')
       - name: Install ffmpeg on Windows
         run: choco install ffmpeg && ffmpeg -version
