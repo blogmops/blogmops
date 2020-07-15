@@ -7,6 +7,15 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
+      - name: Install ffmpeg on Ubuntu
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg && ffmpeg -version
+        if:  startsWith(matrix.os, 'ubuntu')
+      - name: Install ffmpeg on MacOS
+        run: brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/ && ffmpeg -version
+        if:  startsWith(matrix.os, 'macos')
+      - name: Install ffmpeg on Windows
+        run: choco install ffmpeg && ffmpeg -version
+        if:  startsWith(matrix.os, 'windows')
       - name: Checkout project
         uses: actions/checkout@master
         with:
