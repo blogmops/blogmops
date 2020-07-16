@@ -11,18 +11,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg mplayer
-        if:  startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu')
       - name: Install ffmpeg on MacOS
         run: |
           brew cask install xquartz
           brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
           brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
-        if:  startsWith(matrix.os, 'macos')
-      - name: Install ffmpeg on Windows
-        run: |
-          choco install ffmpeg
-          choco install smplayer
-        if:  startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'macos')
+      # - name: Install ffmpeg on Windows
+        # run: |
+          # choco install ffmpeg
+          # choco install smplayer
+        # if: startsWith(matrix.os, 'windows')
       - name: Checkout project
         uses: actions/checkout@master
         with:
@@ -44,11 +44,10 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Start testing
-        run: |
-          npm run cy:verify
-          npm run test
+        run: npm run test
         env:
           CI: true
+          PORT: 5000
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Artifact upload screenshots
         uses: actions/upload-artifact@master
