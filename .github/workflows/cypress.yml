@@ -5,13 +5,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: Install ffmpeg and mplayer on Ubuntu
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          sudo apt-get install -y mplayer
+          sudo apt-get install -y ffmpeg mplayer
         if:  startsWith(matrix.os, 'ubuntu')
       - name: Install ffmpeg on MacOS
         run: |
@@ -22,7 +21,7 @@ jobs:
       - name: Install ffmpeg on Windows
         run: |
           choco install ffmpeg
-          choco install mplayer
+          choco install smplayer
         if:  startsWith(matrix.os, 'windows')
       - name: Checkout project
         uses: actions/checkout@master
