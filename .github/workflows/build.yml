@@ -32,3 +32,11 @@ jobs:
         env:
           PORT: 5000
           NODE_ENV: production
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: __sapper__/export
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
