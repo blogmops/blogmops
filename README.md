@@ -7,6 +7,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
+[![codebeat badge](https://codebeat.co/badges/befa1955-92b8-4d1b-b35a-a25a4edc806f)](https://codebeat.co/projects/github-com-jsbase-blogmops-master)
 
 ![Rollup Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/rollup)
 ![Sapper Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/sapper)
