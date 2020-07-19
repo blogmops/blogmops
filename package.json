@@ -15,7 +15,9 @@
     "static": "npx serve __sapper__/export",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "run-p -r export static cy:run"
+    "test": "run-p -r export static cy:run",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -26,7 +28,8 @@
     "polka": "^1.0.0-next.11",
     "prismjs": "^1.16.0",
     "reading-time": "^1.2.0",
-    "sirv": "^1.0.1"
+    "sirv": "^1.0.1",
+    "snyk": "^1.362.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -88,5 +91,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "snyk": true
 }
