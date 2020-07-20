@@ -3,6 +3,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size)
 [![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
 
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/jsbase/blogmops)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jsbase/blogmops/Test%20action%20runner/master?label=cypress)
 [![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
