@@ -11,19 +11,20 @@ jobs:
         uses: actions/checkout@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Checkout nodeJS
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node }}
-      - name: Caching
-        uses: actions/cache@master
-        with:
-          path: |
-            ~/.cache
-            !~/.cache/exclude
-            ~/.static
-            !~/.exclude
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       - name: Install dependencies
         run: npm i
       - name: Install project
@@ -31,3 +32,11 @@ jobs:
         env:
           PORT: 5000
           NODE_ENV: production
+      - name: Deploy to GitHub Pages
+        if: ${{ startsWith(matrix.os, 'ubuntu') && success() }}
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: __sapper__/export
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

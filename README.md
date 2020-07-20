@@ -1,9 +1,19 @@
-![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&label=blogmops&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
-![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg?branch=master)
+![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
+![Version](https://img.shields.io/github/package-json/v/jsbase/blogmops/master?color=violet&label=stable)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size)
+[![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
+
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/jsbase/blogmops/Test%20action%20runner/master?label=cypress)
 [![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size)
+[![codebeat badge](https://codebeat.co/badges/befa1955-92b8-4d1b-b35a-a25a4edc806f)](https://codebeat.co/projects/github-com-jsbase-blogmops-master)
+
+![Rollup Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/rollup)
+![Sapper Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/sapper)
+![Svelte Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/svelte)
+![Babel/Code Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/@babel/core)
+![Cypress Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/cypress)
 
 ---
 

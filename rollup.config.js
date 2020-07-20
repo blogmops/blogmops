@@ -7,8 +7,10 @@ import svelte from 'rollup-plugin-svelte';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 //import * as path from 'path';
-import marked from 'marked';
+// import marked from 'marked';
 import config from 'sapper/config/rollup';
+import glob from 'rollup-plugin-glob';
+import markdown from './src/utils/markdown.js';
 import pkg from './package.json';
 // import postcssConfig from "./postcss.config.js";
 import * as dotenv from 'dotenv';
@@ -18,13 +20,6 @@ const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 const onwarn = (warning, onwarn) =>
 	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
-const markdown = () => ({
-	transform(md, id) {
-		if (!/\.md$/.test(id)) return null;
-		const data = marked(md);
-		return { code: `export default ${JSON.stringify(data.toString())};` };
-	},
-});
 
 export default {
 	client: {
@@ -43,6 +38,8 @@ export default {
 			}),
 			resolve({ browser: true, dedupe: ['svelte'] }),
 			commonjs(),
+			markdown(),
+			glob(),
 			legacy &&
 				babel({
 					extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -84,6 +81,7 @@ export default {
 			resolve(),
 			commonjs(),
 			markdown(),
+			glob(),
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives')),

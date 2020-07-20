@@ -1,4 +1,3 @@
-on: pull_request
 blank_issues_enabled: false
 contact_links:
   - name: Join the blogmops slack channel
