@@ -24,7 +24,7 @@ jobs:
           # choco install smplayer
         # if: startsWith(matrix.os, 'windows')
       - name: Checkout project
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get npm cache directory
@@ -38,18 +38,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Checkout nodeJS
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: npm i
+        run: npm i && npm run build
       - name: Start testing
         run: npm run test
         env:
+          NODE_ENV: production
           CI: true
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Artifact upload screenshots
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: cypress-screenshots
           path: cypress/screenshots
@@ -57,12 +58,12 @@ jobs:
         run: npx image-size cypress/screenshots/**/*.png
         working-directory: ./
       - name: Artifact upload chrome screenshots
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: screenshots-chrome
           path: cypress/screenshots/chrome
       - name: Artifact upload videos
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: upload chrome-videos
           path: cypress/videos/chrome
