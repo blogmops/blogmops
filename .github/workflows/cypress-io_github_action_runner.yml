@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Checkout nodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
