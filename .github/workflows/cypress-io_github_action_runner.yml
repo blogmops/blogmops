@@ -1,0 +1,87 @@
+name: example-recording
+
+on: [push]
+
+jobs:
+  basic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cypress tests
+        id: ${{ secrets.CYPRESS_PROJECT_ID }}
+        continue-on-error: true
+        with:
+          working-directory: cypress/videos
+          record: true
+          parallel: true
+          group: Recording example
+          tag: action
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print Dashboard URL
+        run: |
+          echo Cypress finished with: ${{ steps.cypress.outcome }}
+          echo See results at ${{ steps.cypress.outputs.dashboardUrl }}
+
+          name: cypress-io
+
+# on:
+#   pull_request:
+#     paths-ignore:
+#       - "*.md"
+
+# jobs:
+#   test:
+#     name: on ${{ matrix.os }}
+
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest]
+#         machines: [1, 2]
+#         # os: [macos-latest]
+
+#     runs-on: ${{ matrix.os }}
+
+#     steps:
+#       - name: Checkout project
+#         uses: actions/checkout@master
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Get npm cache directory
+#         id: npm-cache
+#         run: |
+#           echo "::set-output name=dir::$(npm config get cache)"
+#       - uses: actions/cache@v2
+#         with:
+#           path: ${{ steps.npm-cache.outputs.dir }}
+#           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.os }}-node-
+#       - name: Checkout nodeJS
+#         uses: actions/setup-node@master
+#         with:
+#           node-version: ${{ matrix.node }}
+#       - name: Install dependencies
+#         run: npm i
+
+#       - name: Start cypress-io
+#         uses: cypress-io/github-action@master
+#         timeout-minutes: 10
+#         with:
+#           record: true
+#           parallel: true
+#           group: Build on ${{ matrix.os }}
+#           start: npm run dev # start-windows: npm run start:ci:windows
+#         env:
+#           CI: true
+#           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+#       - name: Print Dashboard URL
+#         run: |
+#           echo Cypress finished with: ${{ steps.cypress.outcome }}
+#           echo See results at ${{ steps.cypress.outputs.dashboardUrl }}

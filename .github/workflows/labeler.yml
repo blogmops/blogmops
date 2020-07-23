@@ -1,14 +1,12 @@
 name: labeler
 
-on:
-  - pull_request
+on: pull_request
 
 jobs:
-  labelize:
+  triage:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Labelize
-        uses: actions/labeler@v3-preview
+      - uses: actions/labeler@master
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          configuration-path: ".github/labeler.yml"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
