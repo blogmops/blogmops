@@ -1,13 +1,28 @@
-name: Cypress-io Test
+name: Test action runner
 on: [push, pull_request]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest] # ubuntu-latest, windows-latest
-        machines: [1] # os: [1, 2]
+        os: [macos-latest] # [macos-latest, ubuntu-latest, windows-latest]
     steps:
+      - name: Install ffmpeg and mplayer on Ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg mplayer
+        if: startsWith(matrix.os, 'ubuntu')
+      - name: Install ffmpeg on MacOS
+        run: |
+          brew cask install xquartz
+          brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
+          brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
+        if: startsWith(matrix.os, 'macos')
+      # - name: Install ffmpeg on Windows
+        # run: |
+          # choco install ffmpeg
+          # choco install smplayer
+        # if: startsWith(matrix.os, 'windows')
       - name: Checkout project
         uses: actions/checkout@v2
         with:
@@ -23,30 +38,42 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Checkout nodeJS
-        uses: actions/setup-node@mv2
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: npm i
-      - name: Cypress tests
-        uses: cypress-io/github-action@master
-        id: ${{ secrets.CYPRESS_PROJECT_ID }}
-        timeout-minutes: 10
-        continue-on-error: true
-        with:
-          working-directory: ./
-          record: true
-          parallel: true
-          group: Recording example
-          tag: action
-          build: npm run build
-          start: npm run start
-          wait-on: 'http://localhost:3000'
+        run: npm i && npm run build
         env:
-          CI: true
           NODE_ENV: production
+      - name: Start testing
+        run: npm run test
+        working-directory: ./
+        env:
+          NODE_ENV: production
+          CI: true
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      - name: Print Dashboard URL
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+      - name: Artifact upload screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Size images
+        run: npx image-size cypress/screenshots/**/*.png
+        working-directory: ./
+      - name: Artifact upload chrome screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots-chrome
+          path: cypress/screenshots/chrome
+      - name: Artifact upload videos
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload chrome-videos
+          path: cypress/videos/chrome
+      - name: Size images and videos
         run: |
-          echo Cypress finished with: ${{ steps.cypress.outcome }}
-          echo See results at ${{ steps.cypress.outputs.dashboardUrl }}
+          npx image-size cypress/screenshots/**/*.png
+          ffprobe cypress/videos/*.mp4 || true
+          mplayer -really-quiet -ao null -vo null -identify -frames 0 cypress/videos/*.mp4 || true
+        working-directory: ./
