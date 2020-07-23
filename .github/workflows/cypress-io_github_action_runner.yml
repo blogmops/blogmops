@@ -5,19 +5,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest] # [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest] # macos-latest,ubuntu-latest,windows-latest
     steps:
       - name: Install ffmpeg and mplayer on Ubuntu
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg mplayer
         if: startsWith(matrix.os, 'ubuntu')
-      - name: Install ffmpeg on MacOS
-        run: |
-          brew cask install xquartz
-          brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
-          brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
-        if: startsWith(matrix.os, 'macos')
+      # - name: Install ffmpeg on MacOS
+        # run: |
+          # brew cask install xquartz
+          # brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
+          # brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
+        # if: startsWith(matrix.os, 'macos')
       # - name: Install ffmpeg on Windows
         # run: |
           # choco install ffmpeg
