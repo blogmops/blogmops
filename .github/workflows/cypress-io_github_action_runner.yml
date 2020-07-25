@@ -18,11 +18,6 @@ jobs:
           brew install ffmpeg && ls -lhtr /usr/local/opt/ffmpeg/
           brew install mplayer && ls -lhtr /usr/local/opt/mplayer/
         if: startsWith(matrix.os, 'macos')
-      # - name: Install ffmpeg on Windows
-        # run: |
-          # choco install ffmpeg
-          # choco install smplayer
-        # if: startsWith(matrix.os, 'windows')
       - name: Checkout project
         uses: actions/checkout@v2
         with:
@@ -43,8 +38,6 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: npm i
-        env:
-          NODE_ENV: production
       - name: Start testing
         run: npm run test
         working-directory: ./
