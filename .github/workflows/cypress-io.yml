@@ -38,6 +38,7 @@ jobs:
         env:
           CI: true
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          TERM: xterm
       - uses: actions/upload-artifact@v2.1.0
         with:
           name: screenshots
