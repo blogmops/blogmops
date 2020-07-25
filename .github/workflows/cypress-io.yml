@@ -34,12 +34,10 @@ jobs:
       - name: install dependencies and verify Cypress
         env:
           # make sure every Cypress install prints minimal information
-          CI: true
+          CI: 1
         run: |
           npm i
           npx cypress verify
-          npx cypress info
-    # Starts local server, then runs Cypress tests and records results on the dashboard
       - name: Cypress tests
         run: npm run test
         env:
