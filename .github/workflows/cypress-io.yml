@@ -1,44 +1,50 @@
-name: cypress-io
-
+name: Test action runner
 on: [push, pull_request]
-
 jobs:
   test:
-    name: cypress-io
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js v14
-        uses: actions/setup-node@v1
+      - name: Checkout project
+        uses: actions/checkout@v2
         with:
-          node-version: 14
-
-      - name: Cache node modules
-        uses: actions/cache@v1
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Checkout nodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: npm i
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
-      - run: |
-          npm i
-          npx cypress verify
-          npm run test
+      - run: npm run test --record
         env:
+          CI: true
+          NODE_ENV: test
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
       - uses: actions/upload-artifact@v2
         with:
           name: screenshots
           path: cypress/screenshots
-          # if: failure()
+          if: failure()
       - uses: actions/upload-artifact@v2
         with:
           name: videos
