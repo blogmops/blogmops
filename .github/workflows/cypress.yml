@@ -42,11 +42,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: npm i && npm run build
+        run: npm i
       - name: Start testing
         run: npm run test
         env:
-          NODE_ENV: production
+          NODE_ENV: test
           CI: true
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Artifact upload screenshots
