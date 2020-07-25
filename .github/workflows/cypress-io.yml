@@ -5,17 +5,13 @@ on: [push, pull_request]
 jobs:
   test:
     name: cypress-io
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js v14
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Print env variables
-        run: |
-          npm i -g @bahmutov/print-env
-          print-env GITHUB
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -31,30 +27,18 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
-      - name: install dependencies and verify Cypress
-        env:
-          # make sure every Cypress install prints minimal information
-          CI: 1
-        run: |
+      - run: |
           npm i
           npx cypress verify
-      - name: Cypress tests
-        run: npm run test
+          npm run test
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          TERM: xterm
-
-    # Save videos and screenshots as test artifacts
-    # https://github.com/actions/upload-artifact
       - uses: actions/upload-artifact@v2
         with:
           name: screenshots
           path: cypress/screenshots
-        # there might be no screenshots created when:
-        # - there are no test failures
-        # so only upload screenshots if previous step has failed
-          if: failure()
+          # if: failure()
       - uses: actions/upload-artifact@v2
         with:
           name: videos
