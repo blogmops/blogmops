@@ -14,7 +14,7 @@
     "export": "sapper export --legacy",
     "static": "npx serve __sapper__/export",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --record",
     "test": "run-p -r dev cy:run",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
