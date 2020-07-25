@@ -47,6 +47,7 @@ export default {
 					exclude: ['node_modules/@babel/**'],
 					presets: [['@babel/preset-env', { targets: pkg.browserslist.toString() }]],
 					plugins: [
+						'istanbul',
 						'@babel/plugin-syntax-dynamic-import',
 						[
 							'@babel/plugin-transform-runtime',

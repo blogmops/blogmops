@@ -2,7 +2,7 @@
   "baseUrl": "http://localhost:3000",
   "env": {
     "codeCoverage": {
-      "url": "http://localhost:3001/__coverage__"
+      "url": "http://localhost:3000/__coverage__"
     }
   },
   "projectId": "c6695m",
