@@ -15,7 +15,7 @@
     "static": "npx serve __sapper__/export",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "wait-on tcp:3000 && run-p -r dev cy:run",
+    "test": "run-p -r dev cy:run",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
