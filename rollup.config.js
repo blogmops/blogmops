@@ -41,17 +41,14 @@ export default {
 				babel({
 					extensions: ['.js', '.mjs', '.html', '.svelte'],
 					babelHelpers: 'runtime',
-					exclude: ['node_modules/@babel/**'],
-					presets: [['@babel/preset-env', { targets: pkg.browserslist.toString() }]],
+					exclude: [
+						'node_modules/@babel/**'],
+					presets: [
+						['@babel/preset-env', { targets: pkg.browserslist.toString() }]
+					],
 					plugins: [
-						'istanbul',
 						'@babel/plugin-syntax-dynamic-import',
-						[
-							'@babel/plugin-transform-runtime',
-							{
-								useESModules: true,
-							},
-						],
+						['@babel/plugin-transform-runtime', { useESModules: true }]
 					],
 				}),
 			!dev && terser({ module: true }),
