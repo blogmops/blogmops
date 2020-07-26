@@ -15,7 +15,10 @@
     "static": "npx serve __sapper__/export",
     "cy:open": "cypress open",
     "cy:run": "cypress run --record",
-    "test": "run-p -r dev cy:run",
+    "cy:run:dev": "cypress run",
+    "run": "run-p -s build start",
+    "test": "run-p -r run cy:run",
+    "test:dev": "run-p -r run cy:run:dev",
     "snyk-protect": "snyk protect -prune-repeated-subdependencies",
     "prepare": "npm run snyk-protect"
   },

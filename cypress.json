@@ -1,13 +1,12 @@
 {
-  "baseUrl": "http://localhost:${PORT}",
+  "baseUrl": "http://localhost:3000",
   "env": {
-    "key": "${CYPRESS_RECORD_KEY}",
     "codeCoverage": {
-      "url": "http://localhost:${PORT}/coverage"
+      "url": "http://localhost:3000/coverage"
     }
   },
   "nodeVersion": "system",
-  "projectId": "${CYPRESS_PROJECT_ID}",
+  "projectId": "c6695m",
   "video": true,
   "viewportHeight": 1080,
   "viewportWidth": 1920
