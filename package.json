@@ -78,7 +78,7 @@
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",
     "svelte": "^3.24.0",
-    "snyk": "^1.366.0"
+    "snyk": "^1.366.0",
     "volleyball": "^1.5.1"
   },
   "browserslist": [
