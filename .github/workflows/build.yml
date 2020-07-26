@@ -1,7 +1,7 @@
 name: Build action runner
 on: [push, pull_request]
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -9,26 +9,34 @@ jobs:
         node: [12, 14]
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get npm cache directory
         id: npm-cache
         run: echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v2.1.0
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          restore-keys: ${{ runner.os }}-node-
       - name: Checkout nodeJS
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.1.1
         with:
           node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: npm i
+      - name: Cache Cypress binary
+        uses: actions/cache@v2.1.0
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: cypress-${{ runner.os }}-cypress-
       - name: Install dependencies
         run: npm i
       - name: Install project
         run: npm run export
         env:
+          CI: true
           PORT: 5000
           NODE_ENV: production
