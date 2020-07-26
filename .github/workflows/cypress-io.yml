@@ -54,7 +54,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
         run: |
-          npm ci
+          npm i
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
@@ -93,8 +93,7 @@ jobs:
 
       - name: Cypress tests
         run: |
-          npm run build
-          npm run start &
+          npm run test &
           npx cypress run --record --parallel --group "Parallel 2x"
         env:
           CI: true
@@ -105,13 +104,13 @@ jobs:
           TERM: xterm
           browser: chrome
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2.0.1
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2.0.1
         with:
           name: videos
           path: cypress/videos
@@ -159,13 +158,13 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2.0.1
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2.0.1
         with:
           name: videos
           path: cypress/videos
