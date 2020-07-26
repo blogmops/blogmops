@@ -4,13 +4,12 @@ jobs:
   install:
     name: Install NPM and Cypress
     runs-on: ${{ matrix.os }}
-    container: cypress/browsers:node13.8.0-chrome81-ff75
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [13]
-        machines: [1, 2, 3, 4]
+        node: [12, 13, 14]
+        machines: [1, 2, 3]
 
     steps:
       - uses: actions/checkout@v2.3.1
