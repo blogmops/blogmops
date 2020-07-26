@@ -16,7 +16,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --record",
     "test": "run-p -r dev cy:run",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk protect -prune-repeated-subdependencies",
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
