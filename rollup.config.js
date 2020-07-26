@@ -6,7 +6,7 @@ import svelte from 'rollup-plugin-svelte';
 // import sveltePreprocess from "svelte-preprocess";
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-//import * as path from 'path';
+// import * as path from 'path';
 // import marked from 'marked';
 import config from 'sapper/config/rollup';
 import glob from 'rollup-plugin-glob';
@@ -47,7 +47,7 @@ export default {
 					exclude: ['node_modules/@babel/**'],
 					presets: [['@babel/preset-env', { targets: pkg.browserslist.toString() }]],
 					plugins: [
-						'istanbul',
+						dev && ["istanbul", { "exclude": [ "**/*.spec.js" ] }]
 						'@babel/plugin-syntax-dynamic-import',
 						[
 							'@babel/plugin-transform-runtime',
