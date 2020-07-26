@@ -2,22 +2,20 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
-// import postcss from "rollup-plugin-postcss";
-// import sveltePreprocess from "svelte-preprocess";
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-//import * as path from 'path';
-// import marked from 'marked';
 import config from 'sapper/config/rollup';
 import glob from 'rollup-plugin-glob';
 import markdown from './src/utils/markdown.js';
 import pkg from './package.json';
-// import postcssConfig from "./postcss.config.js";
 import * as dotenv from 'dotenv';
+
 dotenv.config();
+
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+
 const onwarn = (warning, onwarn) =>
 	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 
@@ -33,7 +31,6 @@ export default {
 			svelte({
 				dev,
 				hydratable: true,
-				/* preprocess: sveltePreprocess(postcssConfig), */
 				emitCss: true,
 			}),
 			resolve({ browser: true, dedupe: ['svelte'] }),
@@ -73,12 +70,7 @@ export default {
 			svelte({
 				generate: 'ssr',
 				dev,
-				/* preprocess: sveltePreprocess(postcssConfig), */
 			}),
-			/* postcss({
-        minimize: true,
-        extract: path.resolve(__dirname, "./static/global.css"),
-      }), */
 			resolve(),
 			commonjs(),
 			markdown(),
