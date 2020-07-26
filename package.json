@@ -1,7 +1,7 @@
 {
   "name": "blogmops",
   "description": "read some cool stories about a cute pug",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "homepage": "https://blogmops.vercel.app/",
   "repository": {
     "type": "git",
@@ -49,7 +49,7 @@
     "autoprefixer": "^9.8.5",
     "babel-plugin-istanbul": "^6.0.0",
     "cssnano": "^4.1.10",
-    "cypress": "^4.3.0",
+    "cypress": "^4.11.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
@@ -86,8 +86,7 @@
     "stylelint-config-prettier": "^8.0.2",
     "svelte": "^3.24.0",
     "svelte-preprocess": "^4.0.8",
-    "volleyball": "^1.5.1",
-    "wait-on": "^5.1.0"
+    "volleyball": "^1.5.1"
   },
   "browserslist": [
     ">0.2%",
