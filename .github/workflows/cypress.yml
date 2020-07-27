@@ -1,61 +1,69 @@
 name: cypress
-
-on: pull_request
-
+on: [push, pull_request]
 jobs:
-  install:
-    name: cypress
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [ 14 ]
-        machines: [1, 2]
-
+        node: [14]
+        machines: [1]
     steps:
-      - uses: actions/checkout@v2.3.1
+      - name: Checkout project
+        uses: actions/checkout@v2.3.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use Node.js ${{ matrix.node }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+    
+      - uses: actions/cache@v2.1.0
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
           node-version: ${{ matrix.node }}
 
-      # - name: Print CI env variables
-        # run: |
-        # npm i -g @bahmutov/print-env@v2.1.2
-        # print-env GITHUB BUILD ACTIONS || true
-
-      - name: Cache global npm modules
-        uses: actions/cache@v2.1.0
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Cache cypress
-        uses: actions/cache@v2.1.0
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-          restore-keys: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-
-      - name: Cache local npm modules
-        uses: actions/cache@v2.1.0
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-modules-${{ github.ref }}-
-
-      - name: install and run cypress
+      - name: Install dependencies
         run: |
           npm i
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
           npx cypress info
-          npm run test
-          # npm run test:chrome
+
+      - name: Cache global npm modules
+        uses: actions/cache@v2.1.0
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Cache cypress
+        uses: actions/cache@v2.1.0
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+
+      - name: Cache local npm modules
+        uses: actions/cache@v2.1.0
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref }}-
+
+      - run: npm run test
         env:
           CI: true
           PORT: 3000
@@ -63,7 +71,7 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
-          browser: chrome
+          # browser: chrome
 
       - uses: actions/upload-artifact@v2.0.1
         if: failure()
