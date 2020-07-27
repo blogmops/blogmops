@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
 
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/jsbase/blogmops)
-![Cypress parallel tests](https://github.com/jsbase/blogmops/workflows/Cypress%20parallel%20tests/badge.svg?branch=master&label=cypress)
+![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
