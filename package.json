@@ -16,7 +16,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --record --parallel --browser chrome",
     "cy:run:dev": "cypress run --browser chrome",
-    "build:ci": "run-s --aggregate-output -c build start",
+    "build:ci": "run-s -c build start",
     "build:export": "run-s --aggregate-output -c export static",
     "test": "run-p --aggregate-output -cr build:ci cy:run",
     "test:dev": "run-p --aggregate-output -cr dev cy:run:dev",
