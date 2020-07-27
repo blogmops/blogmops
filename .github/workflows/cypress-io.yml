@@ -1,4 +1,4 @@
-name: Cypress parallel tests
+name: Cypress
 
 on: pull_request
 
@@ -47,21 +47,15 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-modules-${{ github.ref }}-
 
-      - name: install dependencies and verify Cypress
-        env:
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          TERM: xterm
+      - name: install and run cypress
         run: |
           npm i
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
           npx cypress info
-          npm run build
-          npm run start &
-          npx cypress run --record --parallel --browser chrome
-          # npm run test
+          npm run test
+          # npm run test:chrome
         env:
           CI: true
           PORT: 3000
