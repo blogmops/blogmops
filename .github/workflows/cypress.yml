@@ -1,3 +1,4 @@
+---
 name: cypress
 on: pull_request
 jobs:
