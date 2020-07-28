@@ -1,6 +1,6 @@
 ---
 name: cypress
-on: [pull_request]
+on: pull_request # yamllint disable-line rule:truthy
 jobs:
   test:
     runs-on: ${{ matrix.os }}
