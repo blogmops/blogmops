@@ -1,43 +1,60 @@
+---
 name: build
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [preview]
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [14]
+        os: [ubuntu-latest, macos-latest] # , windows-latest]
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@v2.3.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get npm cache directory
         id: npm-cache
         run: echo "::set-output name=dir::$(npm config get cache)"
+
       - uses: actions/cache@v2.1.0
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14
+
       - name: Install dependencies
         run: npm i
+
       - name: Cache Cypress binary
         uses: actions/cache@v2.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: cypress-${{ runner.os }}-cypress-
-      - name: Install dependencies
-        run: npm i
-      - name: Install project
-        run: |
-          npm run build
-          npm run export
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
+      - name: Export
+        run: npm run export
         env:
-          PORT: 3000
+          PORT: 5000
           NODE_ENV: production
+
+      - name: Start
+        run: npm run static & (sleep 12 && killall -9 node)
+        env:
+          PORT: 5000
+          NODE_ENV: production
+          # killall -9 node (or) pkill node
+          # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
+          # for win: cmd "/C TASKKILL /IM node.exe /F"

@@ -1,3 +1,4 @@
+---
 backend:
   - any: ['**/!(*.client).js', '**/*.json']
     all: ['!**/src/**/*.js']

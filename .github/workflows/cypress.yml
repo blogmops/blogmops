@@ -1,6 +1,8 @@
 ---
 name: cypress
-on: pull_request
+on:
+  pull_request:
+    branches: [master]
 
 jobs:
   test:
@@ -9,8 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [14]
-        machines: [1]
+        # machines: [1]
     steps:
       - name: Checkout project
         uses: actions/checkout@v2.3.1
@@ -31,7 +32,7 @@ jobs:
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14
 
       - name: Install dependencies
         run: |
