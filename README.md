@@ -1,11 +1,13 @@
 ![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
-![Version](https://img.shields.io/github/package-json/v/jsbase/blogmops/master?color=violet&label=stable)
+![build](https://github.com/jsbase/blogmops/workflows/build/badge.svg)
+![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg?branch=preview)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jsbase/blogmops)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size)
 [![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
 
+![Version](https://img.shields.io/github/package-json/v/jsbase/blogmops/master?color=violet&label=stable)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size&color=violet)
+
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/jsbase/blogmops)
-![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg?branch=preview)
 [![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
