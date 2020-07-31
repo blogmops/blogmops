@@ -34,14 +34,14 @@
     "prismjs": "^1.16.0",
     "reading-time": "^1.2.0",
     "rollup-plugin-glob": "^1.0.2",
-    "sirv": "^1.0.1",
+    "sirv": "^1.0.5",
     "snyk": "^1.369.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.11.0",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-env": ^7.11.0,
     "@babel/runtime": "^7.11.0",
     "@cypress/code-coverage": "^3.8.1",
     "@rollup/plugin-babel": "^5.1.0",
