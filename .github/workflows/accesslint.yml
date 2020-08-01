@@ -1,0 +1,16 @@
+---
+name: accesslint
+on:
+  pull_request:
+    branches: [preview]
+
+jobs:
+  accesslint:
+    name: accesslint
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: scan https://blogmops.preview.vercel.app
+      uses: accesslint/actions/scan@master
+      with:
+        url: https://blogmops.preview.vercel.app
