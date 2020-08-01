@@ -5,13 +5,13 @@
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
 ![cypress](https://github.com/blogmops/blogmops/workflows/cypress/badge.svg?branch=preview)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
-[![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
+[![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/jsbase/blogmops/blogmops)
 
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/blogmops/blogmops)
-[![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
-![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
-![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
-[![codebeat badge](https://codebeat.co/badges/befa1955-92b8-4d1b-b35a-a25a4edc806f)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
+[![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
+![Code quality score](https://www.code-inspector.com/project/11740/score/svg)
+![Code Grade](https://www.code-inspector.com/project/11740/status/svg)
+[![codebeat badge](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
 
 ![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
 ![Sapper Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/sapper)
