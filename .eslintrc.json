@@ -1,13 +1,15 @@
 {
-  "plugins": ["json", "cypress", "prettier"],
+  "plugins": [
+    "json",
+    "cypress"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:json/recommended",
-    "plugin:cypress/recommended",
-    "plugin:prettier/recommended"
+    "plugin:cypress/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": 11,
     "sourceType": "module"
   },
   "env": {
@@ -18,11 +20,17 @@
   },
   "rules": {
     "global-require": "off",
-    "json/*": ["error", "allowComments"],
+    "json/*": [
+      "error",
+      "allowComments"
+    ],
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
-    "indent": ["error", "tab"],
+    "indent": [
+      "error",
+      "tab"
+    ],
     "no-console": "off",
     "no-tabs": [
       "error",
@@ -36,18 +44,24 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "quotes": ["error", "single"],
+    "quotes": [
+      "error",
+      "single"
+    ],
     "cypress/no-assigning-return-values": "error",
     "cypress/no-unnecessary-waiting": "error",
     "cypress/assertion-before-screenshot": "warn",
     "cypress/no-force": "warn",
-    "cypress/no-async-tests": "error",
-    "prettier/prettier": 2
+    "cypress/no-async-tests": "error"
   },
   "overrides": [
     {
-      "files": ["*.svelte"],
-      "plugins": ["svelte3"],
+      "files": [
+        "*.svelte"
+      ],
+      "plugins": [
+        "svelte3"
+      ],
       "processor": "svelte3/svelte3",
       "rules": {
         "import/first": "off",
