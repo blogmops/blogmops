@@ -5,7 +5,7 @@
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
 ![cypress](https://github.com/blogmops/blogmops/workflows/cypress/badge.svg?branch=preview)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
-[![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
+[![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/jsbase/blogmops/blogmops)
 
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/blogmops/blogmops)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
