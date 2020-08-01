@@ -1,23 +1,23 @@
-![Version](https://img.shields.io/github/package-json/v/jsbase/blogmops/master?color=violet&label=stable)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jsbase/blogmops?label=size&color=violet)
+![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
 
 ![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
-![build](https://github.com/jsbase/blogmops/workflows/build/badge.svg)
-![cypress](https://github.com/jsbase/blogmops/workflows/cypress/badge.svg?branch=preview)
-![GitHub last commit](https://img.shields.io/github/last-commit/jsbase/blogmops)
+![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
+![cypress](https://github.com/blogmops/blogmops/workflows/cypress/badge.svg?branch=preview)
+![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 [![GitHub issues](https://img.shields.io/github/issues/jsbase/blogmops)](https://github.com/jsbase/blogmops/issues)
 
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/jsbase/blogmops)
-[![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/jsbase/blogmops)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/blogmops/blogmops)
+[![CodeFactor](https://www.codefactor.io/repository/github/jsbase/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
 ![Code quality score](https://www.code-inspector.com/project/10870/score/svg)
 ![Code Grade](https://www.code-inspector.com/project/10870/status/svg)
-[![codebeat badge](https://codebeat.co/badges/befa1955-92b8-4d1b-b35a-a25a4edc806f)](https://codebeat.co/projects/github-com-jsbase-blogmops-master)
+[![codebeat badge](https://codebeat.co/badges/befa1955-92b8-4d1b-b35a-a25a4edc806f)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
 
-![Rollup Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/rollup)
-![Sapper Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/sapper)
-![Svelte Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/svelte)
-![Babel/Code Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/@babel/core)
-![Cypress Version](https://img.shields.io/github/package-json/dependency-version/jsbase/blogmops/dev/cypress)
+![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
+![Sapper Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/sapper)
+![Svelte Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/svelte)
+![Babel/Code Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/@babel/core)
+![Cypress Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/cypress)
 
 ---
 
