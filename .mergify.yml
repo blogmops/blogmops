@@ -3,7 +3,6 @@ pull_request_rules:
   - name: automatic merge on master
     conditions:
       - status-success=cypress
-      - base=preview
     actions:
       merge:
         method: merge
