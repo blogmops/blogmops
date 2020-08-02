@@ -1,8 +1,18 @@
 ---
 name: cypress
 on:
+  push:
+    branches:
+      - master
+      - preview
+      - releases/*
+    paths-ignore:
+      - '**.md'
   pull_request:
-    branches: [preview]
+    branches:
+      - '*'
+    paths-ignore:
+      - '**.md'
 
 jobs:
   test:
@@ -86,17 +96,18 @@ jobs:
           path: cypress/screenshots
 
       - uses: actions/upload-artifact@v2.1.2
-        with:
-          name: videos
-          path: cypress/videos
-
-      - uses: actions/upload-artifact@v2.1.2
         if: failure()
         with:
-          name: screenshots
-          path: cypress/screenshots
-
-      - uses: actions/upload-artifact@v2.1.2
-        with:
           name: videos
           path: cypress/videos
+
+      # - uses: actions/upload-artifact@v2.1.2
+        # nif: failure()
+        # with:
+          # name: screenshots
+          # path: cypress/screenshots
+
+      # - uses: actions/upload-artifact@v2.1.2
+        # with:
+          # name: videos
+          # path: cypress/videos
