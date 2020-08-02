@@ -46,7 +46,7 @@
 			Instagram
 		</a>
 		, see some of my work on
-		<a href="https://github.com/jsbase/blogmops" target="_blank" rel="nofollow">
+		<a href="https://github.com/blogmops/blogmops" target="_blank" rel="nofollow">
 			GitHub
 		</a>
 		.
