@@ -3,7 +3,7 @@ import { timestamp, files, shell } from '@sapper/service-worker';
 const ASSETS = `cache${timestamp}`;
 const to_cache = shell.concat(files);
 const cached = new Set(to_cache);
-const onCacheOpen = async (cache) => {
+const openCache = async (cache) => {
   try {
     const response = await fetch(event.request);
     cache.put(event.request, response.clone());
