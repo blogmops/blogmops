@@ -61,8 +61,8 @@ jobs:
           PORT: 3000
           NODE_ENV: production
 
-      - name: Start (Linux)
-        if: startsWith(${{ matrix.os }}, 'ubuntu') || startsWith(${{ matrix.os }}, 'macos')
+      - name: Start (Ubuntu)
+        if: startsWith(matrix.os, 'ubuntu')
         run: npm run static & (sleep 18 && killall -9 node)
         env:
           PORT: 3000
@@ -71,8 +71,15 @@ jobs:
           # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
 
       # - name: Start (Windows)
-        # if: startsWith(${{ matrix.os }}, 'windows'))
+        # if: startsWith(${{ matrix.os }}, 'windows')
         # run: npm run static & (sleep 18 && cmd "/C TASKKILL /IM node.exe /F")
         # env:
           # PORT: 3000
           # NODE_ENV: production
+
+      - name: Start (MacOs)
+        if: startsWith(matrix.os, 'macos')
+        run: npm run static & (sleep 18 && killall -9 node)
+        env:
+          PORT: 3000
+          NODE_ENV: production
