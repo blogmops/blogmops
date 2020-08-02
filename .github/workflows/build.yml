@@ -2,9 +2,17 @@
 name: build
 on:
   push:
-    branches: [master, preview]
+    branches:
+    - master
+    - preview
+    - releases/*
+    paths-ignore:
+    - '**.md'    
   pull_request:
-    branches: [master, preview]
+    branches:
+    - '*'
+    paths-ignore:
+    - '**.md'    
 
 jobs:
   build:
@@ -14,7 +22,7 @@ jobs:
     strategy:
       fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
       matrix:
-        os: [ubuntu-20.04, macos-latest] # , windows-latest]
+        os: [ubuntu-20.04, macos-latest , windows-latest]
     steps:
       - uses: actions/checkout@v2.3.1
         with:
@@ -52,12 +60,19 @@ jobs:
         env:
           PORT: 3000
           NODE_ENV: production
-
-      - name: Start
+      
+      - name: Start (Linux)
+        if: startsWith(${{ matrix.os }}, 'ubuntu') || startsWith(${{ matrix.os }}, 'macos')
         run: npm run static & (sleep 18 && killall -9 node)
         env:
           PORT: 3000
           NODE_ENV: production
           # killall -9 node (or) pkill node
           # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
-          # for win: cmd "/C TASKKILL /IM node.exe /F"
+
+      - name: Start (Windows)
+        if: startsWith(${{ matrix.os }}, 'windows'))
+        run: npm run static & (sleep 18 && cmd "/C TASKKILL /IM node.exe /F")
+        env:
+          PORT: 3000
+          NODE_ENV: production
