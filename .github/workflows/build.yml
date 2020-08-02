@@ -2,9 +2,9 @@
 name: build
 on:
   push:
-    branches: [master]
+    branches: [master, preview]
   pull_request:
-    branches: [preview]
+    branches: [master, preview]
 
 jobs:
   build:
@@ -50,13 +50,13 @@ jobs:
       - name: Export
         run: npm run export
         env:
-          PORT: 5000
+          PORT: 3000
           NODE_ENV: production
 
       - name: Start
-        run: npm run static & (sleep 12 && killall -9 node)
+        run: npm run static & (sleep 18 && killall -9 node)
         env:
-          PORT: 5000
+          PORT: 3000
           NODE_ENV: production
           # killall -9 node (or) pkill node
           # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
