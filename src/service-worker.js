@@ -59,10 +59,12 @@ self.addEventListener('fetch', (event) => {
 	if (url.origin === self.origin && routes.find(route => route.pattern.test(url.pathname))) {
 		event.respondWith(caches.match('/service-worker-index.html'));
 		return;
-	} */
+	}
+	else: try the network first, falling back to cache if the user is offline */
 
-  // else: try the network first, falling back to cache if the user is offline
 	if (event.request.cache === 'only-if-cached') return;
 
-	event.respondWith(caches.open(`offline${timestamp}`).then(openCache.bind(this, event));
+	event.respondWith(caches.open(`offline${timestamp}`).then((cache) => {
+		openCache(cache, event);
+	});
 });
