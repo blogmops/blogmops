@@ -60,7 +60,7 @@ jobs:
         env:
           PORT: 3000
           NODE_ENV: production
-      
+
       - name: Start (Linux)
         if: startsWith(${{ matrix.os }}, 'ubuntu') || startsWith(${{ matrix.os }}, 'macos')
         run: npm run static & (sleep 18 && killall -9 node)
