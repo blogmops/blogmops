@@ -14,4 +14,4 @@ polka()
 	.use(!dev ? volleyball.custom({ debug: true }) : volleyball)
 	.use(helmet())
 	.use(compression({ threshold: 0 }), sirv('static', { dev }), sapper.middleware())
-	.listen(PORT, (_) => console.log(`Server started with config ${PORT}`));
+	.listen(PORT, () => console.log(`Server started. Visit localhost:${PORT}`));
