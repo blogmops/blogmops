@@ -2,16 +2,8 @@
 pull_request_rules:
   - name: automatic merge on master
     conditions:
-      - base=master
-      - status-success=build
-    actions:
-      merge:
-        method: merge
-
-  - name: automatic merge on preview
-    conditions:
-      - base=preview
       - status-success=cypress
+      - base=preview
     actions:
       merge:
         method: merge
