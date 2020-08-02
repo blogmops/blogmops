@@ -3,6 +3,17 @@ import { timestamp, files, shell } from '@sapper/service-worker';
 const ASSETS = `cache${timestamp}`;
 const to_cache = shell.concat(files);
 const cached = new Set(to_cache);
+const onCacheOpen = async (cache) => {
+  try {
+    const response = await fetch(event.request);
+    cache.put(event.request, response.clone());
+    return response;
+  } catch (err) {
+    const response = await cache.match(event.request);
+    if (response) return response;
+    throw err;
+  }
+};
 
 self.addEventListener('install', (event) => {
 	event.waitUntil(
@@ -26,18 +37,6 @@ self.addEventListener('activate', (event) => {
 		}),
 	);
 });
-
-async function openCache(cache) => {
-  try {
-    const response = await fetch(event.request);
-    cache.put(event.request, response.clone());
-    return response;
-  } catch (err) {
-    const response = await cache.match(event.request);
-    if (response) return response;
-    throw err;
-  }
-};
 
 self.addEventListener('fetch', (event) => {
 	if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
