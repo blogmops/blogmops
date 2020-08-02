@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
-  "NODE_ENV": "test",	
+  "NODE_ENV": "test",
   "PORT": 3000,
   "env": {
     "codeCoverage": {
