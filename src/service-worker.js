@@ -27,7 +27,7 @@ self.addEventListener('activate', (event) => {
 	);
 });
 
-const openCache = (cache) => {
+async function openCache(cache) => {
   try {
     const response = await fetch(event.request);
     cache.put(event.request, response.clone());
@@ -65,5 +65,5 @@ self.addEventListener('fetch', (event) => {
   // else: try the network first, falling back to cache if the user is offline
 	if (event.request.cache === 'only-if-cached') return;
 
-	event.respondWith(caches.open(`offline${timestamp}`).then(async openCache));
+	event.respondWith(caches.open(`offline${timestamp}`).then(openCache));
 });
