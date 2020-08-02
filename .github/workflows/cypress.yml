@@ -31,7 +31,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
@@ -44,7 +43,6 @@ jobs:
           npx cypress cache list
           npx cypress verify
           npx cypress info
-
       - name: Cache global npm modules
         uses: actions/cache@v2.1.0
         with:
@@ -52,7 +50,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
       - name: Cache cypress
         uses: actions/cache@v2.1.0
         with:
@@ -60,7 +57,6 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-
       - name: Cache local npm modules
         uses: actions/cache@v2.1.0
         with:
@@ -68,7 +64,6 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-${{ github.ref }}-
-
       - run: npm run test
         env:
           CI: true

@@ -30,7 +30,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
@@ -46,7 +45,6 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
-
       - name: Export
         run: npm run export
         env:
