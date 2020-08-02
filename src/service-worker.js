@@ -3,7 +3,7 @@ import { timestamp, files, shell } from '@sapper/service-worker';
 const ASSETS = `cache${timestamp}`;
 const to_cache = shell.concat(files);
 const cached = new Set(to_cache);
-const openCache = async (cache) => {
+const openCache = async (event, cache) => {
   try {
     const response = await fetch(event.request);
     cache.put(event.request, response.clone());
@@ -64,5 +64,5 @@ self.addEventListener('fetch', (event) => {
   // else: try the network first, falling back to cache if the user is offline
 	if (event.request.cache === 'only-if-cached') return;
 
-	event.respondWith(caches.open(`offline${timestamp}`).then(openCache));
+	event.respondWith(caches.open(`offline${timestamp}`).then(openCache.bind(this, event));
 });
