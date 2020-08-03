@@ -1,10 +1,13 @@
 ---
 name: build
+
 on:
-  push:
-    branches: [master]
   pull_request:
-    branches: [preview]
+    paths-ignore:
+      - '**.md'    
+  push:
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -12,9 +15,10 @@ jobs:
     continue-on-error: false # prevents a workflow run from failing when a job fails
     timeout-minutes: 10
     strategy:
-      fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
+      fail-fast: true # cancel all in-progress jobs if any matrix job fails
       matrix:
-        os: [ubuntu-20.04, macos-latest] # , windows-latest]
+        os: [ubuntu-20.04, macos-latest, windows-latest]
+
     steps:
       - uses: actions/checkout@v2.3.1
         with:
@@ -30,6 +34,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
@@ -45,17 +50,18 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
+
       - name: Export
         run: npm run export
         env:
           PORT: 5000
           NODE_ENV: production
 
+      # killall -9 node (or) pkill node
+      # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
       - name: Start
         run: npm run static & (sleep 12 && killall -9 node)
         env:
           PORT: 5000
           NODE_ENV: production
-          # killall -9 node (or) pkill node
-          # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
-          # for win: cmd "/C TASKKILL /IM node.exe /F"
+        if: runner.os != 'windows'  # for win: cmd "/C TASKKILL /IM node.exe /F"
