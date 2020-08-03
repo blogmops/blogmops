@@ -4,7 +4,7 @@ name: build
 on:
   pull_request:
     paths-ignore:
-      - '**.md'    
+      - '**.md'
   push:
     paths-ignore:
       - '**.md'
