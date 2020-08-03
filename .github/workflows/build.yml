@@ -4,7 +4,7 @@ name: build
 on:
   pull_request:
     paths-ignore:
-      - '**.md'    
+      - '**.md'
   push:
     paths-ignore:
       - '**.md'
@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     continue-on-error: false # prevents a workflow run from failing when a job fails
-    timeout-minutes: 10
+    timeout-minutes: 18
     strategy:
       fail-fast: true # cancel all in-progress jobs if any matrix job fails
       matrix:
@@ -60,7 +60,7 @@ jobs:
       # killall -9 node (or) pkill node
       # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
       - name: Start
-        run: npm run static & (sleep 12 && killall -9 node)
+        run: npm run static & (sleep 14 && killall -9 node)
         env:
           PORT: 5000
           NODE_ENV: production
