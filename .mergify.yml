@@ -1,8 +1,8 @@
+---
 pull_request_rules:
-  - name: Auto merge
+  - name: automatic merge on master
     conditions:
-      - author~=^dependabot(|-preview)\[bot\]$
-      - status-success=build
+      - status-success=cypress
     actions:
       merge:
         method: merge
