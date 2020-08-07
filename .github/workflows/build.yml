@@ -4,18 +4,19 @@ name: build
 on:
   pull_request:
     paths-ignore:
-      - '**.md'
-  push:
-    paths-ignore:
-      - '**.md'
+      - "**.md"
+  # push:
+  #   paths-ignore:
+  #     - '**.md'
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     continue-on-error: false # prevents a workflow run from failing when a job fails
-    timeout-minutes: 18
+    timeout-minutes: 12
+
     strategy:
-      fail-fast: true # cancel all in-progress jobs if any matrix job fails
+      fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
       matrix:
         os: [ubuntu-20.04, macos-latest, windows-latest]
 
@@ -64,4 +65,4 @@ jobs:
         env:
           PORT: 5000
           NODE_ENV: production
-        if: runner.os != 'windows'  # for win: cmd "/C TASKKILL /IM node.exe /F"
+        if: runner.os != 'windows' # for win: cmd "/C TASKKILL /IM node.exe /F"
