@@ -80,24 +80,24 @@ jobs:
           TERM: xterm
           browser: chrome
 
-      - uses: actions/upload-artifact@v2.1.2
+      - uses: actions/upload-artifact@v2.1.3
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v2.1.2
+      - uses: actions/upload-artifact@v2.1.3
         with:
           name: videos
           path: cypress/videos
 
-      - uses: actions/upload-artifact@v2.1.2
+      - uses: actions/upload-artifact@v2.1.3
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v2.1.2
+      - uses: actions/upload-artifact@v2.1.3
         with:
           name: videos
           path: cypress/videos
