@@ -2,7 +2,7 @@
 pull_request_rules:
   - name: automatic merge on master
     conditions:
-      - status-success=cypress
+      - status-success=build
     actions:
       merge:
         method: merge
