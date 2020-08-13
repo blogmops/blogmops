@@ -1,5 +1,9 @@
 <script context="module">
-  export const preload = async ({ params }) => params;
+  export async function preload({ params }) {
+    /* 	let [slug] = params.slug;
+
+		return { slug }; */
+  }
 </script>
 
 <script>
