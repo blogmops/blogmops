@@ -7,7 +7,7 @@ on:
       - "**.md"
   push:
     paths-ignore:
-      - '**.md'
+      - "**.md"
 
 jobs:
   build:
