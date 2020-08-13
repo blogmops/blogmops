@@ -111,7 +111,7 @@ typings/
 .node_repl_history
 
 # local history
-# .history
+.history
 
 # Output of 'npm pack'
 *.tgz
