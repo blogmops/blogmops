@@ -1,8 +1,8 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:5000",
   "env": {
     "codeCoverage": {
-      "url": "http://localhost:3000/coverage"
+      "url": "http://localhost:5000/coverage"
     }
   },
   "nodeVersion": "system",
