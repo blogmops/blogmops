@@ -1,21 +1,17 @@
 {
   "files.exclude": {
-    ".git": true,
-    ".svn": true,
-    ".hg": true,
-    "CVS": true,
-    ".DS_Store": true,
-    ".history": true
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/CVS": false,
+    "**/.DS_Store": false,
+    "**/.history": false,
+    ".git": false,
+    ".svn": false,
+    ".hg": false,
+    "CVS": false,
+    ".DS_Store": false,
+    ".history": false
   },
-  "explorerExclude.backup": {
-    ".git": true,
-    ".svn": true,
-    ".hg": true,
-    "CVS": true,
-    ".DS_Store": true,
-    ".history": true,
-    "node_modules": true,
-    "cypress/screenshots": true,
-    "cypress/videos": true
-  }
+  "explorerExclude.backup": null
 }
