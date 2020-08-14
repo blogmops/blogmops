@@ -54,15 +54,9 @@ jobs:
 
       - name: Export
         run: npm run export
-        env:
-          PORT: 5000
-          NODE_ENV: production
 
       # killall -9 node (or) pkill node
       # ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
       - name: Start
         run: npm run static & (sleep 14 && killall -9 node)
-        env:
-          PORT: 5000
-          NODE_ENV: production
         if: runner.os != 'windows' # for win: cmd "/C TASKKILL /IM node.exe /F"
