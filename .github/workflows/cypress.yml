@@ -73,8 +73,6 @@ jobs:
       - run: npm run test
         env:
           CI: true
-          PORT: 3000
-          NODE_ENV: production
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
