@@ -19,7 +19,7 @@ jobs:
       fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
       matrix:
         os: [ubuntu-20.04, macos-latest, windows-latest]
-        # machines: [1]
+        machines: [1, 2]
 
     steps:
       - name: Checkout project
