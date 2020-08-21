@@ -2,12 +2,12 @@
 name: cypress
 
 on:
-  pull_request:
+  # pull_request:
+    # paths-ignore:
+    #  - "**.md"
+  push:
     paths-ignore:
-      - "**.md"
-  # push:
-  #   paths-ignore:
-  #     - '**.md'
+      - '**.md'
 
 jobs:
   test:
@@ -19,7 +19,7 @@ jobs:
       fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
       matrix:
         os: [ubuntu-20.04, macos-latest, windows-latest]
-        machines: [1, 2]
+        containers: [1, 2, 3]
 
     steps:
       - name: Checkout project
@@ -37,6 +37,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Checkout nodeJS
         uses: actions/setup-node@v2.1.1
         with:
@@ -49,44 +50,37 @@ jobs:
           npx cypress cache list
           npx cypress verify
           npx cypress info
+
       - name: Cache global npm modules
         uses: actions/cache@v2.1.0
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+            ${{ runner.os }}-npm-
+
       - name: Cache cypress
         uses: actions/cache@v2.1.0
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+            cypress-${{ runner.os }}-cypress-
+
       - name: Cache local npm modules
         uses: actions/cache@v2.1.0
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref }}-
+            ${{ runner.os }}-node-
+
       - run: npm run test
         env:
           CI: true
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
-
-      - uses: actions/upload-artifact@v2.1.4
-        if: failure()
-        with:
-          name: screenshots
-          path: cypress/screenshots
-
-      - uses: actions/upload-artifact@v2.1.4
-        with:
-          name: videos
-          path: cypress/videos
 
       - uses: actions/upload-artifact@v2.1.4
         if: failure()
