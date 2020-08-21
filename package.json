@@ -14,7 +14,7 @@
     "export": "sapper export --legacy",
     "static": "npx serve __sapper__/export",
     "cy:open": "cypress open",
-    "cy:run": "cypress run --record --group 2x-chrome --parallel --browser chrome",
+    "cy:run": "cypress run --record --parallel --browser chrome",
     "cy:run:dev": "cypress run --group 2x-chrome --parallel --browser chrome",
     "start:ci": "run-s build start",
     "static:ci": "run-s export static",
