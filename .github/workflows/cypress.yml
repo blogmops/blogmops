@@ -13,7 +13,7 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     continue-on-error: false # prevents a workflow run from failing when a job fails
-    timeout-minutes: 12
+    timeout-minutes: 20
 
     strategy:
       fail-fast: true # github will cancel all in-progress jobs if any matrix job fails
