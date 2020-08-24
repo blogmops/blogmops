@@ -90,7 +90,7 @@ jobs:
       - name: Build
         run: |
           npm run build
-        
+
       - name: Diff changes
         if: ${{ runner.os == 'linux' }}
         shell: bash
