@@ -41,11 +41,9 @@ jobs:
       - name: Print CI env variables
         run: |
           npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
-
       - id: npm-folder
         run: |
           echo '::set-output name=dir::$(npm config get cache)'
-
       - name: Cache npm
         uses: actions/cache@v2.1.1
         with:
@@ -53,7 +51,6 @@ jobs:
           key: ${{ runner.os }}-npm-folder-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-folder-
-
       - name: Cache node_modules
         uses: actions/cache@v2.1.1
         with:
@@ -61,11 +58,9 @@ jobs:
           key: ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
       - id: cypress-folder
         run: |
           echo '::set-output name=dir::$(npx cypress cache path)'
-
       - name: Cache cypress
         uses: actions/cache@v2.1.1
         with:
@@ -76,7 +71,6 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-
       - name: Install dependencies
         env:
           CI: true
@@ -86,7 +80,6 @@ jobs:
           npx cypress cache list
           npx cypress verify
           npx cypress info
-
       - name: Build
         run: |
           npm run build
@@ -100,7 +93,6 @@ jobs:
             git diff
             exit 1
           fi
-
       - name: Run tests
         run: |
           npm run test:record:chrome
