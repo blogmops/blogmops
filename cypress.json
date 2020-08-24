@@ -1,10 +1,6 @@
+  
 {
-  "baseUrl": "http://localhost:5000",
-  "env": {
-    "codeCoverage": {
-      "url": "http://localhost:5000/coverage"
-    }
-  },
+  "baseUrl": "http://localhost:3000",
   "nodeVersion": "system",
   "video": true,
   "viewportHeight": 1080,

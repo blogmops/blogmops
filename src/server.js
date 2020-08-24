@@ -5,9 +5,11 @@ import * as sapper from '@sapper/server';
 import volleyball from 'volleyball';
 import helmet from 'helmet';
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
-const { PORT = 3000, NODE_ENV } = process.env;
+const PORT = process.env.PORT || 5000;
+const NODE_ENV = process.env.NODE_ENV || 'production';
 const dev = NODE_ENV === 'development';
 
 polka()
