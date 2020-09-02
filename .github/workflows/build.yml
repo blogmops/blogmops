@@ -81,7 +81,7 @@ jobs:
         env:
           CI: true
         run: |
-          npm ci
+          npm i
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
