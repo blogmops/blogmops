@@ -33,10 +33,10 @@
     "reading-time": "^1.2.0",
     "rollup-plugin-glob": "^1.0.2",
     "sirv": "^1.0.6",
-    "snyk": "^1.386.0"
+    "snyk": "^1.388.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
+    "@babel/core": "^7.11.5",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
