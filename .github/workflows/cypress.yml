@@ -43,8 +43,7 @@ jobs:
           npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
 
       - id: npm-folder
-        run: |
-          echo '::set-output name=dir::$(npm config get cache)'
+        run: echo '::set-output name=dir::$(npm config get cache)'
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
@@ -62,11 +61,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
-      - id: cypress-folder
-        run: |
-          echo '::set-output name=dir::$(npx cypress cache path)'
+      - name: Save Cypress cache folder
+        id: cypress-folder
+        run: echo '::set-output name=dir::$(npx cypress cache path)'
 
       - name: Cache cypress
+        id: cypress-cache
         uses: actions/cache@v2.1.1
         with:
           path: ${{ steps.cypress-folder.outputs.dir }}
@@ -75,7 +75,7 @@ jobs:
           # windows: /AppData/Local/Cypress/Cache
           key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+            ${{ runner.os }}-cypress-
 
       - name: Install dependencies
         env:
@@ -88,6 +88,7 @@ jobs:
           npx cypress info
 
       - name: Build
+        if: steps.cypress-cache.outputs.cache-hit != 'true'
         run: |
           npm run build
 
@@ -102,8 +103,7 @@ jobs:
           fi
 
       - name: Run tests
-        run: |
-          npm run test:record:chrome
+        run: npm run test:record:chrome
         env:
           CI: true
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
