@@ -26,8 +26,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # doc: https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
         language: ['javascript'] # ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
+# doc: overriding-automatic-language-detection
+# https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning
 
     steps:
     - name: Checkout repository
