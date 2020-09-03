@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: true # cancel all in-progress jobs if any matrix job fails
       matrix:
-        os: [ubuntu-20.04, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: Checkout
@@ -36,15 +36,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.1
         with:
-          node-version: 14
+          node-version: 12
 
       - name: Print CI env variables
         run: |
           npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
 
       - id: npm-folder
-        run: |
-          echo '::set-output name=dir::$(npm config get cache)'
+        run: echo '::set-output name=dir::$(npm config get cache)'
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
@@ -62,39 +61,34 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
-      - id: cypress-folder
-        run: |
-          echo '::set-output name=dir::$(cypress cache path)'
+      # - id: cypress-folder
+        # run: echo '::set-output name=dir::$(cypress cache path)'
 
-      - name: Cache cypress
-        uses: actions/cache@v2.1.1
-        with:
-          path: ${{ steps.cypress-folder.outputs.dir }}
-          # ubuntu: ~/.cache/Cypress
-          # macOS: ~/Library/Caches/Cypress
-          # windows: /AppData/Local/Cypress/Cache
-          key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+      # - name: Cache cypress
+        # uses: actions/cache@v2.1.1
+        # with:
+          # path: ${{ steps.cypress-folder.outputs.dir }}
+            # ubuntu: ~/.cache/Cypress
+            # macOS: ~/Library/Caches/Cypress
+            # windows: /AppData/Local/Cypress/Cache
+          # key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          # restore-keys: |
+            # ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
 
       - name: Install dependencies
         env:
           CI: true
-        run: |
-          npm i
-          npx cypress cache path
-          npx cypress cache list
-          npx cypress verify
-          npx cypress info
+        run: npm ci
+          # npx cypress cache path && npx cypress cache list &&
+          # npx cypress verify && npx cypress info
 
       - name: Run build
         env:
           CI: true
-        run: |
-          npm run build
+        run: npm run build
 
-      - name: Check installation
-        if: ${{ runner.os == 'linux' }}
+      - name: Diff changes
+        if: startsWith(matrix.os, 'ubuntu')
         shell: bash
         run: |
           if [ '$(git diff --ignore-space-at-eol | wc -l)' -gt '0' ]; then
@@ -104,14 +98,13 @@ jobs:
           fi
 
       - name: Start (linux & osx)
-        if: runner.os != 'windows'
-        run: |
-          npm run static:ci & (sleep 20 && killall -9 node)
+        if: runner.os != 'windows-latest'
+        run: npm run static:ci & (sleep 20 && killall -9 node)
         # or: pkill node
         # or: ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
 
       # - name: Start (windows)
-        # if: runner.os == 'windows'
+        # if: runner.os == 'windows-latest'
         # shell: bash
         # run: |
           # npm run static:ci & (sleep 20 && sh -c 'lsof -i :${PORT:-5000} -t' | xargs kill)
