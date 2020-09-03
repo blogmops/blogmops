@@ -39,10 +39,10 @@ jobs:
           node-version: 12
 
       - name: Print CI env variables
-        run: |
-          npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
+        run: npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
 
-      - id: npm-folder
+      - name: Save npm path
+        id: npm-folder
         run: echo '::set-output name=dir::$(npm config get cache)'
 
       - name: Cache npm
@@ -51,7 +51,7 @@ jobs:
           path: ${{ steps.npm-folder.outputs.dir }}
           key: ${{ runner.os }}-npm-folder-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-folder-
+            ${{ runner.os }}-npm-folder-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache node_modules
         uses: actions/cache@v2.1.1
@@ -79,8 +79,7 @@ jobs:
         env:
           CI: true
         run: npm ci
-          # npx cypress cache path && npx cypress cache list &&
-          # npx cypress verify && npx cypress info
+# npx cypress cache path && npx cypress cache list && npx cypress verify && npx cypress info
 
       - name: Run build
         if: steps.cypress-cache.outputs.cache-hit != 'true'
