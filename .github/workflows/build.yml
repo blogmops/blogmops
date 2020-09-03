@@ -83,6 +83,7 @@ jobs:
           # npx cypress verify && npx cypress info
 
       - name: Run build
+        if: steps.cypress-cache.outputs.cache-hit != 'true'
         env:
           CI: true
         run: npm run build
