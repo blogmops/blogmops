@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: true # cancel all in-progress jobs if any matrix job fails
       matrix:
-        os: [ubuntu--latest, windows-latest, maocos-latest]
+        os: [ubuntu-latest, windows-latest, maocos-latest]
 
     steps:
       - name: Checkout
@@ -36,7 +36,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.1
         with:
-          node-version: 14
+          node-version: 12
 
       - name: Print CI env variables
         run: |
@@ -49,9 +49,9 @@ jobs:
         uses: actions/cache@v2.1.1
         with:
           path: ${{ steps.npm-folder.outputs.dir }}
-          key: ${{ runner.os }}-npm-folder-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-folder-
+            ${{ runner.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache node_modules
         uses: actions/cache@v2.1.1
@@ -61,31 +61,30 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Save Cypress cache folder
-        id: cypress-folder
-        run: echo '::set-output name=dir::$(npx cypress cache path)'
+      # - name: Save Cypress cache folder
+        # id: cypress-folder
+        # run: echo '::set-output name=dir::$(npx cypress cache path)'
 
-      - name: Cache cypress
-        id: cypress-cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ${{ steps.cypress-folder.outputs.dir }}
-          # ubuntu: ~/.cache/Cypress
-          # macOS: ~/Library/Caches/Cypress
-          # windows: /AppData/Local/Cypress/Cache
-          key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-
+      # - name: Cache cypress
+        # id: cypress-cache
+        # uses: actions/cache@v2.1.1
+        # with:
+          # path: ${{ steps.cypress-folder.outputs.dir }}
+            # ubuntu: ~/.cache/Cypress
+            # macOS: ~/Library/Caches/Cypress
+            # windows: /AppData/Local/Cypress/Cache
+          # key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          # restore-keys: |
+            # ${{ runner.os }}-cypress-
 
       - name: Install dependencies
         env:
           CI: true
-        run: |
-          npm i
-          npx cypress cache path
-          npx cypress cache list
-          npx cypress verify
-          npx cypress info
+        run: npm ci
+          # npx cypress cache path
+          # npx cypress cache list
+          # npx cypress verify
+          # npx cypress info
 
       - name: Build
         if: steps.cypress-cache.outputs.cache-hit != 'true'
