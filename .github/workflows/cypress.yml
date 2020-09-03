@@ -93,7 +93,7 @@ jobs:
           npm run build
 
       - name: Diff changes
-        if: ${{ runner.os == 'linux' }}
+        if: startsWith(matrix.os, 'ubuntu')
         shell: bash
         run: |
           if [ '$(git diff --ignore-space-at-eol | wc -l)' -gt '0' ]; then
@@ -111,7 +111,7 @@ jobs:
           TERM: xterm
 
       - uses: actions/upload-artifact@v2.1.4
-        # if: failure()
+        if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
