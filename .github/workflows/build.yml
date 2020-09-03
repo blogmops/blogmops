@@ -48,47 +48,31 @@ jobs:
         uses: actions/cache@v2.1.1
         with:
           path: ${{ steps.npm-folder.outputs.dir }}
-          key: ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ matrix.os }}-npm-folder-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+            ${{ matrix.os }}-npm-folder-
 
       - name: Cache node_modules
         uses: actions/cache@v2.1.1
         with:
           path: node_modules
-          key: ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ matrix.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
-      # - name: Save Cypress cache folder
-        # id: cypress-folder
-        # run: echo '::set-output name=dir::$(npx cypress cache path)'
-
-      # - name: Cache cypress
-        # id: cypress-cache
-        # uses: actions/cache@v2.1.1
-        # with:
-          # path: ${{ steps.cypress-folder.outputs.dir }}
-            # ubuntu: ~/.cache/Cypress
-            # macOS: ~/Library/Caches/Cypress
-            # windows: /AppData/Local/Cypress/Cache
-          # key: ${{ matrix.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-          # restore-keys: |
-            # ${{ matrix.os }}-cypress-
+            ${{ matrix.os }}-node_modules-
 
       - name: Install dependencies
         env:
           CI: true
-        run: npm ci
+        run: |
+          npm ci
           # npx cypress cache path
           # npx cypress cache list
-          # npx cypress verify
-          # npx cypress info
+          npx cypress verify
+          npx cypress info
 
       - name: Build and export
         if: steps.cypress-cache.outputs.cache-hit != 'true'
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
@@ -100,14 +84,20 @@ jobs:
             exit 1
           fi
 
-      - name: Start (linux & osx)
-        if: runner.os != 'windows-latest'
+      - name: Shutdown server on ${{ matrix.os }}
+        if: startsWith(matrix.os, 'ubuntu')
+        shell: bash
         run: npm run static:ci & (sleep 20 && killall -9 node)
         # or: pkill node
         # or: ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
 
-      # - name: Start (windows)
-        # if: runner.os == 'windows-latest'
+      - name: Shutdown server on ${{ matrix.os }}
+        if: startsWith(matrix.os, 'macos')
+        shell: bash
+        run: npm run static:ci & (sleep 20 && killall -9 node)
+
+      # - name: Shutdown server on ${{ matrix.os }}
+        # if: startsWith(matrix.os, 'macos')
         # shell: bash
         # run: |
           # npm run static:ci & (sleep 20 && sh -c 'lsof -i :${PORT:-5000} -t' | xargs kill)
