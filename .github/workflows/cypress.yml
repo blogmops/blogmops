@@ -7,14 +7,14 @@ on:
       - master
       - releases/**
     paths-ignore:
-      - "**.md"
+      - '**.md'
 
   # push:
     # branches:
       # - master
       # - releases/**
     # paths-ignore:
-      # - "**.md"
+      # - '**.md'
 
 jobs:
   test:
@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: true # cancel all in-progress jobs if any matrix job fails
       matrix:
-        os: [ubuntu-latest, windows-latest, maocos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout
@@ -49,17 +49,17 @@ jobs:
         uses: actions/cache@v2.1.1
         with:
           path: ${{ steps.npm-folder.outputs.dir }}
-          key: ${{ runner.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+            ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache node_modules
         uses: actions/cache@v2.1.1
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+            ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
 
       # - name: Save Cypress cache folder
         # id: cypress-folder
@@ -73,9 +73,9 @@ jobs:
             # ubuntu: ~/.cache/Cypress
             # macOS: ~/Library/Caches/Cypress
             # windows: /AppData/Local/Cypress/Cache
-          # key: ${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          # key: ${{ matrix.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
           # restore-keys: |
-            # ${{ runner.os }}-cypress-
+            # ${{ matrix.os }}-cypress-
 
       - name: Install dependencies
         env:
@@ -88,8 +88,7 @@ jobs:
 
       - name: Build
         if: steps.cypress-cache.outputs.cache-hit != 'true'
-        run: |
-          npm run build
+        run: npm run build
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
@@ -101,8 +100,27 @@ jobs:
             exit 1
           fi
 
-      - name: Run tests
+      - name: Run firefox tests on ${{ matrix.os }}
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run test:record:firefox
+        env:
+          CI: true
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          TERM: xterm
+
+      - name: Run chrome tests on ${{ matrix.os }}
+        if: startsWith(matrix.os, 'macos')
         run: npm run test:record:chrome
+        env:
+          CI: true
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          TERM: xterm
+
+      - name: Run edge tests on ${{ matrix.os }}
+        if: startsWith(matrix.os, 'windows')
+        run: npm run test:record:edge
         env:
           CI: true
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
