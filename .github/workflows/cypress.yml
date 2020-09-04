@@ -76,10 +76,10 @@ jobs:
 
       - name: Verify Cypress
         run: |
-          cypress cache path
-          cypress cache list
-          cypress verify
-          cypress info # or with: npx cypress info
+          npx cypress cache path
+          npx cypress cache list
+          npx cypress verify
+          npx cypress info
 
       - name: Run firefox tests on ${{ matrix.os }}
         if: startsWith(matrix.os, 'ubuntu')
