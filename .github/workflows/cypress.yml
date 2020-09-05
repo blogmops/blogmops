@@ -39,56 +39,26 @@ jobs:
           node-version: 12
 
       - name: Print CI env variables
-        run: |
-          npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
+        run: npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
 
-      - id: npm-folder
-        run: echo '::set-output name=dir::$(npm config get cache)'
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
         with:
-          path: ${{ steps.npm-folder.outputs.dir }}
-          key: ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ matrix.os }}-npm-folder-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Cache node_modules
-        uses: actions/cache@v2.1.1
-        with:
-          path: node_modules
-          key: ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ matrix.os }}-node_modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-
-      # - name: Save Cypress cache folder
-        # id: cypress-folder
-        # run: echo '::set-output name=dir::$(npx cypress cache path)'
-
-      # - name: Cache cypress
-        # id: cypress-cache
-        # uses: actions/cache@v2.1.1
-        # with:
-          # path: ${{ steps.cypress-folder.outputs.dir }}
-            # ubuntu: ~/.cache/Cypress
-            # macOS: ~/Library/Caches/Cypress
-            # windows: /AppData/Local/Cypress/Cache
-          # key: ${{ matrix.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
-          # restore-keys: |
-            # ${{ matrix.os }}-cypress-
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         env:
           CI: true
-        run: npm ci
-          # npx cypress cache path
-          # npx cypress cache list
-          # npx cypress verify
-          # npx cypress info
-
-      - name: Build
-        if: steps.cypress-cache.outputs.cache-hit != 'true'
-        run: npm run build
+        run: |
+          npm ci
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
@@ -99,6 +69,30 @@ jobs:
             git diff
             exit 1
           fi
+
+      - name: Verify Cypress
+        run: |
+          npx cypress cache path
+          npx cypress cache list
+          npx cypress verify
+          npx cypress info
+
+      - name: Get npm cache directory
+        id: cypress-cache
+        run: |
+          echo "::set-output name=dir::$(npx cypress cache path)"
+
+      - name: Cache cypress
+        uses: actions/cache@v2.1.1
+        with:
+          path: ${{ steps.cypress-cache.outputs.dir }}
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
+      - name: Build and export
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm run build
 
       - name: Run firefox tests on ${{ matrix.os }}
         if: startsWith(matrix.os, 'ubuntu')
