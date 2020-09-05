@@ -44,7 +44,7 @@ jobs:
       - name: Get npm cache directory
         id: npm-cache
         run: |
-          echo "::set-output name=dir::$(npm config get cache)"
+          echo "::set-output name=dir::($(npm bin)/cypress cache path)"
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
