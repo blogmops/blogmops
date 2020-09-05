@@ -72,10 +72,10 @@ jobs:
 
       - name: Verify Cypress
         run: |
-          npx cypress cache path
-          npx cypress cache list
-          npx cypress verify
-          npx cypress info
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+          $(npm bin)/cypress info
 
       - name: Get npm cache directory
         id: cypress-cache
