@@ -8,6 +8,11 @@ on:
       - releases/**
     paths-ignore:
       - '**.md'
+      - 'node_modules'
+      - 'cypress/screenshots'
+      - 'cypress/videos'
+      - 'coverage'
+      - '__sapper__'
 
   pull_request:
     branches:
@@ -15,6 +20,11 @@ on:
       - releases/**
     paths-ignore:
       - '**.md'
+      - 'node_modules'
+      - 'cypress/screenshots'
+      - 'cypress/videos'
+      - 'coverage'
+      - '__sapper__'
   schedule:
     - cron: '0 9 * * 4' # Runs at 09:00 UTC on Thu
 
