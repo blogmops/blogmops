@@ -76,7 +76,7 @@ jobs:
           npx cypress cache list
           npx cypress verify
           npx cypress info
-          
+
       - name: Get npm cache directory
         id: cypress-cache
         run: |
