@@ -44,7 +44,7 @@ jobs:
       - name: Get npm cache directory
         id: npm-cache
         run: |
-          echo "::set-output name=dir::($(npm bin)/cypress cache path)"
+          echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
@@ -70,6 +70,11 @@ jobs:
             exit 1
           fi
 
+      - name: Get cypress cache directory
+        id: cypress-dir
+        run: |
+          echo "::set-output name=dir::$(npm bin)/cypress cache path")
+
       - name: Verify Cypress
         run: |
           $(npm bin)/cypress cache path
@@ -77,15 +82,10 @@ jobs:
           $(npm bin)/cypress verify
           $(npm bin)/cypress info
 
-      - name: Get npm cache directory
-        id: cypress-cache
-        run: |
-          echo "::set-output name=dir::$(npx cypress cache path)"
-
       - name: Cache cypress
         uses: actions/cache@v2.1.1
         with:
-          path: ${{ steps.cypress-cache.outputs.dir }}
+          path: ${{ steps.cypress-dir.outputs.dir }}
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-
