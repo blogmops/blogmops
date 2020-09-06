@@ -73,7 +73,7 @@ jobs:
       - name: Get cypress cache directory
         id: cypress-dir
         run: |
-          echo "::set-output name=dir::$(npm bin)/cypress cache path")
+          echo "::set-output name=dir::$(npm bin)/cypress cache path"
 
       - name: Verify Cypress
         run: |
