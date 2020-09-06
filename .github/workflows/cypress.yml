@@ -45,7 +45,6 @@ jobs:
         id: node
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-        shell: bash
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
@@ -70,7 +69,7 @@ jobs:
             git diff
             exit 1
           fi
-          
+
       - name: Get cypress cache directory
         id: cypress
         run: |
