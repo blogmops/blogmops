@@ -41,15 +41,16 @@ jobs:
       - name: Print CI env variables
         run: npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
 
-      - name: Get npm cache directory
-        id: npm-cache
+      - name: Get node cache directory
+        id: node
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
+        shell: bash
 
       - name: Cache npm
         uses: actions/cache@v2.1.1
         with:
-          path: ${{ steps.npm-cache.outputs.dir }}
+          path: ${{ steps.node.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -69,29 +70,29 @@ jobs:
             git diff
             exit 1
           fi
-
+          
       - name: Get cypress cache directory
-        id: cypress-dir
+        id: cypress
         run: |
-          echo "::set-output name=dir::$(npm bin)/cypress cache path"
+          echo "::set-output name=dir::$(npx cypress cache path)"
 
       - name: Verify Cypress
         run: |
-          $(npm bin)/cypress cache path
-          $(npm bin)/cypress cache list
-          $(npm bin)/cypress verify
-          $(npm bin)/cypress info
+          npx cypress cache path
+          npx cypress cache list
+          npx cypress verify
+          npx cypress info
 
       - name: Cache cypress
         uses: actions/cache@v2.1.1
         with:
-          path: ${{ steps.cypress-dir.outputs.dir }}
+          path: ${{ steps.cypress.outputs.dir }}
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-
 
       - name: Build and export
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        if: steps.node.outputs.cache-hit != 'true'
         run: npm run build
 
       - name: Run firefox tests on ${{ matrix.os }}
