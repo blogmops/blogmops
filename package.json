@@ -37,7 +37,7 @@
     "reading-time": "^1.2.0",
     "rollup-plugin-glob": "^1.0.2",
     "sirv": "^1.0.7",
-    "snyk": "^1.424.4"
+    "snyk": "^1.425.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
