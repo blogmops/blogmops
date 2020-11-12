@@ -75,7 +75,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "sapper": "^0.28.10",
     "stylelint": "^13.7.2",
-    "svelte": "^3.29.4",
+    "svelte": "^3.29.7",
     "volleyball": "^1.5.1"
   },
   "browserslist": [
