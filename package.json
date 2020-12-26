@@ -36,7 +36,7 @@
     "prismjs": "^1.22.0",
     "reading-time": "^1.2.1",
     "rollup-plugin-glob": "^1.0.2",
-    "sirv": "^1.0.7",
+    "sirv": "^1.0.9",
     "snyk": "^1.431.2"
   },
   "devDependencies": {
