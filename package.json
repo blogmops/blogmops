@@ -31,7 +31,7 @@
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "helmet": "4.2.0",
-    "marked": "^1.2.5",
+    "marked": "^1.2.8",
     "polka": "^1.0.0-next.11",
     "prismjs": "^1.23.0",
     "reading-time": "^1.2.1",
@@ -73,7 +73,7 @@
     "rollup-plugin-alias": "^2.2.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "sapper": "^0.28.10",
+    "sapper": "^0.29.0",
     "stylelint": "^13.8.0",
     "svelte": "^3.31.0",
     "volleyball": "^1.5.1"
