@@ -1,7 +1,7 @@
 {
   "name": "blogmops",
   "description": "read some cool stories about a cute pug",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "homepage": "https://blogmops.vercel.app/",
   "repository": {
     "type": "git",
@@ -58,7 +58,8 @@
     "cypress": "^6.5.0",
     "dotenv": "^8.2.0",
     "eslint": "7.14.0",
-    "eslint-config-standard": "^16.0.2","eslint-plugin-babel": "^5.3.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json": "^2.1.2",
