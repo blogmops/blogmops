@@ -121,13 +121,13 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
 
-      - uses: actions/upload-artifact@v2.2.2
+      - uses: actions/upload-artifact@v2.2.3
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v2.2.2
+      - uses: actions/upload-artifact@v2.2.3
         with:
           name: videos
           path: cypress/videos
