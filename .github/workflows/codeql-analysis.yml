@@ -52,7 +52,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.4.0
         with:
           node-version: 12
 
