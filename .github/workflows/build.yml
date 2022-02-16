@@ -62,7 +62,7 @@ jobs:
 
       - name: Build and export
         if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm run build
+        run: npm run export
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
