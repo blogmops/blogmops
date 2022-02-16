@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 12
 
@@ -58,7 +58,7 @@ jobs:
         env:
           CI: true
         run: |
-          npm ci
+          npm i
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
