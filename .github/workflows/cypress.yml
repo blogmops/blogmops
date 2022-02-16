@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.node.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -83,7 +83,7 @@ jobs:
           npx cypress info
 
       - name: Cache cypress
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.cypress.outputs.dir }}
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
