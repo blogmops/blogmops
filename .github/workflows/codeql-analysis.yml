@@ -54,7 +54,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.5.1
         with:
-          node-version: 12
+          node-version: 14
 
       - name: Print CI env variables
         run: npx @bahmutov/print-env@v2.1.2 -e USER GITHUB || true
@@ -76,7 +76,7 @@ jobs:
         env:
           CI: true
         run: |
-          npm ci
+          npm i
 
       - name: Build and export
         if: steps.npm-cache.outputs.cache-hit != 'true'
