@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.node.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -83,7 +83,7 @@ jobs:
           npx cypress info
 
       - name: Cache cypress
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.cypress.outputs.dir }}
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
@@ -121,13 +121,13 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
 
-      - uses: actions/upload-artifact@v2.2.2
+      - uses: actions/upload-artifact@v2.3.1
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v2.2.2
+      - uses: actions/upload-artifact@v2.3.1
         with:
           name: videos
           path: cypress/videos
