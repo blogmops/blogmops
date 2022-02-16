@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 12
 
@@ -47,7 +47,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.node.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -58,7 +58,7 @@ jobs:
         env:
           CI: true
         run: |
-          npm ci
+          npm i
 
       - name: Diff changes
         if: startsWith(matrix.os, 'ubuntu')
@@ -83,7 +83,7 @@ jobs:
           npx cypress info
 
       - name: Cache cypress
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.cypress.outputs.dir }}
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}

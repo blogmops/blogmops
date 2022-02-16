@@ -52,7 +52,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 12
 
@@ -65,7 +65,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Cache npm
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.7
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
