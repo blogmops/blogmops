@@ -1022,9 +1022,9 @@ camel-case@^3.0.0:
     upper-case "^1.1.1"
 
 caniuse-lite@^1.0.30001219:
-  version "1.0.30001230"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001230.tgz#8135c57459854b2240b57a4a6786044bdc5a9f71"
-  integrity sha512-5yBd5nWCBS+jWKTcHOzXwo5xzcj4ePE/yjtkZyUV1BTUmrBaA9MRGC+e7mxnqXSA90CmCA8L3eKLaSUkt099IQ==
+  version "1.0.30001314"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001314.tgz"
+  integrity sha512-0zaSO+TnCHtHJIbpLroX7nsD+vYuOVjl3uzFbJO1wMVbuveJA0RK2WcQA9ZUIOiO0/ArMiMgHJLxfEZhQiC0kw==
 
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
@@ -2728,10 +2728,10 @@ svelte-preprocess@^3.3.0:
     detect-indent "^6.0.0"
     strip-indent "^2.0.0"
 
-svelte@^3.0.0:
-  version "3.16.7"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.16.7.tgz#9ade80a4bbbac95595c676dd817222f632fa2c07"
-  integrity sha512-egrva1UklB1n7KAv179IhDpQzMGAvubJUlOQ9PitmmZmAfrCUEgrQnx2vPxn2s+mGV3aYegXvJ/yQ35N2SfnYQ==
+svelte@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.0.0.tgz#70e1e9d9980a5cd6c5516b62518e49dab5859bb4"
+  integrity sha512-4QQ7eBuVw/t0kMSSjLCiAjQYTj7ZF0OtH24YOWtTrTJHTLd58gEAPZeKSGOYDXtwpcrMi4Cxo3MgEbdI1m4erg==
 
 terser@^4.6.2:
   version "4.6.2"

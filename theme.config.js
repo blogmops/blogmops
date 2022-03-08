@@ -4,7 +4,7 @@ export default {
   source: sapperSource({
     plugin: markdownSource,
     options: {
-      postsPerPage: 1, // Used in svelte template
+      postsPerPage: 4, // Used in svelte template
       contentPath: '/contents/'
     },
   }),

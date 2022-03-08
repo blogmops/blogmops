@@ -1,105 +1,51 @@
-<style>
-	.home-container {
-		align-items: center;
-		display: flex;
-		flex: 1;
-		justify-content: center;
-		margin: 2em 0;
-		min-height: 400px;
-	}
+<script context="module">
+  export async function preload(page, session) {
+    const res = await this.fetch(`index.json`);
+    const response = await res.json();
 
-	.home-copy {
-		flex: 1;
-	}
+    return response;
+  }
+</script>
 
-	h1 {
-		font-weight: 700;
-		margin-bottom: 0.5em;
-	}
+<script>
+  import Posts from '../components/Posts.svelte';
+  import Breadcrumb from '../components/Breadcrumb.svelte';
 
-	p {
-		font-size: 1.4em;
-		line-height: 1.5;
-	}
+  export let posts;
+  export let postsPerPage;
+</script>
 
-	figure {
-		text-align: center;
-	}
-
-	@media (min-width: 1024px) {
-		figure {
-			margin: 0 1em;
-		}
-	}
-
-	figcaption {
-		font-size: 0.8em;
-		font-style: italic;
-	}
-
-	.profile-image {
-		max-height: 210px;
-		max-width: 210px;
-		width: 100%;
-		overflow: hidden;
-		display: block;
-		margin: 0 0 35px 0;
-		border-radius: 50%;
-	}
-
-	@media (min-width: 1024px) {
-		.profile-image {
-			max-height: 380px;
-			max-width: 380px;
-			margin-left: 30px;
-		}
-	}
-
-	@media (max-width: 1020px) {
-		p {
-			font-size: 1.2em;
-		}
-	}
-
-	@media (max-width: 800px) {
-		.home-container {
-			flex-direction: column;
-		}
-
-		.home-copy {
-			flex: 0;
-			padding-bottom: 2em;
-			text-align: center;
-		}
-	}
+<style lang="scss">
+  .hero-section {
+    padding: 10rem 2rem;
+    font-size: 2rem;
+    max-width: 700px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 4rem;
+    line-height: 4.5rem;
+  }
+  @media (max-width: 767px) {
+    .hero-section {
+      padding: 5rem 0;
+    }
+    h1 {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+  }
 </style>
 
 <svelte:head>
-	<title>blogmops - a blog for a pug</title>
+  <title>Stunning Theme</title>
 </svelte:head>
 
-<div class="home-container">
-	<div class="home-copy">
-		<h1>Welcome to blogmops</h1>
-
-		<p>
-			Check out my
-			<a href="/blog">blog</a>
-			posts.
-		</p>
-	</div>
-
-	<figure>
-		<div class="profile-image">
-			<img
-				alt="blogmops selfie"
-				srcset="images/blogmops.webp 375w, images/blogmops.webp 768w,
-				images/blogmops.webp 1024w" />
-		</div>
-
-		<figcaption>
-			That's me: the
-			<a href="/">blogmops</a>
-		</figcaption>
-	</figure>
+<div class="hero-section">
+  <h1>Stunning Sapper Blog theme with support for markdown files</h1>
+  <p>Start Publishing With Sapper</p>
 </div>
+
+<Posts {posts} limit={postsPerPage} />
+
+<Breadcrumb isFirst={true} isLast={postsPerPage > posts.length} page="1" />

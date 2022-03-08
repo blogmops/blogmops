@@ -1,5 +1,6 @@
 import * as sapper from '@sapper/app';
+import './styles/global.scss';
 
 sapper.start({
-	target: document.querySelector('#main'),
+  target: document.querySelector('#sapper'),
 });
