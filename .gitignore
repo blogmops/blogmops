@@ -112,6 +112,7 @@ typings/
 
 # local history
 .history
+.lh
 
 # Output of 'npm pack'
 *.tgz
@@ -126,6 +127,7 @@ typings/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+.tmp
 
 # Next.js build output
 .next
@@ -135,7 +137,11 @@ typings/
 dist
 
 # sapper build
-__sapper__/
+/__sapper__/
+/src/node_modules/@sapper/
+
+# cypress
+/cypress/screenshots/
 
 # Serverless directories
 .serverless/
@@ -164,6 +170,8 @@ ehthumbs_vista.db
 
 # Folder config file
 [Dd]esktop.ini
+.DS_Store
+*.bak
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

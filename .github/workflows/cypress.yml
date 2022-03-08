@@ -2,19 +2,19 @@
 name: Cypress runner
 
 on:
-  pull_request:
+  # pull_request:
+  #   branches:
+  #     - master
+  #     - releases/**
+  #   paths-ignore:
+  #     - '**.md'
+
+  push:
     branches:
       - master
       - releases/**
     paths-ignore:
       - '**.md'
-
-  # push:
-    # branches:
-      # - master
-      # - releases/**
-    # paths-ignore:
-      # - '**.md'
 
 jobs:
   test:
