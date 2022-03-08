@@ -1,10 +1,11 @@
-import sapperSource, { markdownSource } from 'sapper-sources';
+import sapperSource, { gatsbyPlugin, markdownSource } from 'sapper-sources';
 
 export default {
   source: sapperSource({
     plugin: markdownSource,
+    // plugin: gatsbyPlugin('gatsby-source-rss-feed'),
     options: {
-      postsPerPage: 1, // Used in svelte template
+      postsPerPage: 4, // Used in svelte template
       contentPath: '/contents/'
     },
   }),

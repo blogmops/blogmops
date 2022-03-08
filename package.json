@@ -44,10 +44,5 @@
     "sass": "^1.24.3",
     "svelte": "^3.46.4",
     "svelte-preprocess": "^3.3.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern **/*.{js,svelte,css,html}"
-    }
   }
 }
