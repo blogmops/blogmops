@@ -15,8 +15,8 @@
     cursor: pointer;
     text-decoration: none;
 
-    img {
-      max-width: 100%;
+    .image {
+      height: 12rem;
       border-radius: 5px;
       margin: 15px 0;
       object-fit: cover;
@@ -40,7 +40,7 @@
     }
 
     &:hover {
-      img {
+      .image {
         box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);
         -webkit-box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);
         transform: translateY(-2px);
@@ -65,7 +65,7 @@
   {#each postsToDisplay as post}
     <a class="post" href="/blog/{post.slug}">
       {#if post.frontmatter.preview}
-        <img src={post.frontmatter.preview} alt="" />
+        <img src={post.frontmatter.preview} class="image" alt="{post.frontmatter.title}" />
       {/if}
       <h2>{post.frontmatter.title}</h2>
       <div class="description">{post.frontmatter.excerpt}</div>

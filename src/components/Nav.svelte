@@ -5,9 +5,12 @@
 <style lang="scss">
   nav {
     display: flex;
-    justify-content: space-between;
+    flex-flow: row wrap;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 4rem 0 2rem;
+    width: 50%;
+    margin: 0 auto;
   }
 
   .logo {

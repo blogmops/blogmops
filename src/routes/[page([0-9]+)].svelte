@@ -30,6 +30,6 @@
   <title>Stunning Theme - Page {page}</title>
 </svelte:head>
 
-<Posts {posts} limit={4} />
+<Posts {posts} limit={2} />
 
 <Breadcrumb {isFirst} {isLast} {page} />

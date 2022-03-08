@@ -114,177 +114,158 @@ var route_2 = /*#__PURE__*/Object.freeze({
   get: get$2
 });
 
-function noop() {}
-
+function noop() { }
 function run(fn) {
-	return fn();
+    return fn();
 }
-
 function blank_object() {
-	return Object.create(null);
+    return Object.create(null);
 }
-
 function run_all(fns) {
-	fns.forEach(run);
+    fns.forEach(run);
 }
-
 function safe_not_equal(a, b) {
-	return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
 }
 
 let current_component;
-
 function set_current_component(component) {
-	current_component = component;
+    current_component = component;
 }
-
 function get_current_component() {
-	if (!current_component) throw new Error(`Function called outside component initialization`);
-	return current_component;
+    if (!current_component)
+        throw new Error(`Function called outside component initialization`);
+    return current_component;
 }
-
 function setContext(key, context) {
-	get_current_component().$$.context.set(key, context);
+    get_current_component().$$.context.set(key, context);
 }
-
 const escaped = {
-	'"': '&quot;',
-	"'": '&#39;',
-	'&': '&amp;',
-	'<': '&lt;',
-	'>': '&gt;'
+    '"': '&quot;',
+    "'": '&#39;',
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;'
 };
-
 function escape(html) {
-	return String(html).replace(/["'&<>]/g, match => escaped[match]);
+    return String(html).replace(/["'&<>]/g, match => escaped[match]);
 }
-
 function each(items, fn) {
-	let str = '';
-	for (let i = 0; i < items.length; i += 1) {
-		str += fn(items[i], i);
-	}
-	return str;
+    let str = '';
+    for (let i = 0; i < items.length; i += 1) {
+        str += fn(items[i], i);
+    }
+    return str;
 }
-
 const missing_component = {
-	$$render: () => ''
+    $$render: () => ''
 };
-
 function validate_component(component, name) {
-	if (!component || !component.$$render) {
-		if (name === 'svelte:component') name += ' this={...}';
-		throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
-	}
-
-	return component;
+    if (!component || !component.$$render) {
+        if (name === 'svelte:component')
+            name += ' this={...}';
+        throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
+    }
+    return component;
 }
-
 let on_destroy;
-
 function create_ssr_component(fn) {
-	function $$render(result, props, bindings, slots) {
-		const parent_component = current_component;
-
-		const $$ = {
-			on_destroy,
-			context: new Map(parent_component ? parent_component.$$.context : []),
-
-			// these will be immediately discarded
-			on_mount: [],
-			before_render: [],
-			after_render: [],
-			callbacks: blank_object()
-		};
-
-		set_current_component({ $$ });
-
-		const html = fn(result, props, bindings, slots);
-
-		set_current_component(parent_component);
-		return html;
-	}
-
-	return {
-		render: (props = {}, options = {}) => {
-			on_destroy = [];
-
-			const result = { head: '', css: new Set() };
-			const html = $$render(result, props, {}, options);
-
-			run_all(on_destroy);
-
-			return {
-				html,
-				css: {
-					code: Array.from(result.css).map(css => css.code).join('\n'),
-					map: null // TODO
-				},
-				head: result.head
-			};
-		},
-
-		$$render
-	};
+    function $$render(result, props, bindings, slots) {
+        const parent_component = current_component;
+        const $$ = {
+            on_destroy,
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // these will be immediately discarded
+            on_mount: [],
+            before_update: [],
+            after_update: [],
+            callbacks: blank_object()
+        };
+        set_current_component({ $$ });
+        const html = fn(result, props, bindings, slots);
+        set_current_component(parent_component);
+        return html;
+    }
+    return {
+        render: (props = {}, options = {}) => {
+            on_destroy = [];
+            const result = { head: '', css: new Set() };
+            const html = $$render(result, props, {}, options);
+            run_all(on_destroy);
+            return {
+                html,
+                css: {
+                    code: Array.from(result.css).map(css => css.code).join('\n'),
+                    map: null // TODO
+                },
+                head: result.head
+            };
+        },
+        $$render
+    };
+}
+function add_attribute(name, value, boolean) {
+    if (value == null || (boolean && !value))
+        return '';
+    return ` ${name}${value === true ? '' : `=${typeof value === 'string' ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
 }
 
-/* src\components\Posts.svelte generated by Svelte v3.0.0 */
+/* src\components\Posts.svelte generated by Svelte v3.16.7 */
 
 const css = {
-	code: ".posts.svelte-1sc0jmh{display:grid;grid-template-columns:1fr 1fr;grid-gap:2rem}.post.svelte-1sc0jmh{cursor:pointer;text-decoration:none}.post.svelte-1sc0jmh img.svelte-1sc0jmh{max-width:100%;border-radius:5px;margin:15px 0;object-fit:cover;width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);-webkit-box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);transition:250ms ease-in all}.post.svelte-1sc0jmh h2.svelte-1sc0jmh{margin:0;padding:0 0.5rem;font-size:1.25rem;font-weight:600}.post.svelte-1sc0jmh .description.svelte-1sc0jmh{padding:0.5rem;opacity:0.4}.post.svelte-1sc0jmh:hover img.svelte-1sc0jmh{box-shadow:0 4px 20px rgba(100, 100, 100, 0.25);-webkit-box-shadow:0 4px 20px rgba(100, 100, 100, 0.25);transform:translateY(-2px)}@media(max-width: 767px){.posts.svelte-1sc0jmh{grid-template-columns:1fr}.post.svelte-1sc0jmh:nth-child(4n+1),.post.svelte-1sc0jmh:nth-child(4n+2),.post.svelte-1sc0jmh:nth-child(4n+3),.post.svelte-1sc0jmh:nth-child(4n+4){grid-column:span 1}}",
-	map: "{\"version\":3,\"file\":\"Posts.svelte\",\"sources\":[\"Posts.svelte\"],\"sourcesContent\":[\"<script>\\n  export let posts;\\n  export let limit = -1;\\n\\n  $: postsToDisplay = posts ? posts.slice(0, limit) : [];\\n</script>\\n\\n<style lang=\\\"scss\\\">.posts {\\n  display: grid;\\n  grid-template-columns: 1fr 1fr;\\n  grid-gap: 2rem;\\n}\\n\\n.post {\\n  cursor: pointer;\\n  text-decoration: none;\\n}\\n.post img {\\n  max-width: 100%;\\n  border-radius: 5px;\\n  margin: 15px 0;\\n  object-fit: cover;\\n  width: 100%;\\n  border-radius: 10px;\\n  box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  transition: 250ms ease-in all;\\n}\\n.post h2 {\\n  margin: 0;\\n  padding: 0 0.5rem;\\n  font-size: 1.25rem;\\n  font-weight: 600;\\n}\\n.post .description {\\n  padding: 0.5rem;\\n  opacity: 0.4;\\n}\\n.post:hover img {\\n  box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);\\n  transform: translateY(-2px);\\n}\\n\\n@media (max-width: 767px) {\\n  .posts {\\n    grid-template-columns: 1fr;\\n  }\\n\\n  .post:nth-child(4n+1),\\n.post:nth-child(4n+2),\\n.post:nth-child(4n+3),\\n.post:nth-child(4n+4) {\\n    grid-column: span 1;\\n  }\\n}\\n\\n/*# sourceMappingURL=Posts.svelte.css.map */</style>\\n\\n<div class=\\\"posts\\\">\\n  {#each postsToDisplay as post}\\n    <a class=\\\"post\\\" href=\\\"/blog/{post.slug}\\\">\\n      {#if post.frontmatter.preview}\\n        <img src={post.frontmatter.preview} alt=\\\"\\\" />\\n      {/if}\\n      <h2>{post.frontmatter.title}</h2>\\n      <div class=\\\"description\\\">{post.frontmatter.excerpt}</div>\\n    </a>\\n  {/each}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAOmB,MAAM,eAAC,CAAC,AACzB,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,GAAG,CAAC,GAAG,CAC9B,QAAQ,CAAE,IAAI,AAChB,CAAC,AAED,KAAK,eAAC,CAAC,AACL,MAAM,CAAE,OAAO,CACf,eAAe,CAAE,IAAI,AACvB,CAAC,AACD,oBAAK,CAAC,GAAG,eAAC,CAAC,AACT,SAAS,CAAE,IAAI,CACf,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,IAAI,CAAC,CAAC,CACd,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,CACnB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,UAAU,CAAE,KAAK,CAAC,OAAO,CAAC,GAAG,AAC/B,CAAC,AACD,oBAAK,CAAC,EAAE,eAAC,CAAC,AACR,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CAAC,MAAM,CACjB,SAAS,CAAE,OAAO,CAClB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,oBAAK,CAAC,YAAY,eAAC,CAAC,AAClB,OAAO,CAAE,MAAM,CACf,OAAO,CAAE,GAAG,AACd,CAAC,AACD,oBAAK,MAAM,CAAC,GAAG,eAAC,CAAC,AACf,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,SAAS,CAAE,WAAW,IAAI,CAAC,AAC7B,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,MAAM,eAAC,CAAC,AACN,qBAAqB,CAAE,GAAG,AAC5B,CAAC,AAED,oBAAK,WAAW,IAAI,CAAC,CACvB,oBAAK,WAAW,IAAI,CAAC,CACrB,oBAAK,WAAW,IAAI,CAAC,CACrB,oBAAK,WAAW,IAAI,CAAC,AAAC,CAAC,AACnB,WAAW,CAAE,IAAI,CAAC,CAAC,AACrB,CAAC,AACH,CAAC\"}"
+	code: ".posts.svelte-a0sosc.svelte-a0sosc{display:grid;grid-template-columns:1fr 1fr;grid-gap:2rem}.post.svelte-a0sosc.svelte-a0sosc{cursor:pointer;text-decoration:none}.post.svelte-a0sosc img.svelte-a0sosc{height:12rem;border-radius:5px;margin:15px 0;object-fit:cover;width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);-webkit-box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);transition:250ms ease-in all}.post.svelte-a0sosc h2.svelte-a0sosc{margin:0;padding:0 0.5rem;font-size:1.25rem;font-weight:600}.post.svelte-a0sosc .description.svelte-a0sosc{padding:0.5rem;opacity:0.4}.post.svelte-a0sosc:hover img.svelte-a0sosc{box-shadow:0 4px 20px rgba(100, 100, 100, 0.25);-webkit-box-shadow:0 4px 20px rgba(100, 100, 100, 0.25);transform:translateY(-2px)}@media(max-width: 767px){.posts.svelte-a0sosc.svelte-a0sosc{grid-template-columns:1fr}.post.svelte-a0sosc.svelte-a0sosc:nth-child(4n+1),.post.svelte-a0sosc.svelte-a0sosc:nth-child(4n+2),.post.svelte-a0sosc.svelte-a0sosc:nth-child(4n+3),.post.svelte-a0sosc.svelte-a0sosc:nth-child(4n+4){grid-column:span 1}}",
+	map: "{\"version\":3,\"file\":\"Posts.svelte\",\"sources\":[\"Posts.svelte\"],\"sourcesContent\":[\"<script>\\n  export let posts;\\n  export let limit = -1;\\n\\n  $: postsToDisplay = posts ? posts.slice(0, limit) : [];\\n</script>\\n\\n<style lang=\\\"scss\\\">.posts {\\n  display: grid;\\n  grid-template-columns: 1fr 1fr;\\n  grid-gap: 2rem;\\n}\\n\\n.post {\\n  cursor: pointer;\\n  text-decoration: none;\\n}\\n.post img {\\n  height: 12rem;\\n  border-radius: 5px;\\n  margin: 15px 0;\\n  object-fit: cover;\\n  width: 100%;\\n  border-radius: 10px;\\n  box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  transition: 250ms ease-in all;\\n}\\n.post h2 {\\n  margin: 0;\\n  padding: 0 0.5rem;\\n  font-size: 1.25rem;\\n  font-weight: 600;\\n}\\n.post .description {\\n  padding: 0.5rem;\\n  opacity: 0.4;\\n}\\n.post:hover img {\\n  box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);\\n  transform: translateY(-2px);\\n}\\n\\n@media (max-width: 767px) {\\n  .posts {\\n    grid-template-columns: 1fr;\\n  }\\n\\n  .post:nth-child(4n+1),\\n.post:nth-child(4n+2),\\n.post:nth-child(4n+3),\\n.post:nth-child(4n+4) {\\n    grid-column: span 1;\\n  }\\n}\\n\\n/*# sourceMappingURL=Posts.svelte.css.map */</style>\\n\\n<div class=\\\"posts\\\">\\n  {#each postsToDisplay as post}\\n    <a class=\\\"post\\\" href=\\\"/blog/{post.slug}\\\">\\n      {#if post.frontmatter.preview}\\n        <img src={post.frontmatter.preview} alt=\\\"\\\" />\\n      {/if}\\n      <h2>{post.frontmatter.title}</h2>\\n      <div class=\\\"description\\\">{post.frontmatter.excerpt}</div>\\n    </a>\\n  {/each}\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAOmB,MAAM,4BAAC,CAAC,AACzB,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,GAAG,CAAC,GAAG,CAC9B,QAAQ,CAAE,IAAI,AAChB,CAAC,AAED,KAAK,4BAAC,CAAC,AACL,MAAM,CAAE,OAAO,CACf,eAAe,CAAE,IAAI,AACvB,CAAC,AACD,mBAAK,CAAC,GAAG,cAAC,CAAC,AACT,MAAM,CAAE,KAAK,CACb,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,IAAI,CAAC,CAAC,CACd,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,CACnB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,UAAU,CAAE,KAAK,CAAC,OAAO,CAAC,GAAG,AAC/B,CAAC,AACD,mBAAK,CAAC,EAAE,cAAC,CAAC,AACR,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,CAAC,MAAM,CACjB,SAAS,CAAE,OAAO,CAClB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,mBAAK,CAAC,YAAY,cAAC,CAAC,AAClB,OAAO,CAAE,MAAM,CACf,OAAO,CAAE,GAAG,AACd,CAAC,AACD,mBAAK,MAAM,CAAC,GAAG,cAAC,CAAC,AACf,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,SAAS,CAAE,WAAW,IAAI,CAAC,AAC7B,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,MAAM,4BAAC,CAAC,AACN,qBAAqB,CAAE,GAAG,AAC5B,CAAC,AAED,iCAAK,WAAW,IAAI,CAAC,CACvB,iCAAK,WAAW,IAAI,CAAC,CACrB,iCAAK,WAAW,IAAI,CAAC,CACrB,iCAAK,WAAW,IAAI,CAAC,AAAC,CAAC,AACnB,WAAW,CAAE,IAAI,CAAC,CAAC,AACrB,CAAC,AACH,CAAC\"}"
 };
 
 const Posts = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	let { posts, limit = -1 } = $$props;
-
+	let { posts } = $$props;
+	let { limit = -1 } = $$props;
 	if ($$props.posts === void 0 && $$bindings.posts && posts !== void 0) $$bindings.posts(posts);
 	if ($$props.limit === void 0 && $$bindings.limit && limit !== void 0) $$bindings.limit(limit);
-
 	$$result.css.add(css);
-
 	let postsToDisplay = posts ? posts.slice(0, limit) : [];
 
-	return `<div class="posts svelte-1sc0jmh">
-	  ${each(postsToDisplay, (post) => `<a class="post svelte-1sc0jmh" href="/blog/${escape(post.slug)}">
-	      ${ post.frontmatter.preview ? `<img${(v => v == null ? "" : ` src="${escape(post.frontmatter.preview)}"`)(post.frontmatter.preview)} alt="" class="svelte-1sc0jmh">` : `` }
-	      <h2 class="svelte-1sc0jmh">${escape(post.frontmatter.title)}</h2>
-	      <div class="description svelte-1sc0jmh">${escape(post.frontmatter.excerpt)}</div>
-	    </a>`)}
-	</div>`;
+	return `<div class="${"posts svelte-a0sosc"}">
+  ${each(postsToDisplay, post => `<a class="${"post svelte-a0sosc"}" href="${"/blog/" + escape(post.slug)}">
+      ${post.frontmatter.preview
+	? `<img${add_attribute("src", post.frontmatter.preview, 0)} alt="${""}" class="${"svelte-a0sosc"}">`
+	: ``}
+      <h2 class="${"svelte-a0sosc"}">${escape(post.frontmatter.title)}</h2>
+      <div class="${"description svelte-a0sosc"}">${escape(post.frontmatter.excerpt)}</div>
+    </a>`)}
+</div>`;
 });
 
-/* src\components\Breadcrumb.svelte generated by Svelte v3.0.0 */
+/* src\components\Breadcrumb.svelte generated by Svelte v3.16.7 */
 
 const css$1 = {
-	code: ".pagination-container.svelte-lta57{margin:5px auto;text-align:center}.pagination.svelte-lta57{display:inline-block;box-shadow:0 4px 20px rgba(100, 100, 100, 0.15);border-radius:10px}.pagination.svelte-lta57 a.svelte-lta57{display:inline-block;padding:10px 20px;text-decoration:none;border-radius:10px}.pagination.svelte-lta57 a.svelte-lta57:hover:not(.disabled){background-color:#efefef}.pagination.svelte-lta57 a.disabled.svelte-lta57{cursor:not-allowed;color:#a9a9a9}",
-	map: "{\"version\":3,\"file\":\"Breadcrumb.svelte\",\"sources\":[\"Breadcrumb.svelte\"],\"sourcesContent\":[\"<script>\\n  export let isFirst;\\n  export let isLast;\\n  export let page;\\n\\n  $: currentPage = Number(page);\\n</script>\\n\\n<style lang=\\\"scss\\\">.pagination-container {\\n  margin: 5px auto;\\n  text-align: center;\\n}\\n\\n.pagination {\\n  display: inline-block;\\n  box-shadow: 0 4px 20px rgba(100, 100, 100, 0.15);\\n  border-radius: 10px;\\n}\\n.pagination a {\\n  display: inline-block;\\n  padding: 10px 20px;\\n  text-decoration: none;\\n  border-radius: 10px;\\n}\\n.pagination a:hover:not(.disabled) {\\n  background-color: #efefef;\\n}\\n.pagination a.disabled {\\n  cursor: not-allowed;\\n  color: #a9a9a9;\\n}\\n\\n/*# sourceMappingURL=Breadcrumb.svelte.css.map */</style>\\n\\n<div class=\\\"pagination-container\\\">\\n  <div class=\\\"pagination\\\">\\n    <a\\n      class:disabled={isFirst}\\n      href=\\\"/{!isFirst ? (currentPage === 2 ? '' : currentPage - 1) : ''}\\\">\\n      Previous Page\\n    </a>\\n    <a class:disabled={isLast} href=\\\"/{!isLast ? currentPage + 1 : ''}\\\">\\n      Next Page\\n    </a>\\n  </div>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAQmB,qBAAqB,aAAC,CAAC,AACxC,MAAM,CAAE,GAAG,CAAC,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,WAAW,aAAC,CAAC,AACX,OAAO,CAAE,YAAY,CACrB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,aAAa,CAAE,IAAI,AACrB,CAAC,AACD,wBAAW,CAAC,CAAC,aAAC,CAAC,AACb,OAAO,CAAE,YAAY,CACrB,OAAO,CAAE,IAAI,CAAC,IAAI,CAClB,eAAe,CAAE,IAAI,CACrB,aAAa,CAAE,IAAI,AACrB,CAAC,AACD,wBAAW,CAAC,cAAC,MAAM,KAAK,SAAS,CAAC,AAAC,CAAC,AAClC,gBAAgB,CAAE,OAAO,AAC3B,CAAC,AACD,wBAAW,CAAC,CAAC,SAAS,aAAC,CAAC,AACtB,MAAM,CAAE,WAAW,CACnB,KAAK,CAAE,OAAO,AAChB,CAAC\"}"
+	code: ".pagination-container.svelte-lta57.svelte-lta57{margin:5px auto;text-align:center}.pagination.svelte-lta57.svelte-lta57{display:inline-block;box-shadow:0 4px 20px rgba(100, 100, 100, 0.15);border-radius:10px}.pagination.svelte-lta57 a.svelte-lta57{display:inline-block;padding:10px 20px;text-decoration:none;border-radius:10px}.pagination.svelte-lta57 a.svelte-lta57:hover:not(.disabled){background-color:#efefef}.pagination.svelte-lta57 a.disabled.svelte-lta57{cursor:not-allowed;color:#a9a9a9}",
+	map: "{\"version\":3,\"file\":\"Breadcrumb.svelte\",\"sources\":[\"Breadcrumb.svelte\"],\"sourcesContent\":[\"<script>\\n  export let isFirst;\\n  export let isLast;\\n  export let page;\\n\\n  $: currentPage = Number(page);\\n</script>\\n\\n<style lang=\\\"scss\\\">.pagination-container {\\n  margin: 5px auto;\\n  text-align: center;\\n}\\n\\n.pagination {\\n  display: inline-block;\\n  box-shadow: 0 4px 20px rgba(100, 100, 100, 0.15);\\n  border-radius: 10px;\\n}\\n.pagination a {\\n  display: inline-block;\\n  padding: 10px 20px;\\n  text-decoration: none;\\n  border-radius: 10px;\\n}\\n.pagination a:hover:not(.disabled) {\\n  background-color: #efefef;\\n}\\n.pagination a.disabled {\\n  cursor: not-allowed;\\n  color: #a9a9a9;\\n}\\n\\n/*# sourceMappingURL=Breadcrumb.svelte.css.map */</style>\\n\\n<div class=\\\"pagination-container\\\">\\n  <div class=\\\"pagination\\\">\\n    <a\\n      class:disabled={isFirst}\\n      href=\\\"/{!isFirst ? (currentPage === 2 ? '' : currentPage - 1) : ''}\\\">\\n      Previous Page\\n    </a>\\n    <a class:disabled={isLast} href=\\\"/{!isLast ? currentPage + 1 : ''}\\\">\\n      Next Page\\n    </a>\\n  </div>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAQmB,qBAAqB,0BAAC,CAAC,AACxC,MAAM,CAAE,GAAG,CAAC,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,WAAW,0BAAC,CAAC,AACX,OAAO,CAAE,YAAY,CACrB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,aAAa,CAAE,IAAI,AACrB,CAAC,AACD,wBAAW,CAAC,CAAC,aAAC,CAAC,AACb,OAAO,CAAE,YAAY,CACrB,OAAO,CAAE,IAAI,CAAC,IAAI,CAClB,eAAe,CAAE,IAAI,CACrB,aAAa,CAAE,IAAI,AACrB,CAAC,AACD,wBAAW,CAAC,cAAC,MAAM,KAAK,SAAS,CAAC,AAAC,CAAC,AAClC,gBAAgB,CAAE,OAAO,AAC3B,CAAC,AACD,wBAAW,CAAC,CAAC,SAAS,aAAC,CAAC,AACtB,MAAM,CAAE,WAAW,CACnB,KAAK,CAAE,OAAO,AAChB,CAAC\"}"
 };
 
 const Breadcrumb = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	let { isFirst, isLast, page } = $$props;
-
+	let { isFirst } = $$props;
+	let { isLast } = $$props;
+	let { page } = $$props;
 	if ($$props.isFirst === void 0 && $$bindings.isFirst && isFirst !== void 0) $$bindings.isFirst(isFirst);
 	if ($$props.isLast === void 0 && $$bindings.isLast && isLast !== void 0) $$bindings.isLast(isLast);
 	if ($$props.page === void 0 && $$bindings.page && page !== void 0) $$bindings.page(page);
-
 	$$result.css.add(css$1);
-
 	let currentPage = Number(page);
 
-	return `<div class="pagination-container svelte-lta57">
-	  <div class="pagination svelte-lta57">
-	    <a href="/${escape(!isFirst ? (currentPage === 2 ? '' : currentPage - 1) : '')}" class="${[`svelte-lta57`, isFirst ? "disabled" : ""].join(' ').trim() }">
-	      Previous Page
-	    </a>
-	    <a href="/${escape(!isLast ? currentPage + 1 : '')}" class="${[`svelte-lta57`, isLast ? "disabled" : ""].join(' ').trim() }">
-	      Next Page
-	    </a>
-	  </div>
-	</div>`;
+	return `<div class="${"pagination-container svelte-lta57"}">
+  <div class="${"pagination svelte-lta57"}">
+    <a href="${"/" + escape(!isFirst ? currentPage === 2 ? "" : currentPage - 1 : "")}" class="${["svelte-lta57", isFirst ? "disabled" : ""].join(" ").trim()}">
+      Previous Page
+    </a>
+    <a href="${"/" + escape(!isLast ? currentPage + 1 : "")}" class="${["svelte-lta57", isLast ? "disabled" : ""].join(" ").trim()}">
+      Next Page
+    </a>
+  </div>
+</div>`;
 });
 
-/* src\routes\index.svelte generated by Svelte v3.0.0 */
+/* src\routes\index.svelte generated by Svelte v3.16.7 */
 
 const css$2 = {
 	code: ".hero-section.svelte-15w0prb{padding:10rem 2rem;font-size:2rem;max-width:700px}h1.svelte-15w0prb{font-weight:600;font-size:4rem;line-height:4.5rem}@media(max-width: 767px){.hero-section.svelte-15w0prb{padding:5rem 0}h1.svelte-15w0prb{font-size:3rem;line-height:3.5rem}}",
@@ -292,43 +273,44 @@ const css$2 = {
 };
 
 async function preload(page, session) {
-  const res = await this.fetch(`index.json`);
-  const response = await res.json();
-
-  return response;
+	const res = await this.fetch(`index.json`);
+	const response = await res.json();
+	return response;
 }
 
 const Routes = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	
-
-  let { posts, postsPerPage } = $$props;
-
+	let { posts } = $$props;
+	let { postsPerPage } = $$props;
 	if ($$props.posts === void 0 && $$bindings.posts && posts !== void 0) $$bindings.posts(posts);
 	if ($$props.postsPerPage === void 0 && $$bindings.postsPerPage && postsPerPage !== void 0) $$bindings.postsPerPage(postsPerPage);
-
 	$$result.css.add(css$2);
 
 	return `${($$result.head += `<title>Stunning Theme</title>`, "")}
 
-	<div class="hero-section svelte-15w0prb">
-	  <h1 class="svelte-15w0prb">Stunning Sapper Blog theme with support for markdown files</h1>
-	  <p>Start Publishing With Sapper</p>
-	</div>
+<div class="${"hero-section svelte-15w0prb"}">
+  <h1 class="${"svelte-15w0prb"}">Stunning Sapper Blog theme with support for markdown files</h1>
+  <p>Start Publishing With Sapper</p>
+</div>
 
-	${validate_component(Posts, 'Posts').$$render($$result, { posts: posts, limit: postsPerPage }, {}, {})}
+${validate_component(Posts, "Posts").$$render($$result, { posts, limit: postsPerPage }, {}, {})}
 
-	${validate_component(Breadcrumb, 'Breadcrumb').$$render($$result, {
-		isFirst: true,
-		isLast: postsPerPage > posts.length,
-		page: "1"
-	}, {}, {})}`;
+${validate_component(Breadcrumb, "Breadcrumb").$$render(
+		$$result,
+		{
+			isFirst: true,
+			isLast: postsPerPage > posts.length,
+			page: "1"
+		},
+		{},
+		{}
+	)}`;
 });
 
-/* src\routes\contact.svelte generated by Svelte v3.0.0 */
+/* src\routes\contact.svelte generated by Svelte v3.16.7 */
 
 const css$3 = {
-	code: ".container.svelte-4eigs3{max-width:800px;margin:0 auto}h1.svelte-4eigs3{font-weight:600;margin-top:2rem;text-align:center}label.svelte-4eigs3{display:grid;grid-template-columns:120px 1fr}form.svelte-4eigs3{max-width:600px;margin:0 auto}input.svelte-4eigs3,textarea.svelte-4eigs3{padding:10px 5px;font-size:16px;border:2px solid #dedede;border-radius:5px;max-width:100%}.button-container.svelte-4eigs3{text-align:right}.button-container.svelte-4eigs3 button.svelte-4eigs3{padding:8px 20px;background:#dedede;border-radius:5px;cursor:pointer;font-size:16px}.button-container.svelte-4eigs3 button.svelte-4eigs3:hover{background:#cdcdcd}",
-	map: "{\"version\":3,\"file\":\"contact.svelte\",\"sources\":[\"contact.svelte\"],\"sourcesContent\":[\"<style lang=\\\"scss\\\">.container {\\n  max-width: 800px;\\n  margin: 0 auto;\\n}\\n\\nh1 {\\n  font-weight: 600;\\n  margin-top: 2rem;\\n  text-align: center;\\n}\\n\\nlabel {\\n  display: grid;\\n  grid-template-columns: 120px 1fr;\\n}\\n\\nform {\\n  max-width: 600px;\\n  margin: 0 auto;\\n}\\n\\ninput,\\ntextarea {\\n  padding: 10px 5px;\\n  font-size: 16px;\\n  border: 2px solid #dedede;\\n  border-radius: 5px;\\n  max-width: 100%;\\n}\\n\\n.button-container {\\n  text-align: right;\\n}\\n.button-container button {\\n  padding: 8px 20px;\\n  background: #dedede;\\n  border-radius: 5px;\\n  cursor: pointer;\\n  font-size: 16px;\\n}\\n.button-container button:hover {\\n  background: #cdcdcd;\\n}\\n\\n/*# sourceMappingURL=contact.svelte.css.map */</style>\\n\\n<svelte:head>\\n  <title>Contact</title>\\n</svelte:head>\\n\\n<div class=\\\"container\\\">\\n  <h1>Contact Page</h1>\\n\\n  <form name=\\\"contact\\\" method=\\\"POST\\\" data-netlify=\\\"true\\\">\\n    <p>\\n      <label>\\n        Your Name:\\n        <input type=\\\"text\\\" name=\\\"name\\\" />\\n      </label>\\n    </p>\\n    <p>\\n      <label>\\n        Your Email:\\n        <input type=\\\"email\\\" name=\\\"email\\\" />\\n      </label>\\n    </p>\\n    <p>\\n      <label>\\n        Message:\\n        <textarea name=\\\"message\\\" rows=\\\"8\\\" />\\n      </label>\\n    </p>\\n    <p class=\\\"button-container\\\">\\n      <button type=\\\"submit\\\">Contact Us</button>\\n    </p>\\n  </form>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAAmB,UAAU,cAAC,CAAC,AAC7B,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,cAAC,CAAC,AACF,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,KAAK,cAAC,CAAC,AACL,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,KAAK,CAAC,GAAG,AAClC,CAAC,AAED,IAAI,cAAC,CAAC,AACJ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,mBAAK,CACL,QAAQ,cAAC,CAAC,AACR,OAAO,CAAE,IAAI,CAAC,GAAG,CACjB,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,OAAO,CACzB,aAAa,CAAE,GAAG,CAClB,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,iBAAiB,cAAC,CAAC,AACjB,UAAU,CAAE,KAAK,AACnB,CAAC,AACD,+BAAiB,CAAC,MAAM,cAAC,CAAC,AACxB,OAAO,CAAE,GAAG,CAAC,IAAI,CACjB,UAAU,CAAE,OAAO,CACnB,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,OAAO,CACf,SAAS,CAAE,IAAI,AACjB,CAAC,AACD,+BAAiB,CAAC,oBAAM,MAAM,AAAC,CAAC,AAC9B,UAAU,CAAE,OAAO,AACrB,CAAC\"}"
+	code: ".container.svelte-4eigs3.svelte-4eigs3{max-width:800px;margin:0 auto}h1.svelte-4eigs3.svelte-4eigs3{font-weight:600;margin-top:2rem;text-align:center}label.svelte-4eigs3.svelte-4eigs3{display:grid;grid-template-columns:120px 1fr}form.svelte-4eigs3.svelte-4eigs3{max-width:600px;margin:0 auto}input.svelte-4eigs3.svelte-4eigs3,textarea.svelte-4eigs3.svelte-4eigs3{padding:10px 5px;font-size:16px;border:2px solid #dedede;border-radius:5px;max-width:100%}.button-container.svelte-4eigs3.svelte-4eigs3{text-align:right}.button-container.svelte-4eigs3 button.svelte-4eigs3{padding:8px 20px;background:#dedede;border-radius:5px;cursor:pointer;font-size:16px}.button-container.svelte-4eigs3 button.svelte-4eigs3:hover{background:#cdcdcd}",
+	map: "{\"version\":3,\"file\":\"contact.svelte\",\"sources\":[\"contact.svelte\"],\"sourcesContent\":[\"<style lang=\\\"scss\\\">.container {\\n  max-width: 800px;\\n  margin: 0 auto;\\n}\\n\\nh1 {\\n  font-weight: 600;\\n  margin-top: 2rem;\\n  text-align: center;\\n}\\n\\nlabel {\\n  display: grid;\\n  grid-template-columns: 120px 1fr;\\n}\\n\\nform {\\n  max-width: 600px;\\n  margin: 0 auto;\\n}\\n\\ninput,\\ntextarea {\\n  padding: 10px 5px;\\n  font-size: 16px;\\n  border: 2px solid #dedede;\\n  border-radius: 5px;\\n  max-width: 100%;\\n}\\n\\n.button-container {\\n  text-align: right;\\n}\\n.button-container button {\\n  padding: 8px 20px;\\n  background: #dedede;\\n  border-radius: 5px;\\n  cursor: pointer;\\n  font-size: 16px;\\n}\\n.button-container button:hover {\\n  background: #cdcdcd;\\n}\\n\\n/*# sourceMappingURL=contact.svelte.css.map */</style>\\n\\n<svelte:head>\\n  <title>Contact</title>\\n</svelte:head>\\n\\n<div class=\\\"container\\\">\\n  <h1>Contact Page</h1>\\n\\n  <form name=\\\"contact\\\" method=\\\"POST\\\" data-netlify=\\\"true\\\">\\n    <p>\\n      <label>\\n        Your Name:\\n        <input type=\\\"text\\\" name=\\\"name\\\" />\\n      </label>\\n    </p>\\n    <p>\\n      <label>\\n        Your Email:\\n        <input type=\\\"email\\\" name=\\\"email\\\" />\\n      </label>\\n    </p>\\n    <p>\\n      <label>\\n        Message:\\n        <textarea name=\\\"message\\\" rows=\\\"8\\\" />\\n      </label>\\n    </p>\\n    <p class=\\\"button-container\\\">\\n      <button type=\\\"submit\\\">Contact Us</button>\\n    </p>\\n  </form>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAAmB,UAAU,4BAAC,CAAC,AAC7B,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,4BAAC,CAAC,AACF,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,KAAK,4BAAC,CAAC,AACL,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,KAAK,CAAC,GAAG,AAClC,CAAC,AAED,IAAI,4BAAC,CAAC,AACJ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,iCAAK,CACL,QAAQ,4BAAC,CAAC,AACR,OAAO,CAAE,IAAI,CAAC,GAAG,CACjB,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,OAAO,CACzB,aAAa,CAAE,GAAG,CAClB,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,iBAAiB,4BAAC,CAAC,AACjB,UAAU,CAAE,KAAK,AACnB,CAAC,AACD,+BAAiB,CAAC,MAAM,cAAC,CAAC,AACxB,OAAO,CAAE,GAAG,CAAC,IAAI,CACjB,UAAU,CAAE,OAAO,CACnB,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,OAAO,CACf,SAAS,CAAE,IAAI,AACjB,CAAC,AACD,+BAAiB,CAAC,oBAAM,MAAM,AAAC,CAAC,AAC9B,UAAU,CAAE,OAAO,AACrB,CAAC\"}"
 };
 
 const Contact = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
@@ -336,36 +318,36 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, $$slots) =>
 
 	return `${($$result.head += `<title>Contact</title>`, "")}
 
-	<div class="container svelte-4eigs3">
-	  <h1 class="svelte-4eigs3">Contact Page</h1>
+<div class="${"container svelte-4eigs3"}">
+  <h1 class="${"svelte-4eigs3"}">Contact Page</h1>
 
-	  <form name="contact" method="POST" data-netlify="true" class="svelte-4eigs3">
-	    <p>
-	      <label class="svelte-4eigs3">
-	        Your Name:
-	        <input type="text" name="name" class="svelte-4eigs3">
-	      </label>
-	    </p>
-	    <p>
-	      <label class="svelte-4eigs3">
-	        Your Email:
-	        <input type="email" name="email" class="svelte-4eigs3">
-	      </label>
-	    </p>
-	    <p>
-	      <label class="svelte-4eigs3">
-	        Message:
-	        <textarea name="message" rows="8" class="svelte-4eigs3"></textarea>
-	      </label>
-	    </p>
-	    <p class="button-container svelte-4eigs3">
-	      <button type="submit" class="svelte-4eigs3">Contact Us</button>
-	    </p>
-	  </form>
-	</div>`;
+  <form name="${"contact"}" method="${"POST"}" data-netlify="${"true"}" class="${"svelte-4eigs3"}">
+    <p>
+      <label class="${"svelte-4eigs3"}">
+        Your Name:
+        <input type="${"text"}" name="${"name"}" class="${"svelte-4eigs3"}">
+      </label>
+    </p>
+    <p>
+      <label class="${"svelte-4eigs3"}">
+        Your Email:
+        <input type="${"email"}" name="${"email"}" class="${"svelte-4eigs3"}">
+      </label>
+    </p>
+    <p>
+      <label class="${"svelte-4eigs3"}">
+        Message:
+        <textarea name="${"message"}" rows="${"8"}" class="${"svelte-4eigs3"}"></textarea>
+      </label>
+    </p>
+    <p class="${"button-container svelte-4eigs3"}">
+      <button type="${"submit"}" class="${"svelte-4eigs3"}">Contact Us</button>
+    </p>
+  </form>
+</div>`;
 });
 
-/* src\routes\about.svelte generated by Svelte v3.0.0 */
+/* src\routes\about.svelte generated by Svelte v3.16.7 */
 
 const css$4 = {
 	code: ".container.svelte-hnhohj{max-width:800px;margin:0 auto}h1.svelte-hnhohj{font-weight:600;margin-top:2rem;text-align:center}",
@@ -377,104 +359,94 @@ const About = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 
 	return `${($$result.head += `<title>About</title>`, "")}
 
-	<div class="container svelte-hnhohj">
-	  <h1 class="svelte-hnhohj">About Page</h1>
+<div class="${"container svelte-hnhohj"}">
+  <h1 class="${"svelte-hnhohj"}">About Page</h1>
 
-	  <p>
-	    Pudding chocolate wafer I love donut. Candy canes gingerbread cake. Cotton
-	    candy cake cotton candy sweet roll. Tootsie roll gummies chupa chups bear
-	    claw. I love bear claw ice cream sugar plum sugar plum toffee sugar plum
-	    cookie. Liquorice cupcake jelly-o dragée sesame snaps sesame snaps. Icing
-	    danish jelly beans pie.
-	  </p>
+  <p>
+    Pudding chocolate wafer I love donut. Candy canes gingerbread cake. Cotton
+    candy cake cotton candy sweet roll. Tootsie roll gummies chupa chups bear
+    claw. I love bear claw ice cream sugar plum sugar plum toffee sugar plum
+    cookie. Liquorice cupcake jelly-o dragée sesame snaps sesame snaps. Icing
+    danish jelly beans pie.
+  </p>
 
-	  <p>
-	    Sugar plum tart pie apple pie sweet roll chupa chups I love. Brownie
-	    caramels lollipop topping liquorice. Chocolate wafer I love cookie ice cream
-	    cake jujubes. Dragée dragée cake sweet jujubes dessert jelly. Ice cream
-	    donut marshmallow bear claw candy liquorice tootsie roll. Chupa chups jelly
-	    danish caramels macaroon. Gingerbread muffin biscuit. Ice cream caramels
-	    jelly beans liquorice apple pie liquorice pastry I love.
-	  </p>
+  <p>
+    Sugar plum tart pie apple pie sweet roll chupa chups I love. Brownie
+    caramels lollipop topping liquorice. Chocolate wafer I love cookie ice cream
+    cake jujubes. Dragée dragée cake sweet jujubes dessert jelly. Ice cream
+    donut marshmallow bear claw candy liquorice tootsie roll. Chupa chups jelly
+    danish caramels macaroon. Gingerbread muffin biscuit. Ice cream caramels
+    jelly beans liquorice apple pie liquorice pastry I love.
+  </p>
 
-	  <p>
-	    Powder biscuit I love brownie. I love jelly-o macaroon I love cupcake bear
-	    claw halvah croissant. Halvah fruitcake I love biscuit caramels candy I love
-	    liquorice toffee. Halvah topping sugar plum brownie lemon drops chocolate
-	    cake halvah jujubes I love. Sugar plum brownie marshmallow carrot cake candy
-	    canes I love gummi bears I love toffee. Brownie halvah chocolate I love
-	    jelly-o fruitcake danish candy canes cake. Biscuit croissant I love carrot
-	    cake cotton candy caramels. Chocolate toffee jelly-o donut cookie jujubes
-	    marshmallow jujubes. Caramels cotton candy candy canes apple pie I love.
-	    Cheesecake candy canes I love fruitcake pudding macaroon biscuit.
-	  </p>
-	</div>`;
+  <p>
+    Powder biscuit I love brownie. I love jelly-o macaroon I love cupcake bear
+    claw halvah croissant. Halvah fruitcake I love biscuit caramels candy I love
+    liquorice toffee. Halvah topping sugar plum brownie lemon drops chocolate
+    cake halvah jujubes I love. Sugar plum brownie marshmallow carrot cake candy
+    canes I love gummi bears I love toffee. Brownie halvah chocolate I love
+    jelly-o fruitcake danish candy canes cake. Biscuit croissant I love carrot
+    cake cotton candy caramels. Chocolate toffee jelly-o donut cookie jujubes
+    marshmallow jujubes. Caramels cotton candy candy canes apple pie I love.
+    Cheesecake candy canes I love fruitcake pudding macaroon biscuit.
+  </p>
+</div>`;
 });
 
-/* src\routes\blog\[slug].svelte generated by Svelte v3.0.0 */
+/* src\routes\blog\[slug].svelte generated by Svelte v3.16.7 */
 
 const css$5 = {
-	code: ".container.svelte-1hha6gh{max-width:800px;margin:0 auto}h1.svelte-1hha6gh{font-weight:600;margin-top:2rem;text-align:center}img.svelte-1hha6gh{max-width:100%;border-radius:5px;margin:15px 0;object-fit:cover;width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);-webkit-box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);transition:250ms ease-in all}.post-meta.svelte-1hha6gh{text-transform:uppercase;opacity:0.5;letter-spacing:2px;text-align:center}.content.svelte-1hha6gh h2{font-size:1.4em;font-weight:500}.content.svelte-1hha6gh pre{background-color:#f9f9f9;box-shadow:inset 1px 1px 5px rgba(0, 0, 0, 0.05);padding:0.5em;border-radius:2px;overflow-x:auto}.content.svelte-1hha6gh pre code{background-color:transparent;padding:0}.content.svelte-1hha6gh ul{line-height:1.5}.content.svelte-1hha6gh ul li{margin:0 0 0.5em 0}",
-	map: "{\"version\":3,\"file\":\"[slug].svelte\",\"sources\":[\"[slug].svelte\"],\"sourcesContent\":[\"<script context=\\\"module\\\">\\n  export async function preload({ params, query }) {\\n    const res = await this.fetch(`blog/${params.slug}.json`);\\n    const data = await res.json();\\n\\n    if (res.status === 200) {\\n      return { post: data };\\n    } else {\\n      this.error(res.status, data.message);\\n    }\\n  }\\n</script>\\n\\n<script>\\n  import { default as readingTimeCalculator } from 'reading-time';\\n  export let post;\\n\\n  $: readingTimeData = readingTimeCalculator(post.contentHtml);\\n  $: readingTime = `${Math.ceil(readingTimeData.minutes)} minute${\\n    Math.ceil(readingTimeData.minutes) > 1 ? '(s)' : ''\\n  } read`;\\n</script>\\n\\n<style lang=\\\"scss\\\">.container {\\n  max-width: 800px;\\n  margin: 0 auto;\\n}\\n\\nh1 {\\n  font-weight: 600;\\n  margin-top: 2rem;\\n  text-align: center;\\n}\\n\\nimg {\\n  max-width: 100%;\\n  border-radius: 5px;\\n  margin: 15px 0;\\n  object-fit: cover;\\n  width: 100%;\\n  border-radius: 10px;\\n  box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  transition: 250ms ease-in all;\\n}\\n\\n.post-meta {\\n  text-transform: uppercase;\\n  opacity: 0.5;\\n  letter-spacing: 2px;\\n  text-align: center;\\n}\\n\\n.content :global(h2) {\\n  font-size: 1.4em;\\n  font-weight: 500;\\n}\\n.content :global(pre) {\\n  background-color: #f9f9f9;\\n  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);\\n  padding: 0.5em;\\n  border-radius: 2px;\\n  overflow-x: auto;\\n}\\n.content :global(pre) :global(code) {\\n  background-color: transparent;\\n  padding: 0;\\n}\\n.content :global(ul) {\\n  line-height: 1.5;\\n}\\n.content :global(ul) :global(li) {\\n  margin: 0 0 0.5em 0;\\n}\\n\\n/*# sourceMappingURL=%5Bslug%5D.svelte.css.map */</style>\\n\\n<svelte:head>\\n  <title>{post.frontmatter.title}</title>\\n</svelte:head>\\n\\n<div class=\\\"container\\\">\\n  <h1>{post.frontmatter.title}</h1>\\n  <p class=\\\"post-meta\\\">\\n    {new Date(post.frontmatter.date).toDateString()} ﹒ {readingTime}\\n  </p>\\n  <img src={post.frontmatter.preview} alt={post.frontmatter.title} />\\n\\n  <div class=\\\"content\\\">\\n    {@html post.contentHtml}\\n  </div>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAuBmB,UAAU,eAAC,CAAC,AAC7B,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,eAAC,CAAC,AACF,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,GAAG,eAAC,CAAC,AACH,SAAS,CAAE,IAAI,CACf,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,IAAI,CAAC,CAAC,CACd,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,CACnB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,UAAU,CAAE,KAAK,CAAC,OAAO,CAAC,GAAG,AAC/B,CAAC,AAED,UAAU,eAAC,CAAC,AACV,cAAc,CAAE,SAAS,CACzB,OAAO,CAAE,GAAG,CACZ,cAAc,CAAE,GAAG,CACnB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,uBAAQ,CAAC,AAAQ,EAAE,AAAE,CAAC,AACpB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,uBAAQ,CAAC,AAAQ,GAAG,AAAE,CAAC,AACrB,gBAAgB,CAAE,OAAO,CACzB,UAAU,CAAE,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CACjD,OAAO,CAAE,KAAK,CACd,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,IAAI,AAClB,CAAC,AACD,uBAAQ,CAAC,AAAQ,GAAG,AAAC,CAAC,AAAQ,IAAI,AAAE,CAAC,AACnC,gBAAgB,CAAE,WAAW,CAC7B,OAAO,CAAE,CAAC,AACZ,CAAC,AACD,uBAAQ,CAAC,AAAQ,EAAE,AAAE,CAAC,AACpB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,uBAAQ,CAAC,AAAQ,EAAE,AAAC,CAAC,AAAQ,EAAE,AAAE,CAAC,AAChC,MAAM,CAAE,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,AACrB,CAAC\"}"
+	code: ".container.svelte-pjani0{max-width:800px;margin:0 auto}h1.svelte-pjani0{font-weight:600;margin-top:2rem;text-align:center}img.svelte-pjani0{height:25rem;border-radius:5px;margin:15px 0;object-fit:cover;width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);-webkit-box-shadow:0 4px 20px rgba(150, 150, 150, 0.25);transition:250ms ease-in all}.post-meta.svelte-pjani0{text-transform:uppercase;opacity:0.5;letter-spacing:2px;text-align:center}.content.svelte-pjani0 h2{font-size:1.4em;font-weight:500}.content.svelte-pjani0 pre{background-color:#f9f9f9;box-shadow:inset 1px 1px 5px rgba(0, 0, 0, 0.05);padding:0.5em;border-radius:2px;overflow-x:auto}.content.svelte-pjani0 pre code{background-color:transparent;padding:0}.content.svelte-pjani0 ul{line-height:1.5}.content.svelte-pjani0 ul li{margin:0 0 0.5em 0}",
+	map: "{\"version\":3,\"file\":\"[slug].svelte\",\"sources\":[\"[slug].svelte\"],\"sourcesContent\":[\"<script context=\\\"module\\\">\\n  export async function preload({ params, query }) {\\n    const res = await this.fetch(`blog/${params.slug}.json`);\\n    const data = await res.json();\\n\\n    if (res.status === 200) {\\n      return { post: data };\\n    } else {\\n      this.error(res.status, data.message);\\n    }\\n  }\\n</script>\\n\\n<script>\\n  import { default as readingTimeCalculator } from 'reading-time';\\n  export let post;\\n\\n  $: readingTimeData = readingTimeCalculator(post.contentHtml);\\n  $: readingTime = `${Math.ceil(readingTimeData.minutes)} minute${\\n    Math.ceil(readingTimeData.minutes) > 1 ? '(s)' : ''\\n  } read`;\\n</script>\\n\\n<style lang=\\\"scss\\\">.container {\\n  max-width: 800px;\\n  margin: 0 auto;\\n}\\n\\nh1 {\\n  font-weight: 600;\\n  margin-top: 2rem;\\n  text-align: center;\\n}\\n\\nimg {\\n  height: 25rem;\\n  border-radius: 5px;\\n  margin: 15px 0;\\n  object-fit: cover;\\n  width: 100%;\\n  border-radius: 10px;\\n  box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);\\n  transition: 250ms ease-in all;\\n}\\n\\n.post-meta {\\n  text-transform: uppercase;\\n  opacity: 0.5;\\n  letter-spacing: 2px;\\n  text-align: center;\\n}\\n\\n.content :global(h2) {\\n  font-size: 1.4em;\\n  font-weight: 500;\\n}\\n.content :global(pre) {\\n  background-color: #f9f9f9;\\n  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);\\n  padding: 0.5em;\\n  border-radius: 2px;\\n  overflow-x: auto;\\n}\\n.content :global(pre) :global(code) {\\n  background-color: transparent;\\n  padding: 0;\\n}\\n.content :global(ul) {\\n  line-height: 1.5;\\n}\\n.content :global(ul) :global(li) {\\n  margin: 0 0 0.5em 0;\\n}\\n\\n/*# sourceMappingURL=%5Bslug%5D.svelte.css.map */</style>\\n\\n<svelte:head>\\n  <title>{post.frontmatter.title}</title>\\n</svelte:head>\\n\\n<div class=\\\"container\\\">\\n  <h1>{post.frontmatter.title}</h1>\\n  <p class=\\\"post-meta\\\">\\n    {new Date(post.frontmatter.date).toDateString()} ﹒ {readingTime}\\n  </p>\\n  <img src={post.frontmatter.preview} alt={post.frontmatter.title} />\\n\\n  <div class=\\\"content\\\">\\n    {@html post.contentHtml}\\n  </div>\\n</div>\\n\"],\"names\":[],\"mappings\":\"AAuBmB,UAAU,cAAC,CAAC,AAC7B,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,cAAC,CAAC,AACF,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,GAAG,cAAC,CAAC,AACH,MAAM,CAAE,KAAK,CACb,aAAa,CAAE,GAAG,CAClB,MAAM,CAAE,IAAI,CAAC,CAAC,CACd,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,CACnB,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CAChD,kBAAkB,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,CACxD,UAAU,CAAE,KAAK,CAAC,OAAO,CAAC,GAAG,AAC/B,CAAC,AAED,UAAU,cAAC,CAAC,AACV,cAAc,CAAE,SAAS,CACzB,OAAO,CAAE,GAAG,CACZ,cAAc,CAAE,GAAG,CACnB,UAAU,CAAE,MAAM,AACpB,CAAC,AAED,sBAAQ,CAAC,AAAQ,EAAE,AAAE,CAAC,AACpB,SAAS,CAAE,KAAK,CAChB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,sBAAQ,CAAC,AAAQ,GAAG,AAAE,CAAC,AACrB,gBAAgB,CAAE,OAAO,CACzB,UAAU,CAAE,KAAK,CAAC,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CACjD,OAAO,CAAE,KAAK,CACd,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,IAAI,AAClB,CAAC,AACD,sBAAQ,CAAC,AAAQ,GAAG,AAAC,CAAC,AAAQ,IAAI,AAAE,CAAC,AACnC,gBAAgB,CAAE,WAAW,CAC7B,OAAO,CAAE,CAAC,AACZ,CAAC,AACD,sBAAQ,CAAC,AAAQ,EAAE,AAAE,CAAC,AACpB,WAAW,CAAE,GAAG,AAClB,CAAC,AACD,sBAAQ,CAAC,AAAQ,EAAE,AAAC,CAAC,AAAQ,EAAE,AAAE,CAAC,AAChC,MAAM,CAAE,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,AACrB,CAAC\"}"
 };
 
 async function preload$1({ params, query }) {
-  const res = await this.fetch(`blog/${params.slug}.json`);
-  const data = await res.json();
+	const res = await this.fetch(`blog/${params.slug}.json`);
+	const data = await res.json();
 
-  if (res.status === 200) {
-    return { post: data };
-  } else {
-    this.error(res.status, data.message);
-  }
+	if (res.status === 200) {
+		return { post: data };
+	} else {
+		this.error(res.status, data.message);
+	}
 }
 
-const Slug = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
+const U5Bslugu5D = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	let { post } = $$props;
-
 	if ($$props.post === void 0 && $$bindings.post && post !== void 0) $$bindings.post(post);
-
 	$$result.css.add(css$5);
-
 	let readingTimeData = readingTimeCalculator(post.contentHtml);
-	let readingTime = `${Math.ceil(readingTimeData.minutes)} minute${
-        Math.ceil(readingTimeData.minutes) > 1 ? '(s)' : ''
-      } read`;
+	let readingTime = `${Math.ceil(readingTimeData.minutes)} minute${Math.ceil(readingTimeData.minutes) > 1 ? "(s)" : ""} read`;
 
 	return `${($$result.head += `<title>${escape(post.frontmatter.title)}</title>`, "")}
 
-	<div class="container svelte-1hha6gh">
-	  <h1 class="svelte-1hha6gh">${escape(post.frontmatter.title)}</h1>
-	  <p class="post-meta svelte-1hha6gh">
-	    ${escape(new Date(post.frontmatter.date).toDateString())} ﹒ ${escape(readingTime)}
-	  </p>
-	  <img${(v => v == null ? "" : ` src="${escape(post.frontmatter.preview)}"`)(post.frontmatter.preview)}${(v => v == null ? "" : ` alt="${escape(post.frontmatter.title)}"`)(post.frontmatter.title)} class="svelte-1hha6gh">
+<div class="${"container svelte-pjani0"}">
+  <h1 class="${"svelte-pjani0"}">${escape(post.frontmatter.title)}</h1>
+  <p class="${"post-meta svelte-pjani0"}">
+    ${escape(new Date(post.frontmatter.date).toDateString())} ﹒ ${escape(readingTime)}
+  </p>
+  <img${add_attribute("src", post.frontmatter.preview, 0)}${add_attribute("alt", post.frontmatter.title, 0)} class="${"svelte-pjani0"}">
 
-	  <div class="content svelte-1hha6gh">
-	    ${post.contentHtml}
-	  </div>
-	</div>`;
+  <div class="${"content svelte-pjani0"}">
+    ${post.contentHtml}
+  </div>
+</div>`;
 });
 
-/* src\routes\[page([0-9]+)].svelte generated by Svelte v3.0.0 */
+/* src\routes\[page([0-9]+)].svelte generated by Svelte v3.16.7 */
 
 async function preload$2({ params }) {
-  const page = +params.page;
-
-  const res = await this.fetch(`${page}.json`);
-  const response = await res.json();
-
-  return {
-    page,
-    ...response,
-  };
+	const page = +params.page;
+	const res = await this.fetch(`${page}.json`);
+	const response = await res.json();
+	return { page, ...response };
 }
 
-const Page_0_9 = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	
-
-  let { posts, isFirst, isLast, page } = $$props;
-
+const U5Bpage_u5B0_9u5D_u5D = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
+	let { posts } = $$props;
+	let { isFirst } = $$props;
+	let { isLast } = $$props;
+	let { page } = $$props;
 	if ($$props.posts === void 0 && $$bindings.posts && posts !== void 0) $$bindings.posts(posts);
 	if ($$props.isFirst === void 0 && $$bindings.isFirst && isFirst !== void 0) $$bindings.isFirst(isFirst);
 	if ($$props.isLast === void 0 && $$bindings.isLast && isLast !== void 0) $$bindings.isLast(isLast);
@@ -482,66 +454,60 @@ const Page_0_9 = create_ssr_component(($$result, $$props, $$bindings, $$slots) =
 
 	return `${($$result.head += `<title>Stunning Theme - Page ${escape(page)}</title>`, "")}
 
-	${validate_component(Posts, 'Posts').$$render($$result, { posts: posts, limit: 4 }, {}, {})}
+${validate_component(Posts, "Posts").$$render($$result, { posts, limit: 4 }, {}, {})}
 
-	${validate_component(Breadcrumb, 'Breadcrumb').$$render($$result, {
-		isFirst: isFirst,
-		isLast: isLast,
-		page: page
-	}, {}, {})}`;
+${validate_component(Breadcrumb, "Breadcrumb").$$render($$result, { isFirst, isLast, page }, {}, {})}`;
 });
 
-/* src\components\Nav.svelte generated by Svelte v3.0.0 */
+/* src\components\Nav.svelte generated by Svelte v3.16.7 */
 
 const css$6 = {
-	code: "nav.svelte-1j9tz7p{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}.logo.svelte-1j9tz7p{font-size:1.2rem}.logo.svelte-1j9tz7p span.svelte-1j9tz7p{font-weight:bold}ul.svelte-1j9tz7p{margin:0;padding:0}ul.svelte-1j9tz7p::after{content:\"\";display:block;clear:both}ul.svelte-1j9tz7p li.svelte-1j9tz7p{display:block;float:left}.selected.svelte-1j9tz7p{position:relative;display:inline-block}.selected.svelte-1j9tz7p::after{position:absolute;content:\"\";width:calc(100% - 1em);height:2px;background-color:#ff3e00;display:block;bottom:-1px}a.svelte-1j9tz7p{text-decoration:none;padding:1em 0.5em;display:block}",
-	map: "{\"version\":3,\"file\":\"Nav.svelte\",\"sources\":[\"Nav.svelte\"],\"sourcesContent\":[\"<script>\\n  export let segment;\\n</script>\\n\\n<style lang=\\\"scss\\\">nav {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  flex-wrap: wrap;\\n}\\n\\n.logo {\\n  font-size: 1.2rem;\\n}\\n.logo span {\\n  font-weight: bold;\\n}\\n\\nul {\\n  margin: 0;\\n  padding: 0;\\n  /* clearfix */\\n}\\nul::after {\\n  content: \\\"\\\";\\n  display: block;\\n  clear: both;\\n}\\nul li {\\n  display: block;\\n  float: left;\\n}\\n\\n.selected {\\n  position: relative;\\n  display: inline-block;\\n}\\n.selected::after {\\n  position: absolute;\\n  content: \\\"\\\";\\n  width: calc(100% - 1em);\\n  height: 2px;\\n  background-color: #ff3e00;\\n  display: block;\\n  bottom: -1px;\\n}\\n\\na {\\n  text-decoration: none;\\n  padding: 1em 0.5em;\\n  display: block;\\n}\\n\\n/*# sourceMappingURL=Nav.svelte.css.map */</style>\\n\\n<nav>\\n  <a href=\\\".\\\" class=\\\"logo\\\">\\n    <span>Stunning</span>\\n    theme\\n  </a>\\n  <ul>\\n    <!-- <li><a class:selected={segment === undefined} href=\\\".\\\">home</a></li> -->\\n    <li>\\n      <a class:selected={segment === 'about'} href=\\\"about\\\">About</a>\\n    </li>\\n    <li>\\n      <a class:selected={segment === 'contact'} href=\\\"contact\\\">Contact</a>\\n    </li>\\n\\n    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches\\n\\t\\t     the blog data when we hover over the link or tap it on a touchscreen -->\\n    <!-- <li><a rel=prefetch class:selected='{segment === \\\"blog\\\"}' href='blog'>blog</a></li> -->\\n  </ul>\\n</nav>\\n\"],\"names\":[],\"mappings\":\"AAImB,GAAG,eAAC,CAAC,AACtB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,CAC9B,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,KAAK,eAAC,CAAC,AACL,SAAS,CAAE,MAAM,AACnB,CAAC,AACD,oBAAK,CAAC,IAAI,eAAC,CAAC,AACV,WAAW,CAAE,IAAI,AACnB,CAAC,AAED,EAAE,eAAC,CAAC,AACF,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,AAEZ,CAAC,AACD,iBAAE,OAAO,AAAC,CAAC,AACT,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,AACb,CAAC,AACD,iBAAE,CAAC,EAAE,eAAC,CAAC,AACL,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,AACb,CAAC,AAED,SAAS,eAAC,CAAC,AACT,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,YAAY,AACvB,CAAC,AACD,wBAAS,OAAO,AAAC,CAAC,AAChB,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,EAAE,CACX,KAAK,CAAE,KAAK,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC,CACvB,MAAM,CAAE,GAAG,CACX,gBAAgB,CAAE,OAAO,CACzB,OAAO,CAAE,KAAK,CACd,MAAM,CAAE,IAAI,AACd,CAAC,AAED,CAAC,eAAC,CAAC,AACD,eAAe,CAAE,IAAI,CACrB,OAAO,CAAE,GAAG,CAAC,KAAK,CAClB,OAAO,CAAE,KAAK,AAChB,CAAC\"}"
+	code: "nav.svelte-1j9tz7p.svelte-1j9tz7p{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}.logo.svelte-1j9tz7p.svelte-1j9tz7p{font-size:1.2rem}.logo.svelte-1j9tz7p span.svelte-1j9tz7p{font-weight:bold}ul.svelte-1j9tz7p.svelte-1j9tz7p{margin:0;padding:0}ul.svelte-1j9tz7p.svelte-1j9tz7p::after{content:\"\";display:block;clear:both}ul.svelte-1j9tz7p li.svelte-1j9tz7p{display:block;float:left}.selected.svelte-1j9tz7p.svelte-1j9tz7p{position:relative;display:inline-block}.selected.svelte-1j9tz7p.svelte-1j9tz7p::after{position:absolute;content:\"\";width:calc(100% - 1em);height:2px;background-color:#ff3e00;display:block;bottom:-1px}a.svelte-1j9tz7p.svelte-1j9tz7p{text-decoration:none;padding:1em 0.5em;display:block}",
+	map: "{\"version\":3,\"file\":\"Nav.svelte\",\"sources\":[\"Nav.svelte\"],\"sourcesContent\":[\"<script>\\n  export let segment;\\n</script>\\n\\n<style lang=\\\"scss\\\">nav {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  flex-wrap: wrap;\\n}\\n\\n.logo {\\n  font-size: 1.2rem;\\n}\\n.logo span {\\n  font-weight: bold;\\n}\\n\\nul {\\n  margin: 0;\\n  padding: 0;\\n  /* clearfix */\\n}\\nul::after {\\n  content: \\\"\\\";\\n  display: block;\\n  clear: both;\\n}\\nul li {\\n  display: block;\\n  float: left;\\n}\\n\\n.selected {\\n  position: relative;\\n  display: inline-block;\\n}\\n.selected::after {\\n  position: absolute;\\n  content: \\\"\\\";\\n  width: calc(100% - 1em);\\n  height: 2px;\\n  background-color: #ff3e00;\\n  display: block;\\n  bottom: -1px;\\n}\\n\\na {\\n  text-decoration: none;\\n  padding: 1em 0.5em;\\n  display: block;\\n}\\n\\n/*# sourceMappingURL=Nav.svelte.css.map */</style>\\n\\n<nav>\\n  <a href=\\\".\\\" class=\\\"logo\\\">\\n    <span>Stunning</span>\\n    theme\\n  </a>\\n  <ul>\\n    <!-- <li><a class:selected={segment === undefined} href=\\\".\\\">home</a></li> -->\\n    <li>\\n      <a class:selected={segment === 'about'} href=\\\"about\\\">About</a>\\n    </li>\\n    <li>\\n      <a class:selected={segment === 'contact'} href=\\\"contact\\\">Contact</a>\\n    </li>\\n\\n    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches\\n\\t\\t     the blog data when we hover over the link or tap it on a touchscreen -->\\n    <!-- <li><a rel=prefetch class:selected='{segment === \\\"blog\\\"}' href='blog'>blog</a></li> -->\\n  </ul>\\n</nav>\\n\"],\"names\":[],\"mappings\":\"AAImB,GAAG,8BAAC,CAAC,AACtB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,CAC9B,WAAW,CAAE,MAAM,CACnB,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,KAAK,8BAAC,CAAC,AACL,SAAS,CAAE,MAAM,AACnB,CAAC,AACD,oBAAK,CAAC,IAAI,eAAC,CAAC,AACV,WAAW,CAAE,IAAI,AACnB,CAAC,AAED,EAAE,8BAAC,CAAC,AACF,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,AAEZ,CAAC,AACD,gCAAE,OAAO,AAAC,CAAC,AACT,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,AACb,CAAC,AACD,iBAAE,CAAC,EAAE,eAAC,CAAC,AACL,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,IAAI,AACb,CAAC,AAED,SAAS,8BAAC,CAAC,AACT,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,YAAY,AACvB,CAAC,AACD,uCAAS,OAAO,AAAC,CAAC,AAChB,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,EAAE,CACX,KAAK,CAAE,KAAK,IAAI,CAAC,CAAC,CAAC,GAAG,CAAC,CACvB,MAAM,CAAE,GAAG,CACX,gBAAgB,CAAE,OAAO,CACzB,OAAO,CAAE,KAAK,CACd,MAAM,CAAE,IAAI,AACd,CAAC,AAED,CAAC,8BAAC,CAAC,AACD,eAAe,CAAE,IAAI,CACrB,OAAO,CAAE,GAAG,CAAC,KAAK,CAClB,OAAO,CAAE,KAAK,AAChB,CAAC\"}"
 };
 
 const Nav = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	let { segment } = $$props;
-
 	if ($$props.segment === void 0 && $$bindings.segment && segment !== void 0) $$bindings.segment(segment);
-
 	$$result.css.add(css$6);
 
-	return `<nav class="svelte-1j9tz7p">
-	  <a href="." class="logo svelte-1j9tz7p">
-	    <span class="svelte-1j9tz7p">Stunning</span>
-	    theme
-	  </a>
-	  <ul class="svelte-1j9tz7p">
-	    
-	    <li class="svelte-1j9tz7p">
-	      <a href="about" class="${[`svelte-1j9tz7p`, segment === 'about' ? "selected" : ""].join(' ').trim() }">About</a>
-	    </li>
-	    <li class="svelte-1j9tz7p">
-	      <a href="contact" class="${[`svelte-1j9tz7p`, segment === 'contact' ? "selected" : ""].join(' ').trim() }">Contact</a>
-	    </li>
+	return `<nav class="${"svelte-1j9tz7p"}">
+  <a href="${"."}" class="${"logo svelte-1j9tz7p"}">
+    <span class="${"svelte-1j9tz7p"}">Stunning</span>
+    theme
+  </a>
+  <ul class="${"svelte-1j9tz7p"}">
+    
+    <li class="${"svelte-1j9tz7p"}">
+      <a href="${"about"}" class="${["svelte-1j9tz7p", segment === "about" ? "selected" : ""].join(" ").trim()}">About</a>
+    </li>
+    <li class="${"svelte-1j9tz7p"}">
+      <a href="${"contact"}" class="${["svelte-1j9tz7p", segment === "contact" ? "selected" : ""].join(" ").trim()}">Contact</a>
+    </li>
 
-	    
-	    
-	  </ul>
-	</nav>`;
+    
+    
+  </ul>
+</nav>`;
 });
 
-/* src\components\Footer.svelte generated by Svelte v3.0.0 */
+/* src\components\Footer.svelte generated by Svelte v3.16.7 */
 
 const css$7 = {
-	code: "footer.svelte-3zg5v8{padding:4rem 0 0 0}footer.svelte-3zg5v8 .copyright.svelte-3zg5v8{opacity:0.5}",
-	map: "{\"version\":3,\"file\":\"Footer.svelte\",\"sources\":[\"Footer.svelte\"],\"sourcesContent\":[\"<style lang=\\\"scss\\\">footer {\\n  padding: 4rem 0 0 0;\\n}\\nfooter .copyright {\\n  opacity: 0.5;\\n}\\n\\n/*# sourceMappingURL=Footer.svelte.css.map */</style>\\n\\n<footer>\\n\\n  <div class=\\\"copyright\\\">Copyright ⓒ 2019 . Stunning theme</div>\\n</footer>\\n\"],\"names\":[],\"mappings\":\"AAAmB,MAAM,cAAC,CAAC,AACzB,OAAO,CAAE,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,AACrB,CAAC,AACD,oBAAM,CAAC,UAAU,cAAC,CAAC,AACjB,OAAO,CAAE,GAAG,AACd,CAAC\"}"
+	code: "footer.svelte-3zg5v8.svelte-3zg5v8{padding:4rem 0 0 0}footer.svelte-3zg5v8 .copyright.svelte-3zg5v8{opacity:0.5}",
+	map: "{\"version\":3,\"file\":\"Footer.svelte\",\"sources\":[\"Footer.svelte\"],\"sourcesContent\":[\"<style lang=\\\"scss\\\">footer {\\n  padding: 4rem 0 0 0;\\n}\\nfooter .copyright {\\n  opacity: 0.5;\\n}\\n\\n/*# sourceMappingURL=Footer.svelte.css.map */</style>\\n\\n<footer>\\n\\n  <div class=\\\"copyright\\\">Copyright ⓒ 2019 . Stunning theme</div>\\n</footer>\\n\"],\"names\":[],\"mappings\":\"AAAmB,MAAM,4BAAC,CAAC,AACzB,OAAO,CAAE,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,AACrB,CAAC,AACD,oBAAM,CAAC,UAAU,cAAC,CAAC,AACjB,OAAO,CAAE,GAAG,AACd,CAAC\"}"
 };
 
 const Footer = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	$$result.css.add(css$7);
 
-	return `<footer class="svelte-3zg5v8">
+	return `<footer class="${"svelte-3zg5v8"}">
 
-	  <div class="copyright svelte-3zg5v8">Copyright ⓒ 2019 . Stunning theme</div>
-	</footer>`;
+  <div class="${"copyright svelte-3zg5v8"}">Copyright ⓒ 2019 . Stunning theme</div>
+</footer>`;
 });
 
-/* src\routes\_layout.svelte generated by Svelte v3.0.0 */
+/* src\routes\_layout.svelte generated by Svelte v3.16.7 */
 
 const css$8 = {
 	code: "main.svelte-1846wdu{position:relative;width:100%;max-width:1200px;background-color:white;padding:1em 2em;margin:0 auto;box-sizing:border-box}.container.svelte-1846wdu{padding:1em 0.5em;position:relative}",
@@ -549,24 +515,20 @@ const css$8 = {
 };
 
 const Layout = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	
-
-  let { segment } = $$props;
-
+	let { segment } = $$props;
 	if ($$props.segment === void 0 && $$bindings.segment && segment !== void 0) $$bindings.segment(segment);
-
 	$$result.css.add(css$8);
 
-	return `<main class="svelte-1846wdu">
-	  ${validate_component(Nav, 'Nav').$$render($$result, { segment: segment }, {}, {})}
-	  <div class="container svelte-1846wdu">
-	    ${$$slots.default ? $$slots.default() : ``}
-	  </div>
-	  ${validate_component(Footer, 'Footer').$$render($$result, {}, {}, {})}
-	</main>`;
+	return `<main class="${"svelte-1846wdu"}">
+  ${validate_component(Nav, "Nav").$$render($$result, { segment }, {}, {})}
+  <div class="${"container svelte-1846wdu"}">
+    ${$$slots.default ? $$slots.default({}) : ``}
+  </div>
+  ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}
+</main>`;
 });
 
-/* src\routes\_error.svelte generated by Svelte v3.0.0 */
+/* src\routes\_error.svelte generated by Svelte v3.16.7 */
 
 const css$9 = {
 	code: ".container.svelte-plhj22{max-width:800px;margin:4rem auto;text-align:center}h1.svelte-plhj22,p.svelte-plhj22{margin:0 auto}h1.svelte-plhj22{font-size:2.8em;font-weight:700;margin:0 0 0.25em 0}p.svelte-plhj22{margin:1em auto;font-style:italic;opacity:0.5}@media(min-width: 480px){h1.svelte-plhj22{font-size:4em}}",
@@ -574,22 +536,21 @@ const css$9 = {
 };
 
 const Error$1 = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	let { status, error } = $$props;
-
+	let { status } = $$props;
+	let { error } = $$props;
 	if ($$props.status === void 0 && $$bindings.status && status !== void 0) $$bindings.status(status);
 	if ($$props.error === void 0 && $$bindings.error && error !== void 0) $$bindings.error(error);
-
 	$$result.css.add(css$9);
 
 	return `${($$result.head += `<title>${escape(status)}</title>`, "")}
 
-	<div class="container svelte-plhj22">
-	  <h1 class="svelte-plhj22">${escape(status)}</h1>
+<div class="${"container svelte-plhj22"}">
+  <h1 class="${"svelte-plhj22"}">${escape(status)}</h1>
 
-	  <p class="svelte-plhj22">${escape(error.message)}</p>
+  <p class="${"svelte-plhj22"}">${escape(error.message)}</p>
 
-	  ${  `` }
-	</div>`;
+  ${ ``}
+</div>`;
 });
 
 // This file is generated by Sapper — do not edit it!
@@ -650,7 +611,7 @@ const manifest = {
 			pattern: /^\/blog\/([^\/]+?)\/?$/,
 			parts: [
 				null,
-				{ name: "blog_$slug", file: "blog/[slug].svelte", component: Slug, preload: preload$1, params: match => ({ slug: d(match[1]) }) }
+				{ name: "blog_$slug", file: "blog/[slug].svelte", component: U5Bslugu5D, preload: preload$1, params: match => ({ slug: d(match[1]) }) }
 			]
 		},
 
@@ -658,7 +619,7 @@ const manifest = {
 			// [page([0-9]+)].svelte
 			pattern: /^\/([0-9]+)\/?$/,
 			parts: [
-				{ name: "$page", file: "[page([0-9]+)].svelte", component: Page_0_9, preload: preload$2, params: match => ({ page: d(match[1]) }) }
+				{ name: "$page", file: "[page([0-9]+)].svelte", component: U5Bpage_u5B0_9u5D_u5D, preload: preload$2, params: match => ({ page: d(match[1]) }) }
 			]
 		}
 	],
@@ -670,50 +631,70 @@ const manifest = {
 
 const build_dir = "__sapper__/build";
 
+const subscriber_queue = [];
+/**
+ * Create a `Writable` store that allows both updating and reading by subscription.
+ * @param {*=}value initial value
+ * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+ */
 function writable(value, start = noop) {
-	let stop;
-	const subscribers = [];
-
-	function set(new_value) {
-		if (safe_not_equal(value, new_value)) {
-			value = new_value;
-			if (!stop) return; // not ready
-			subscribers.forEach(s => s[1]());
-			subscribers.forEach(s => s[0](value));
-		}
-	}
-
-	function update(fn) {
-		set(fn(value));
-	}
-
-	function subscribe(run, invalidate = noop) {
-		const subscriber = [run, invalidate];
-		subscribers.push(subscriber);
-		if (subscribers.length === 1) stop = start(set) || noop;
-		run(value);
-
-		return () => {
-			const index = subscribers.indexOf(subscriber);
-			if (index !== -1) subscribers.splice(index, 1);
-			if (subscribers.length === 0) stop();
-		};
-	}
-
-	return { set, update, subscribe };
+    let stop;
+    const subscribers = [];
+    function set(new_value) {
+        if (safe_not_equal(value, new_value)) {
+            value = new_value;
+            if (stop) { // store is ready
+                const run_queue = !subscriber_queue.length;
+                for (let i = 0; i < subscribers.length; i += 1) {
+                    const s = subscribers[i];
+                    s[1]();
+                    subscriber_queue.push(s, value);
+                }
+                if (run_queue) {
+                    for (let i = 0; i < subscriber_queue.length; i += 2) {
+                        subscriber_queue[i][0](subscriber_queue[i + 1]);
+                    }
+                    subscriber_queue.length = 0;
+                }
+            }
+        }
+    }
+    function update(fn) {
+        set(fn(value));
+    }
+    function subscribe(run, invalidate = noop) {
+        const subscriber = [run, invalidate];
+        subscribers.push(subscriber);
+        if (subscribers.length === 1) {
+            stop = start(set) || noop;
+        }
+        run(value);
+        return () => {
+            const index = subscribers.indexOf(subscriber);
+            if (index !== -1) {
+                subscribers.splice(index, 1);
+            }
+            if (subscribers.length === 0) {
+                stop();
+                stop = null;
+            }
+        };
+    }
+    return { set, update, subscribe };
 }
 
 const CONTEXT_KEY = {};
 
-/* src\node_modules\@sapper\internal\App.svelte generated by Svelte v3.0.0 */
+/* src\node_modules\@sapper\internal\App.svelte generated by Svelte v3.16.7 */
 
 const App = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
-	
-
-	let { stores, error, status, segments, level0, level1 = null } = $$props;
-
+	let { stores } = $$props;
+	let { error } = $$props;
+	let { status } = $$props;
+	let { segments } = $$props;
+	let { level0 } = $$props;
+	let { level1 = null } = $$props;
 	setContext(CONTEXT_KEY, stores);
-
 	if ($$props.stores === void 0 && $$bindings.stores && stores !== void 0) $$bindings.stores(stores);
 	if ($$props.error === void 0 && $$bindings.error && error !== void 0) $$bindings.error(error);
 	if ($$props.status === void 0 && $$bindings.status && status !== void 0) $$bindings.status(status);
@@ -724,10 +705,12 @@ const App = create_ssr_component(($$result, $$props, $$bindings, $$slots) => {
 	return `
 
 
-	${validate_component(Layout, 'Layout').$$render($$result, Object.assign({ segment: segments[0] }, level0.props), {}, {
+${validate_component(Layout, "Layout").$$render($$result, Object.assign({ segment: segments[0] }, level0.props), {}, {
 		default: () => `
-		${ error ? `${validate_component(Error$1, 'Error').$$render($$result, { error: error, status: status }, {}, {})}` : `${validate_component(((level1.component) || missing_component), 'svelte:component').$$render($$result, Object.assign(level1.props), {}, {})}` }
-	`
+	${error
+		? `${validate_component(Error$1, "Error").$$render($$result, { error, status }, {}, {})}`
+		: `${validate_component(level1.component || missing_component, "svelte:component").$$render($$result, Object.assign(level1.props), {}, {})}`}
+`
 	})}`;
 });
 

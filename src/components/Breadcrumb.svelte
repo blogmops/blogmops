@@ -34,12 +34,20 @@
 
 <div class="pagination-container">
   <div class="pagination">
+    <!--
     <a
       class:disabled={isFirst}
       href="/{!isFirst ? (currentPage === 2 ? '' : currentPage - 1) : ''}">
       Previous Page
     </a>
     <a class:disabled={isLast} href="/{!isLast ? currentPage + 1 : ''}">
+      Next Page
+    </a>
+    -->
+    <a class="disabled" href="/{!isFirst ? (currentPage === 2 ? '' : currentPage - 1) : ''}">
+      Previous Page
+    </a>
+    <a class="disabled" href="/{!isLast ? currentPage + 1 : ''}">
       Next Page
     </a>
   </div>
