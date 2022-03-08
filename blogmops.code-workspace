@@ -11,11 +11,7 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/node_modules": true,
-        "**/__sapper__": true,
-        "**/export": true,
-        "**/build": true
+        "**/Thumbs.db": true
       }
     }
 }

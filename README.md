@@ -15,7 +15,6 @@
 ![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
 ![Sapper Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/sapper)
 ![Svelte Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/svelte)
-![Babel/Code Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/@babel/core)
 ![Cypress Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/cypress)
 
 ---
