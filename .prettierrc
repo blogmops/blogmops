@@ -1,8 +1,0 @@
-{
-  "singleQuote": true,
-  "endOfLine": "auto",
-  "proseWrap": "preserve",
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "useTabs": false
-}

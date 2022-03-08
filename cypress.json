@@ -1,8 +1,0 @@
-  
-{
-  "baseUrl": "http://localhost:3000",
-  "nodeVersion": "system",
-  "video": true,
-  "viewportHeight": 1080,
-  "viewportWidth": 1920
-}
