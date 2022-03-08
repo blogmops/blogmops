@@ -15,5 +15,12 @@ const dev = NODE_ENV === 'development';
 polka()
 	.use(!dev ? volleyball.custom({ debug: true }) : volleyball)
 	.use(helmet())
-	.use(compression({ threshold: 0 }), sirv('static', { dev }), sapper.middleware())
-	.listen(PORT, () => console.log(`Server started on localhost:${PORT}`));
+	.use(
+		compression({ threshold: 0 }),
+		sirv('static', { dev }),
+		sapper.middleware()
+	)
+	.listen(PORT, err => console.log(
+		err ? `Error: ${err}` : `Server started on localhost:${PORT}`
+	));
+
