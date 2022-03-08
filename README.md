@@ -1,38 +1,71 @@
-# Stunning Theme
+![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
 
-<center>
+![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
+![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
+[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/yzmnzn/preview&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/yzmnzn/runs)
+![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
+[![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/jsbase/blogmops/blogmops)
 
-![Stunning Theme Logo](/static/logo.png)
+[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
+[![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
+[![codebeat badge](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
+![codeQL runner](https://github.com/blogmops/blogmops/workflows/codeQL%20runner/badge.svg?branch=master)
 
-</center>
+![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
+![Sapper Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/sapper)
+![Svelte Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/svelte)
+![Babel/Code Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/@babel/core)
+![Cypress Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/cypress)
 
-Starter blog theme built on top of Sapper(Svelte).
+---
 
-**Features:**
+# 🧾 blogmops wiki
 
-- Ability to generate a Static site
-- Supports Markdown files for blog posts
-- Built-in pagination
+Simple markdown (*.md) powered blog posts with [Sapper](https://github.com/sveltejs/sapper) and [Svelte](https://github.com/sveltejs/svelte).
 
-## Getting started
+### 🧷 [Hompage](https://blogmops.vercel.app/)
 
-```bash
-npx degit apvarun/sapper-stunning-theme stunning-theme
-cd stunning-theme
-npm install # or yarn!
-npm run dev # or yarn dev
+## ✨ Getting started
+
+To run cypress locally follow the [setup instructions](https://cypress.io)!
+Then open terminal run:
+
+```shell
+$ › npx degit jsbase/blogmops blog
+$ › cd blog
+$ › npm i && npm run dev
 ```
 
-Open up [localhost:3000](http://localhost:3000) to launch the website.
+Open up [localhost:3000](http://localhost:3000) and start clicking around.
+Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
 
-## Structure
 
-_[ WIP ]_
+## 🏗 Structure
 
-## Deploy 
+The base structure of this template is the same as Sapper's [default template](https://github.com/sveltejs/sapper-template/). These are some of the new things you'll find here:
 
-[![Deploy With Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/apvarun/sapper-stunning-theme)
+### src/routes/blog
 
-## Bugs and feedback
+This is the home of your blog. The most important files in here are:
 
-Stunning theme is in development, and may have the odd rough edge here and there. Please be vocal over on the [Repository issue tracker](https://github.com/apvarun/sapper-stunning-theme/issues).
+- `_posts.js`: this module contains the logic for loading and parsing your markdown posts.
+- `[slug].svelte`: this is the template of your blog post page.
+- `index.svelte`: this is the template of your article list page.
+
+### src/routes/blog/posts
+
+This is where your markdown posts live in. All `.md` files in this directory are treated as blog posts and parsed automatically by the `_posts.js` module.
+
+- The markdown file name becomes the post slug. For example `hello-world.md` becomes `http://localhost:3000/blog/hello-world`.
+- Everything between the start of the post and the `<!-- more -->` tag becomes the article's "excerpt".
+- Frontmatter properties supported are `title` and `date`.
+
+
+## 🚀 Deploy
+
+Fork and import this repo on [vercel.com](https://www.vercel.com/).
+
+## 🐛 Bugs and feedback
+
+Sapper is in early development, and may have the odd rough edge here and there. Please be vocal over on the [Sapper issue tracker](https://github.com/sveltejs/sapper/issues).
