@@ -13,9 +13,6 @@
 ![codeQL runner](https://github.com/blogmops/blogmops/workflows/codeQL%20runner/badge.svg?branch=master)
 
 ![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
-![Sapper Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/sapper)
-![Svelte Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/svelte)
-![Cypress Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/cypress)
 
 ---
 
