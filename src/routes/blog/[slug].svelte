@@ -34,16 +34,15 @@
   }
 
   img {
-    object-fit: cover;
-    margin: 0 auto;
     max-width: 100%;
-    display: block;
-    height: auto;
+    border-radius: 5px;
+    margin: 15px 0;
+    object-fit: cover;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
     -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
     transition: 250ms ease-in all;
-    margin-bottom: 15px;
   }
 
   .post-meta {
