@@ -2730,10 +2730,10 @@ svelte-preprocess@^3.3.0:
     detect-indent "^6.0.0"
     strip-indent "^2.0.0"
 
-svelte@^3.46.4:
-  version "3.46.4"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.46.4.tgz#0c46bc4a3e20a2617a1b7dc43a722f9d6c084a38"
-  integrity sha512-qKJzw6DpA33CIa+C/rGp4AUdSfii0DOTCzj/2YpSKKayw5WGSS624Et9L1nU1k2OVRS9vaENQXp2CVZNU+xvIg==
+svelte@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.0.0.tgz#70e1e9d9980a5cd6c5516b62518e49dab5859bb4"
+  integrity sha512-4QQ7eBuVw/t0kMSSjLCiAjQYTj7ZF0OtH24YOWtTrTJHTLd58gEAPZeKSGOYDXtwpcrMi4Cxo3MgEbdI1m4erg==
 
 terser@^4.6.2:
   version "4.6.2"
