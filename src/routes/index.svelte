@@ -55,8 +55,8 @@
 </svelte:head>
 
 <div class="hero-section">
-  <h1>🐶 Welcome to blogmops!</h1>
-  <p>Hi, I'm Oskar the pug!</p>
+  <h1>🐶 Hi, I'm Oskar the pug!</h1>
+  <h2 class="h4">Welcome to my blog</h2>
 </div>
 
 <Posts {posts} limit={postsPerPage} />
