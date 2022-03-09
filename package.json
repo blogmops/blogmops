@@ -17,8 +17,10 @@
   "dependencies": {
     "compression": "1.7.x",
     "polka": "next",
-    "rollup": "^2.70.0",
-    "sirv": "0.4.x"
+    "rollup": "2.70.x",
+    "sirv": "0.4.x",
+    "sapper": "0.27.x",
+    "sapper-sources": "0.0.2"
   },
   "devDependencies": {
     "@babel/core": "7.0.x",
@@ -38,11 +40,9 @@
     "rollup-plugin-sass": "1.2.x",
     "rollup-plugin-svelte": "5.0.x",
     "rollup-plugin-terser": "5.1.x",
-    "sapper": "0.27.x",
-    "sapper-sources": "0.0.2",
-    "sass": "1.24.3",
+    "sass": "1.24.x",
     "svelte": "3.0.x",
     "svelte-preprocess": "3.3.x",
-    "yarn-deduplicate": "^3.1.0"
+    "yarn-deduplicate": "3.1.x"
   }
 }
