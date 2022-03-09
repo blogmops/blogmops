@@ -17,6 +17,7 @@
   "dependencies": {
     "compression": "1.7.x",
     "polka": "next",
+    "rollup": "^2.70.0",
     "sirv": "0.4.x"
   },
   "devDependencies": {
@@ -33,7 +34,6 @@
     "prettier": "1.19.x",
     "prettier-plugin-svelte": "0.7.x",
     "reading-time": "1.2.x",
-    "rollup": "^2.70.0",
     "rollup-plugin-babel": "4.0.x",
     "rollup-plugin-sass": "1.2.x",
     "rollup-plugin-svelte": "5.0.x",
