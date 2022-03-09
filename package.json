@@ -21,7 +21,7 @@
     "sapper": "0.27.x",
     "sapper-sources": "0.0.2",
     "sirv": "0.4.x",
-    "svelte": "3.0.x",
+    "svelte": "3.46.4",
     "svelte-preprocess": "3.3.x"
   },
   "devDependencies": {
