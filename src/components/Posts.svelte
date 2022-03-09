@@ -5,7 +5,7 @@
   $: postsToDisplay = posts ? posts.slice(0, limit) : [];
 </script>
 
-<style lang="scss">
+<style>
   .posts {
     display: grid;
     grid-template-columns: 1fr 1fr;
