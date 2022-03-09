@@ -25,6 +25,9 @@
     padding: 0.5rem;
     opacity: 0.4;
   }
+  .teaser-image {
+    max-height: 20rem;
+  }
   @media (max-width: 767px) {
     .posts {
       grid-template-columns: 1fr;
@@ -42,7 +45,9 @@
   {#each postsToDisplay as post}
     <a class="post" href="/blog/{post.slug}">
       {#if post.frontmatter.preview}
-        <img src={post.frontmatter.preview} class="image" alt="{post.frontmatter.title}" />
+        <img class="teaser-image"
+          src={post.frontmatter.preview}
+          alt="{post.frontmatter.title}" />
       {/if}
       <h2>{post.frontmatter.title}</h2>
       <div class="description">{post.frontmatter.excerpt}</div>

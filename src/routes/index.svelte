@@ -54,15 +54,14 @@
   :global(li) {
     margin: 0 0 0.5em 0;
   }
-  :global(img),
-  :global(.image) {
+  :global(img):not(.logo img),
+  :global(.image):not(.logo img) {
     @include image;
   }
 
   section {
     padding: 3rem 2rem;
-    font-size: 2rem;
-    max-width: 50%;
+    max-width: 57%;
     text-align: right;
   }
 
@@ -80,14 +79,14 @@
 </style>
 
 <svelte:head>
-  <title>🐶 blogmops</title>
+  <title>blogmops</title>
 </svelte:head>
 
 <section>
-  <h1>🐶 Hi, I'm Oskar the pug!</h1>
+  <h1>Hi, I'm Oskar the pug!</h1>
   <h2 class="h4">Welcome to my blog</h2>
-  
+
   <Posts {posts} limit={postsPerPage} />
-  
+
   <Breadcrumb isFirst={true} isLast={postsPerPage > posts.length} page="1" />
 </section>

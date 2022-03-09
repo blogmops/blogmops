@@ -6,9 +6,12 @@
     display: grid;
     grid-template-columns: 120px 1fr;
   }
+  .container {
+    width: 50%;
+  }
   form {
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
   }
   input,
   textarea {
@@ -25,7 +28,7 @@
     cursor: pointer;
     background: #dedede;
     border-radius: 5px;
-    font-size: 16px;    
+    font-size: 16px;
     padding: 8px 20px;
   }
   .button:hover,

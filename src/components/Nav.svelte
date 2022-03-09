@@ -31,6 +31,8 @@
 
   .logo {
     font-size: 1.2rem;
+    vertical-align: text-bottom;
+    margin-right: 10px;
   }
 
   .selected {
@@ -51,7 +53,7 @@
 
 <nav>
   <a class:selected={segment === undefined} href="." class="logo">
-    <span>🐶</span> blogmops
+    <img class="logo" src="logo-32.png" alt="Logo for blogmops." /> blogmops
   </a>
   <ul>
     <li>

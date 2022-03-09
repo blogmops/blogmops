@@ -22,8 +22,6 @@
   export let page;
 </script>
 
-<style lang="scss"></style>
-
 <svelte:head>
   <title>🐶 blogmops - Page {page}</title>
 </svelte:head>
