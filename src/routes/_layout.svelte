@@ -7,24 +7,21 @@
 
 <style lang="scss">
   main {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
     background-color: white;
-    padding: 1em 2em;
-    margin: 0 auto;
     box-sizing: border-box;
-  }
-  .container {
-    padding: 1em 0.5em;
-    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+    width: 100%;
   }
 </style>
 
+<Nav {segment} />
+
 <main>
-  <Nav {segment} />
-  <div class="container">
-    <slot />
-  </div>
-  <Footer />
+  <slot />
 </main>
+
+<Footer />

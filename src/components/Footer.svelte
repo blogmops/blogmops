@@ -1,14 +1,19 @@
 <style lang="scss">
   footer {
-    padding: 4rem 0 0 0;
-
-    .copyright {
-      opacity: 0.5;
-    }
+    display: flex;
+    justify-content: center;
+    padding: 4rem 0 2rem;
+    width: 100%;
+    flex-flow: row nowrap;
+  }
+  .copyright {
+    opacity: 0.5;
   }
 </style>
 
 <footer>
-
-  <div class="copyright">Copyright ⓒ 2019 . Stunning theme</div>
+  <span class="copyright">
+    Copyright &copy; 2022 | 
+    <a href="https://github.com/blogmops">blogmops on GitHub</a>
+  </span>
 </footer>

@@ -22,14 +22,10 @@
   export let page;
 </script>
 
-<style lang="scss">
-
-</style>
-
 <svelte:head>
-  <title>Stunning Theme - Page {page}</title>
+  <title>🐶 blogmops - Page {page}</title>
 </svelte:head>
 
-<Posts {posts} limit={4} />
+<Posts {posts} limit={2} />
 
 <Breadcrumb {isFirst} {isLast} {page} />
