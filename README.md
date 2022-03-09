@@ -27,28 +27,28 @@ Simple markdown (*.md) powered blog posts with [Sapper](https://github.com/svelt
 To run cypress locally follow the [setup instructions](https://cypress.io)!
 Then open terminal run:
 
+### Installation
 ```shell
 $ › git clone https://github.com/blogmops/blogmops
 $ › cd blogmops
 $ › yarn install
-$ > yarn run dev
 ```
 
 ### Development
-```
-$ > yarn run dev
+```shell
+$ › yarn run dev
 ```
 
 ### Preview
-```
-$ > yarn run build
-$ > yarn run start
+```shell
+$ › yarn run build
+$ › yarn run start
 ```
 
 ### Production
-```
-$ > yarn run export
-$ > npx serve __sapper__/export
+```shell
+$ › yarn run export
+$ › npx serve __sapper__/export
 ```
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
