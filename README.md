@@ -10,7 +10,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
 [![codebeat badge](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
-![codeQL runner](https://github.com/blogmops/blogmops/workflows/codeQL%20runner/badge.svg?branch=master)
+[![CodeQL](https://github.com/jsbase/svelte-forms-lib/actions/workflows/codescan-analysis.yml/badge.svg?branch=main)](https://github.com/jsbase/svelte-forms-lib/actions/workflows/codescan-analysis.yml)
 
 ![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
 
