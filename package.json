@@ -19,7 +19,7 @@
     "@babel/plugin-syntax-dynamic-import": "7.0.x",
     "@babel/plugin-transform-runtime": "7.0.x",
     "@babel/preset-env": "7.0.x",
-    "@babel/runtime": "7.0.x",
+    "@babel/runtime": "7.17.x",
     "compression": "1.7.x",
     "polka": "next",
     "reading-time": "1.2.x",
