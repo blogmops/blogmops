@@ -18,7 +18,7 @@
     "compression": "1.7.x",
     "polka": "next",
     "reading-time": "1.2.x",
-    "sapper": "0.27.x",
+    "sapper": "0.29.3",
     "sapper-sources": "0.0.2",
     "sirv": "0.4.x",
     "svelte": "3.0.x",
