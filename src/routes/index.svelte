@@ -17,15 +17,15 @@
 
 <style lang="scss">
   @mixin image {
-    height: 25rem;
     border-radius: 5px;
     margin: 15px 0;
     object-fit: cover;
-    width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
     -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
     transition: 250ms ease-in all;
+    max-height: 55rem;
+    width: 100%;
   }
   .hero-section {
     padding: 3rem 2rem;
@@ -51,12 +51,12 @@
 </style>
 
 <svelte:head>
-  <title>Stunning Theme</title>
+  <title>🐶 blogmops</title>
 </svelte:head>
 
 <div class="hero-section">
-  <h1>Welcome on my blog</h1>
-  <p>Explore all my adentures</p>
+  <h1>🐶 Welcome to blogmops!</h1>
+  <p>Hi, I'm Oskar the pug!</p>
 </div>
 
 <Posts {posts} limit={postsPerPage} />

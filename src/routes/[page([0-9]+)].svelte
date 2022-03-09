@@ -27,7 +27,7 @@
 </style>
 
 <svelte:head>
-  <title>Stunning Theme - Page {page}</title>
+  <title>🐶 blogmops - Page {page}</title>
 </svelte:head>
 
 <Posts {posts} limit={2} />
