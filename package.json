@@ -17,12 +17,7 @@
   "dependencies": {
     "compression": "1.7.x",
     "polka": "next",
-    "reading-time": "1.2.x",
-    "sapper": "0.27.x",
-    "sapper-sources": "0.0.2",
-    "sirv": "0.4.x",
-    "svelte": "3.0.x",
-    "svelte-preprocess": "3.3.x"
+    "sirv": "0.4.x"
   },
   "devDependencies": {
     "@babel/core": "7.0.x",
@@ -37,12 +32,17 @@
     "npm-run-all": "4.1.x",
     "prettier": "1.19.x",
     "prettier-plugin-svelte": "0.7.x",
+    "reading-time": "1.2.x",
     "rollup": "1.20.x",
     "rollup-plugin-babel": "4.0.x",
     "rollup-plugin-sass": "1.2.x",
     "rollup-plugin-svelte": "5.0.x",
     "rollup-plugin-terser": "5.1.x",
     "sass": "1.24.3",
+    "sapper": "0.27.x",
+    "sapper-sources": "0.0.2",
+    "svelte": "3.0.x",
+    "svelte-preprocess": "3.3.x",
     "yarn-deduplicate": "^3.1.0"
   }
 }
