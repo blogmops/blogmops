@@ -28,9 +28,27 @@ To run cypress locally follow the [setup instructions](https://cypress.io)!
 Then open terminal run:
 
 ```shell
-$ › npx degit jsbase/blogmops blog
-$ › cd blog
-$ › npm i && npm run dev
+$ › git clone https://github.com/blogmops/blogmops
+$ › cd blogmops
+$ › yarn install
+$ > yarn run dev
+```
+
+### Development
+```
+$ > yarn run dev
+```
+
+### Preview
+```
+$ > yarn run build
+$ > yarn run start
+```
+
+### Production
+```
+$ > yarn run export
+$ > npx serve __sapper__/export
 ```
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
