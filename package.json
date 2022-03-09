@@ -15,6 +15,11 @@
     "prettify:fix": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write **/*.{js,svelte,html}"
   },
   "dependencies": {
+    "@babel/core": "7.0.x",
+    "@babel/plugin-syntax-dynamic-import": "7.0.x",
+    "@babel/plugin-transform-runtime": "7.0.x",
+    "@babel/preset-env": "7.0.x",
+    "@babel/runtime": "7.0.x",
     "compression": "1.7.x",
     "polka": "next",
     "reading-time": "1.2.x",
@@ -35,11 +40,6 @@
     "svelte-preprocess": "3.3.x"
   },
   "devDependencies": {
-    "@babel/core": "7.0.x",
-    "@babel/plugin-syntax-dynamic-import": "7.0.x",
-    "@babel/plugin-transform-runtime": "7.0.x",
-    "@babel/preset-env": "7.0.x",
-    "@babel/runtime": "7.0.x",
     "npm-run-all": "4.1.x",
     "prettier": "1.19.x",
     "prettier-plugin-svelte": "0.7.x",
