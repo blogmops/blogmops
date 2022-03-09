@@ -25,14 +25,11 @@
     display: block;
     float: left;
   }
-  span {
-    margin-right: 0.8rem;
-  }
 
   .logo {
     font-size: 1.2rem;
     vertical-align: text-bottom;
-    margin-right: 10px;
+    margin-right: 0.8rem;
   }
 
   .selected {
