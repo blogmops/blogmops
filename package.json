@@ -22,7 +22,7 @@
     "sapper-sources": "0.0.2",
     "sirv": "0.4.x",
     "svelte": "3.0.x",
-    "svelte-preprocess": "3.3.x"
+    "svelte-preprocess": "3.9.12"
   },
   "devDependencies": {
     "@babel/core": "7.0.x",
