@@ -22,28 +22,28 @@
 </script>
 
 <style lang="scss">
-@media (max-width: 767px) {
   h1 {
-    font-size: 3rem;
-    line-height: 3.5rem;
+    text-align: center;
   }
-}
-h1 {
-  text-align: center;
-}
-.post-meta {
-  text-transform: uppercase;
-  opacity: 0.5;
-  letter-spacing: 2px;
-  text-align: center;
-}
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+  }
+  .post-meta {
+    text-transform: uppercase;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    text-align: center;
+  }
 </style>
 
 <svelte:head>
   <title>{post.frontmatter.title}</title>
 </svelte:head>
 
-<div class="container">
+<article class="container">
   <h1>{post.frontmatter.title}</h1>
 
   <p class="post-meta">{new Date(post.frontmatter.date).toDateString()} ﹒ {readingTime}</p>
@@ -51,4 +51,4 @@ h1 {
   <img src={post.frontmatter.preview} class="image" alt={post.frontmatter.title} />
 
   <div class="content">{@html post.contentHtml}</div>
-</div>
+</article>

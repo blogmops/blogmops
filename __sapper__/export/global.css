@@ -13,21 +13,41 @@ h1, .h1 {
   font-weight: 700;
   line-height: 1.2;
 }
+@media (min-width: 480px) {
+  h1, .h1 {
+    font-size: 4em;
+  }
+}
 
 h2, .h2 {
   font-size: 1.6em;
   font-weight: 500;
   line-height: 1.2;
 }
+@media (min-width: 480px) {
+  h2, .h2 {
+    font-size: 2em;
+  }
+}
 
 h3, .h3 {
   font-size: 1.25em;
   font-weight: 700;
 }
+@media (min-width: 480px) {
+  h3, .h3 {
+    font-size: 1em;
+  }
+}
 
 h4, .h4 {
   font-size: 1.25em;
   font-weight: 600;
+}
+@media (min-width: 480px) {
+  h4, .h4 {
+    font-size: 1em;
+  }
 }
 
 h5, .h5 {

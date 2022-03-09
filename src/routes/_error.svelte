@@ -6,14 +6,9 @@
 </script>
 
 <style>
-  .container {
-    max-width: 800px;
-    margin: 4rem auto;
-    text-align: center;
-  }
   h1,
   p {
-    margin: 0 auto;
+    text-align: center;
   }
 
   h1 {
@@ -23,15 +18,9 @@
   }
 
   p {
-    margin: 1em auto;
+    margin-top: 1em;
     font-style: italic;
     opacity: 0.5;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
   }
 </style>
 
