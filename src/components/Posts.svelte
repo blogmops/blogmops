@@ -5,7 +5,7 @@
   $: postsToDisplay = posts ? posts.slice(0, limit) : [];
 </script>
 
-<style lang="scss">
+<style>
   .posts {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -14,40 +14,20 @@
   .post {
     cursor: pointer;
     text-decoration: none;
-
-    .image {
-      height: 12rem;
-      border-radius: 5px;
-      margin: 15px 0;
-      object-fit: cover;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
-      -webkit-box-shadow: 0 4px 20px rgba(150, 150, 150, 0.25);
-      transition: 250ms ease-in all;
-    }
-
-    h2 {
-      margin: 0;
-      padding: 0 0.5rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .description {
-      padding: 0.5rem;
-      opacity: 0.4;
-    }
-
-    &:hover {
-      .image {
-        box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);
-        -webkit-box-shadow: 0 4px 20px rgba(100, 100, 100, 0.25);
-        transform: translateY(-2px);
-      }
-    }
   }
-
+  h2 {
+    margin: 0;
+    padding: 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .description {
+    padding: 0.5rem;
+    opacity: 0.4;
+  }
+  .teaser-image {
+    max-height: 20rem;
+  }
   @media (max-width: 767px) {
     .posts {
       grid-template-columns: 1fr;
@@ -65,7 +45,9 @@
   {#each postsToDisplay as post}
     <a class="post" href="/blog/{post.slug}">
       {#if post.frontmatter.preview}
-        <img src={post.frontmatter.preview} class="image" alt="{post.frontmatter.title}" />
+        <img class="teaser-image"
+          src={post.frontmatter.preview}
+          alt="{post.frontmatter.title}" />
       {/if}
       <h2>{post.frontmatter.title}</h2>
       <div class="description">{post.frontmatter.excerpt}</div>

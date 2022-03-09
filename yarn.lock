@@ -705,11 +705,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.21.tgz#864b987c0c68d07b4345845c3e63b75edd143644"
   integrity sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==
 
-"@types/node@^12.7.2":
-  version "12.20.47"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.47.tgz#ca9237d51f2a2557419688511dab1c8daf475188"
-  integrity sha512-BzcaRsnFuznzOItW1WpQrDHM7plAa7GIDMZ6b5pnMbkqEtM/6WCOhvZar39oeMQP79gwvFUWjjptE7/KGcNqFg==
-
 "@types/pug@^2.0.4":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/pug/-/pug-2.0.6.tgz#f830323c88172e66826d0bde413498b61054b5a6"
@@ -741,11 +736,6 @@ accepts@~1.3.5:
   dependencies:
     mime-types "~2.1.34"
     negotiator "0.6.3"
-
-acorn@^7.0.0:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
-  integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
 ansi-styles@^3.2.1:
   version "3.2.1"
@@ -857,7 +847,7 @@ chalk@^2.0.0, chalk@^2.4.1:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-"chokidar@>=2.0.0 <4.0.0", "chokidar@>=3.0.0 <4.0.0":
+"chokidar@>=3.0.0 <4.0.0":
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
@@ -978,9 +968,9 @@ detect-indent@^6.0.0:
   integrity sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==
 
 electron-to-chromium@^1.4.76:
-  version "1.4.77"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.77.tgz#c26e454cb8721d4ebdae3e276c57cd32e51c32ed"
-  integrity sha512-fiDxw8mO9Ph1Z0bjX2sFTPpi0J0QkOiwOJF+5Q0J0baNc/F9lLePAvDPlnoxvbUYYMizqrKPeotRRkJ9LtxAew==
+  version "1.4.79"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.79.tgz#02b504e1e6039b2e61edfc5f856895a0927925f5"
+  integrity sha512-nWfAxof87mGHkbORCwVRPst4FlSVdprOKS6dBMrcwn3sjwf8iHXEhsu1+FU5Psd7Ps3KKeBufAdfsPK5BmbSUg==
 
 error-ex@^1.3.1:
   version "1.3.2"
@@ -1748,21 +1738,19 @@ rollup-pluginutils@^2.3.0, rollup-pluginutils@^2.3.3, rollup-pluginutils@^2.6.0,
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@1.20.x:
-  version "1.20.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.20.3.tgz#6243f6c118ca05f56b2d9433112400cd834a1eb8"
-  integrity sha512-/OMCkY0c6E8tleeVm4vQVDz24CkVgvueK3r8zTYu2AQNpjrcaPwO9hE+pWj5LTFrvvkaxt4MYIp2zha4y0lRvg==
-  dependencies:
-    "@types/estree" "0.0.39"
-    "@types/node" "^12.7.2"
-    acorn "^7.0.0"
+rollup@2.70.x:
+  version "2.70.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.70.0.tgz#17a92e5938e92a251b962352e904c9f558230ec7"
+  integrity sha512-iEzYw+syFxQ0X9RefVwhr8BA2TNJsTaX8L8dhyeyMECDbmiba+8UQzcu+xZdji0+JQ+s7kouQnw+9Oz5M19XKA==
+  optionalDependencies:
+    fsevents "~2.3.2"
 
 safe-buffer@5.1.2, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-sapper-sources@0.0.2:
+sapper-sources@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/sapper-sources/-/sapper-sources-0.0.2.tgz#36a81201698e852a43a6ac2b3b5ce84f3858911a"
   integrity sha512-VN3+x0lAFA10a0ZsbCiwm78JPWx/HFxulKZso3ChhJoy+jpfoGOwQcNd1Qi4QW9IRtyWEIDc6bLOPBs/6NxaDw==
@@ -1782,14 +1770,7 @@ sapper@0.27.x:
     sourcemap-codec "^1.4.6"
     string-hash "^1.1.3"
 
-sass@1.24.3:
-  version "1.24.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.24.3.tgz#ee2ced4953e79343da0d54d96d6e6e1af6d44290"
-  integrity sha512-RGpAeX0xAKUCcT9bNjVd2qcnqz9JkeDFXXLTclpuHJ4JfE8F1xC8SkasNroXqyDTRNFL4phPkvAN2Q8auAJfBQ==
-  dependencies:
-    chokidar ">=2.0.0 <4.0.0"
-
-sass@^1.7.2:
+sass@1.49.x, sass@^1.7.2:
   version "1.49.9"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.9.tgz#b15a189ecb0ca9e24634bae5d1ebc191809712f9"
   integrity sha512-YlYWkkHP9fbwaFRZQRXgDi3mXZShslVmmo+FVK3kHLUELHHEYrCmL1x6IUjC7wLS6VuJSAFXRQS/DxdsC4xL1A==
@@ -2109,7 +2090,7 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yarn-deduplicate@^3.1.0:
+yarn-deduplicate@3.1.x:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/yarn-deduplicate/-/yarn-deduplicate-3.1.0.tgz#3018d93e95f855f236a215b591fe8bc4bcabba3e"
   integrity sha512-q2VZ6ThNzQpGfNpkPrkmV7x5HT9MOhCUsTxVTzyyZB0eSXz1NTodHn+r29DlLb+peKk8iXxzdUVhQG9pI7moFw==
