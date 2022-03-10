@@ -1,8 +1,12 @@
 {
+	"tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "none",
+  "bracketSpacing": false,
   "singleQuote": true,
-  "endOfLine": "auto",
-  "proseWrap": "preserve",
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "useTabs": false
+  "svelteSortOrder": "options-scripts-markup-styles",
+  "svelteStrictMode": false,
+  "svelteAllowShorthand": true,
+  "svelteIndentScriptAndStyle": false,
+  "svelteBracketNewLine": false
 }
