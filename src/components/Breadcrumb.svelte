@@ -8,7 +8,7 @@
 
 <style lang="scss">
   .pagination-container {
-    margin: 5px auto;
+    margin: 1rem auto 0;
     text-align: center;
   }
   .pagination {

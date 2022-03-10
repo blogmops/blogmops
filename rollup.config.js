@@ -27,6 +27,7 @@ const preprocess = sveltePreprocess({
 
 export default {
   client: {
+    preserveEntrySignatures: "strict",
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
@@ -52,41 +53,36 @@ export default {
         dedupe
       }),
       commonjs(),
-
-      legacy &&
-        babel({
-          extensions: [".js", ".mjs", ".html", ".svelte"],
-          runtimeHelpers: true,
-          exclude: ["node_modules/@babel/**"],
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                targets: "> 0.25%, not dead"
-              }
-            ]
-          ],
-          plugins: [
-            "@babel/plugin-syntax-dynamic-import",
-            [
-              "@babel/plugin-transform-runtime",
-              {
-                useESModules: true
-              }
-            ]
+      legacy && babel({
+        extensions: [".js", ".mjs", ".html", ".svelte"],
+        runtimeHelpers: true,
+        exclude: ["node_modules/@babel/**"],
+        presets: [
+          [
+            "@babel/preset-env",
+            { targets: "> 0.25%, not dead" }
           ]
-        }),
-
+        ],
+        plugins: [
+          "@babel/plugin-syntax-dynamic-import",
+          [
+            "@babel/plugin-transform-runtime",
+            {
+              useESModules: true
+            }
+          ]
+        ]
+      }),
       !dev &&
         terser({
           module: true
         })
     ],
-
     onwarn
   },
 
   server: {
+    preserveEntrySignatures: "strict",
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
@@ -108,11 +104,11 @@ export default {
       require("module").builtinModules ||
         Object.keys(process.binding("natives"))
     ),
-
     onwarn
   },
 
   serviceworker: {
+    preserveEntrySignatures: "strict",
     input: config.serviceworker.input(),
     output: config.serviceworker.output(),
     plugins: [
@@ -124,7 +120,6 @@ export default {
       commonjs(),
       !dev && terser()
     ],
-
     onwarn
   }
 };

@@ -1,20 +1,17 @@
 <style lang="scss">
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
   h1 {
-    font-weight: 600;
-    margin-top: 2rem;
     text-align: center;
   }
   label {
     display: grid;
     grid-template-columns: 120px 1fr;
   }
+  .container {
+    width: 50%;
+  }
   form {
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
   }
   input,
   textarea {
@@ -26,16 +23,18 @@
   }
   .button-container {
     text-align: right;
-    button {
-      padding: 8px 20px;
-      background: #dedede;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      &:hover {
-        background: #cdcdcd;
-      }
-    }
+  }
+  .button {
+    cursor: pointer;
+    background: #dedede;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+  .button:hover,
+  .button:focus,
+  .button:active {
+    background: #cdcdcd;
   }
 </style>
 
@@ -66,7 +65,7 @@
       </label>
     </p>
     <p class="button-container">
-      <button type="submit">Contact Us</button>
+      <button class="button" type="submit">Contact Us</button>
     </p>
   </form>
 </div>
