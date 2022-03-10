@@ -4,3 +4,14 @@
 **/node_modules/
 **/__sapper__/
 **/cypress/screenshots/
+strings.jsonscripts/*
+public/*
+build/*
+dist/*
+.git/*
+.github/*
+.vscode/*
+.history/*
+.lh/*
+.cache/*
+.tmp/*
