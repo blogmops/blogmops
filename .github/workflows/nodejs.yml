@@ -17,5 +17,4 @@ jobs:
       with:
         node-version: 14.x
         node-version-file: .nvmrc
-    - run: npm i |
-           npm run build
+    - run: npm ci
