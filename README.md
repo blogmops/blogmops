@@ -1,7 +1,7 @@
 ![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
 
-![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
+[![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)](https://blogmops.vercel.app)
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
 [![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/yzmnzn/preview&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/yzmnzn/runs)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
