@@ -15,14 +15,20 @@
     "prettify:fix": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write **/*.{js,svelte,html}"
   },
   "dependencies": {
+    "compression": "^1.7.x",
+    "polka": "next",
+    "reading-time": "^1.2.x",
+    "sirv": "^0.4.x"
+  },
+  "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
-    "compression": "^1.7.x",
-    "polka": "next",
-    "reading-time": "^1.2.x",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "prettier-plugin-svelte": "^2.6.0",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
@@ -32,17 +38,11 @@
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-svelte": "^5.0.1",
     "rollup-plugin-terser": "^5.3.1",
-    "sass": "^1.24.3",
     "sapper": "^0.29.3",
     "sapper-sources": "^0.0.2",
-    "sirv": "^0.4.x",
+    "sass": "^1.24.3",
     "svelte": "^3.0.0",
-    "svelte-preprocess": "^3.3.0"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "prettier-plugin-svelte": "^2.6.0",
+    "svelte-preprocess": "^3.3.0",
     "yarn-deduplicate": "^3.1.x"
   }
 }
