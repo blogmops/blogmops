@@ -5,8 +5,13 @@
         }
     ],
     "settings": {
-      "editor.fontSize": 15,
-      "editor.fontFamily": "'Fira Code', 'Fira Code Mono', Consolas, 'Courier New', monospace",
+      "prettier.enable": true,
+      "prettier.eslintIntegration": true,
+      "prettier.stylelintIntegration": true,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "eslint.autoFixOnSave": false
+      },
       "files.watcherExclude": {
         "**/.history": true,
         "**/.lh": true,
