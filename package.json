@@ -33,16 +33,16 @@
     "rollup-plugin-svelte": "^5.0.1",
     "rollup-plugin-terser": "^5.3.1",
     "sass": "^1.24.3",
-    "svelte-preprocess": "^3.3.0",
+    "sapper": "^0.29.3",
     "sapper-sources": "^0.0.2",
-    "sirv": "^0.4.x"
+    "sirv": "^0.4.x",
+    "svelte": "^3.0.0",
+    "svelte-preprocess": "^3.3.0"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^2.6.0",
-    "sapper": "^0.29.3",
-    "svelte": "^3.0.0",
     "yarn-deduplicate": "^3.1.x"
   }
 }
