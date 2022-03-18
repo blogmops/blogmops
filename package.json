@@ -42,7 +42,6 @@
     "prettier": "1.19.x",
     "prettier-plugin-svelte": "0.7.x",
     "sapper": "0.29.3",
-    "svelte": "3.0.x",
-    "yarn-deduplicate": "3.1.x"
+    "svelte": "3.0.x"
   }
 }
