@@ -26,7 +26,7 @@
 		"polka": "next",
 		"reading-time": "1.2.x",
 		"rollup": "2.70.x",
-		"rollup-plugin-babel": "4.0.x",
+		"rollup-plugin-babel": "4.4.0",
 		"rollup-plugin-sass": "1.2.x",
 		"rollup-plugin-svelte": "5.0.x",
 		"rollup-plugin-terser": "5.3.1",
