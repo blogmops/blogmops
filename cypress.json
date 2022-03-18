@@ -1,4 +1,4 @@
 {
-	"baseUrl": "https://blogmops.vercel.app",
-	"video": false
+	"baseUrl": "https://blogmops-git-main-blogmops.vercel.app",
+	"video": true
 }
