@@ -1,5 +1,9 @@
 {
   "baseUrl": "https://blogmops-git-main-blogmops.vercel.app",
+  "projectId": "5bdzpp",
   "video": true,
-  "projectId": "jg52du"
+  "record": true,
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
