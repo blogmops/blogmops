@@ -50,9 +50,9 @@ jobs:
           CI: true
         run: yarn install
 
-      - name: Build
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: yarn run export
+      # - name: Build
+      #  if: steps.npm-cache.outputs.cache-hit != 'true'
+      #  run: yarn run export
 
       # - name: Diff changes
       #  if: startsWith(matrix.os, 'ubuntu')
