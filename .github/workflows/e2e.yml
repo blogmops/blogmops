@@ -3,13 +3,14 @@ on: [push]
 jobs:
   cypress:
     name: Cypress
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          video: true
           record: true
           parallel: true
         env:

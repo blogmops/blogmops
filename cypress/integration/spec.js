@@ -1,6 +1,6 @@
 // enables intelligent code completion for Cypress commands
 // https://on.cypress.io/intelligent-code-completion
-/// <reference types="Cypress" />
+// <reference types="Cypress" />
 
 describe('blogmops page navigation ', () => {
 	beforeEach(() => {
@@ -8,7 +8,7 @@ describe('blogmops page navigation ', () => {
 	});
 
 	it('has the correct <h1>', () => {
-		cy.contains('h1', `Hi, I\'m Oskar the pug!`);
+		cy.contains('h1', 'Hi, I\'m Oskar the pug!');
 	});
 
 	it('navigates to /about', () => {
