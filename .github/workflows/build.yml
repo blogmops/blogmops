@@ -64,12 +64,12 @@ jobs:
       #      exit 1
       #    fi
 
-      - name: Shutdown server on ${{ runner.os }}
-        if: startsWith(matrix.os, 'ubuntu')
-        shell: bash
-        run: npm run static:ci & (sleep 20 && killall -9 node)
-        # or: pkill node
-        # or: ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
+      # - name: Shutdown server on ${{ runner.os }}
+      #  if: startsWith(matrix.os, 'ubuntu')
+      #  shell: bash
+      #  run: npm run static:ci & (sleep 20 && killall -9 node)
+      # # or: pkill node
+      # # or: ps aux | grep -i node | awk '{print $2}' | xargs  kill -9)
 
       # - name: Shutdown server on ${{ matrix.os }}
       #   if: startsWith(matrix.os, 'windows')
