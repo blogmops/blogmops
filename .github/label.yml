@@ -1,0 +1,6 @@
+version: 1
+labels:
+- label: "WIP"
+  title: "^WIP:.*"
+- label: "WIP"
+  mergeable: false
