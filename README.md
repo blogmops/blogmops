@@ -3,7 +3,7 @@
 
 [![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)](https://blogmops.vercel.app)
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
-[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/5bdzpp/production&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/5bdzpp/runs)
+[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/5bdzpp&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/5bdzpp/runs)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 [![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
 
