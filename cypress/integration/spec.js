@@ -8,7 +8,7 @@ describe('blogmops page navigation ', () => {
 	});
 
 	it('has the correct <h1>', () => {
-		cy.contains('h1', `Hi, I\'m Oskar the pug!`);
+		cy.contains('h1', 'Hi, I\'m Oskar the pug!');
 	});
 
 	it('navigates to /about', () => {
