@@ -1,0 +1,29 @@
+name: E2E
+on: [push]
+jobs:
+  cypress:
+    name: Cypress
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          video: true
+          record: true
+          parallel: true
+        env:
+          NODE_ENV: ${{process.env.PORT}}
+          PORT: ${{process.env.PORT}}
+          CYPRESS_PROJECT_ID: ${{secrets.CYPRESS_PROJECTR_ID}}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Firefox
+        container:
+          image: cypress/browsers:node13.3.0-chrome79-ff70
+          options: --user 1001
+      - name: Chrome
+        container:
+          image: cypress/browsers:node16.14.0-slim-chrome99-ff97
+          options: --user 1001

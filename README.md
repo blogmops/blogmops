@@ -3,14 +3,13 @@
 
 [![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)](https://blogmops.vercel.app)
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
-[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/yzmnzn/preview&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/yzmnzn/runs)
+[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/5bdzpp&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/5bdzpp/runs)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 [![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
 
 [![Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
 [![CodeBeat](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
-[![CodeQL](https://github.com/blogmops/blogmops/actions/workflows/codescan-analysis.yml/badge.svg?branch=master)](https://github.com/blogmops/blogmops/actions/workflows/codescan-analysis.yml)
 
 ---
 
