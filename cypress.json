@@ -1,4 +1,5 @@
 {
-	"baseUrl": "http://localhost:3000",
-	"video": false
+  "baseUrl": "https://blogmops-git-main-blogmops.vercel.app",
+  "video": true,
+  "projectId": "jg52du"
 }
