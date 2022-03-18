@@ -52,6 +52,7 @@
         "**/*tmp": true,
         "**/node_modules": true
       },
-      "explorerExclude.backup": {}
+      "explorerExclude.backup": {},
+      "workspace.isHidden": false
     }
 }

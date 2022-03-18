@@ -86,7 +86,6 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -111,21 +110,18 @@ typings/
 .node_repl_history
 
 # local history
-.history
+.history/
+.lh/
+.cache/
+.tmp/
 
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
 .yarn-integrity
-
-# dotenv environment variables file
 .env
 .env.test
 *.env.json
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
 
 # Next.js build output
 .next
@@ -135,7 +131,10 @@ typings/
 dist
 
 # sapper build
-__sapper__/
+/@sapper/
+/__sapper__/
+/node_modules/
+/node_modules
 
 # Serverless directories
 .serverless/
@@ -215,3 +214,6 @@ build/*
 # vscode plugins
 .history/
 .lh/
+cypress.local.json
+cypress/screenshots
+cypress/videos
