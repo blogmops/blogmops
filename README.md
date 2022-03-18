@@ -1,18 +1,15 @@
 ![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
 
-![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)
+[![Website](https://img.shields.io/website?down_color=%23e60a33&down_message=offline&up_color=%2315c11a&up_message=online&url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fblogmops.vercel.app.svg)](https://blogmops.vercel.app)
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
 [![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/yzmnzn/preview&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/yzmnzn/runs)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
-[![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/jsbase/blogmops/blogmops)
+[![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
 
-[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
+[![Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
-[![codebeat badge](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
-[![CodeQL](https://github.com/jsbase/svelte-forms-lib/actions/workflows/codescan-analysis.yml/badge.svg?branch=main)](https://github.com/jsbase/svelte-forms-lib/actions/workflows/codescan-analysis.yml)
-
-![Rollup Version](https://img.shields.io/github/package-json/dependency-version/blogmops/blogmops/dev/rollup)
+[![CodeBeat](https://codebeat.co/badges/32933d2d-df84-4e7f-bc10-2bd7c4747a5b)](https://codebeat.co/projects/github-com-blogmops-blogmops-master)
 
 ---
 
