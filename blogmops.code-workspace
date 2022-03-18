@@ -52,6 +52,6 @@
         "**/*tmp": true,
         "**/node_modules": true
       },
-      "explorerExclude.backup": null
+      "explorerExclude.backup": {}
     }
 }
