@@ -33,7 +33,7 @@
 		"sapper-sources": "0.0.2",
 		"sass": "1.49.x",
 		"sirv": "0.4.x",
-		"svelte-preprocess": "3.3.x"
+		"svelte-preprocess": "^3.9.12"
 	},
 	"devDependencies": {
 		"@cypress/code-coverage": "^3.9.12",
