@@ -9,7 +9,7 @@
 		"export": "sapper export --legacy",
 		"start": "node __sapper__/build",
 		"cy:open": "cypress open",
-		"cy:dev:chromium": "cross-env NODE_ENV=development cypress run --browser=chromium --ci-build-id=githubActions --record --key=9a0af34e-2646-4699-ab29-b13adab377f5 --parallel --config-file=./cypress.env.json",
+		"cy:dev:chromium": "cross-env NODE_ENV=development cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.env.json",
 		"cy:dev:browser": "start-server-and-test dev http://localhost:3000 cy:dev:chromium"
 	},
 	"dependencies": {
@@ -26,7 +26,7 @@
 		"polka": "next",
 		"reading-time": "1.2.x",
 		"rollup": "2.70.x",
-		"rollup-plugin-babel": "4.0.x",
+		"rollup-plugin-babel": "4.4.0",
 		"rollup-plugin-sass": "1.2.x",
 		"rollup-plugin-svelte": "5.0.x",
 		"rollup-plugin-terser": "5.3.1",
