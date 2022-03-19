@@ -1,4 +1,4 @@
-ame: Triage
+name: Triage
 on:
 - pull_request
 
