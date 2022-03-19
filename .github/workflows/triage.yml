@@ -1,6 +1,6 @@
-name: Labeler
+name: Triage
 on:
-- pull_request_target
+- pull_request
 
 jobs:
   triage:
