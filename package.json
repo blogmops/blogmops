@@ -9,8 +9,9 @@
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
     "cy:open": "cypress open",
-    "cy:chromium": "cypress run --config-file=cypress.env.json --env={host=localhost,port=3000} --browser chromium --headed",
-    "cy:firefox": "cypress run --config-file=cypress.env.json --env={host=localhost,port=3000} --browser firefox --headed"
+    "cy:run": "cypress run --config-file=cypress.env.json --env={host=localhost,port=3000}",
+    "cy:chromium": "yarn run cy:run --browser chromium --headed",
+    "cy:firefox": "yarn run cy:run --browser firefox --headed"
   },
   "dependencies": {
     "@babel/core": "7.0.x",
