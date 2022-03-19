@@ -19,11 +19,7 @@ jobs:
           CYPRESS_PROJECT_ID: ${{secrets.CYPRESS_PROJECTR_ID}}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Firefox
-        container:
-          image: cypress/browsers:node13.3.0-chrome79-ff70
-          options: --user 1001
-      - name: Chrome
-        container:
-          image: cypress/browsers:node16.14.0-slim-chrome99-ff97
-          options: --user 1001
+      - run: |
+          yarn install |
+          yarn build |
+          cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.json
