@@ -1,8 +1,9 @@
-  
 {
-  "baseUrl": "http://localhost:3000",
-  "nodeVersion": "system",
+  "baseUrl": "https://blogmops-git-main-blogmops.vercel.app",
+  "projectId": "5bdzpp",
   "video": true,
-  "viewportHeight": 1080,
-  "viewportWidth": 1920
+  "record": true,
+  "env": {
+    "NODE_ENV": "production"
+  }
 }

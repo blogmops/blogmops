@@ -1,0 +1,58 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+      "prettier.enable": true,
+      "prettier.eslintIntegration": true,
+      "prettier.stylelintIntegration": true,
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "eslint.autoFixOnSave": false
+      },
+      "files.watcherExclude": {
+        "**/.history": true,
+        "**/.lh": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules/**": true,
+        "**/__sapper__/build/**": true,
+        "**/__sapper__/export/**": true
+      },
+      "search.exclude": {
+        "**/.history": true,
+        "**/.lh": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules/**": true,
+        "**/__sapper__/build/**": true,
+        "**/__sapper__/export/**": true
+      },
+      "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.lh": true,
+        "**/*cache": true,
+        "**/*DS_Store": true,
+        "**/*history": true,
+        "**/*tmp": true,
+        "**/node_modules": true
+      },
+      "explorerExclude.backup": {},
+      "workspace.isHidden": false
+    }
+}

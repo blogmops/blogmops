@@ -1,57 +1,63 @@
 <script>
-	export let segment;
+  export let segment;
 </script>
 
 <style>
-	nav {
-		align-items: flex-end;
-		display: flex;
-		flex: 1;
-		font-family: Rubik, sans-serif;
-		font-weight: 700;
-		justify-content: flex-end;
-		text-transform: uppercase;
-	}
+  nav {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0 2rem;
+    width: 50%;
+    margin: 0 auto;
+  }
+  a {
+    text-decoration: none;
+    padding: 1em 0.5em;
+    display: block;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: block;
+    float: left;
+  }
 
-	a {
-		color: inherit;
-		text-decoration: none;
-		padding: 10px 5px;
-		display: block;
-		position: relative;
-		margin-left: 20px;
-	}
+  .logo {
+    font-size: 1.2rem;
+    vertical-align: text-bottom;
+    margin-right: 0.8rem;
+  }
 
-	a:not(.selected) {
-		opacity: 0.7;
-	}
+  .selected {
+    position: relative;
+    display: inline-block;
+  }
 
-	a::before {
-		content: '';
-		position: absolute;
-		transition: transform 0.3s ease;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		height: 2px;
-		background: #aaa;
-		transform: scaleX(0);
-	}
-
-	a:hover::before,
-	.selected::before {
-		transform: scaleX(1);
-	}
-
-	.selected::before {
-		background: #fd6378;
-	}
+  .selected::after {
+    position: absolute;
+    content: '';
+    width: calc(100% - 1em);
+    height: 2px;
+    background-color: rgb(255, 62, 0);
+    display: block;
+    bottom: -1px;
+  }
 </style>
 
 <nav>
-	<a class={segment === undefined ? 'selected' : ''} href=".">home</a>
-	<a class={segment === 'about' ? 'selected' : ''} href="about">about</a>
-	<a rel="prefetch" class={segment === 'blog' ? 'selected' : ''} href="blog">
-		blog
-	</a>
+  <a class:selected={segment === undefined} href="." class="logo">
+    <img class="logo" src="logo-32.png" alt="Logo for blogmops." /> blogmops
+  </a>
+  <ul>
+    <li>
+      <a class:selected={segment === 'about'} href="about">About</a>
+    </li>
+    <li>
+      <a class:selected={segment === 'contact'} href="contact">Contact</a>
+    </li>
+  </ul>
 </nav>

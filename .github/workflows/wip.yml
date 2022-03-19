@@ -1,5 +1,4 @@
----
-name: wip
+name: WIP
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
@@ -7,7 +6,7 @@ on:
 jobs:
   wip:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: wip/action@v1.1.0
+      - uses: wip/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
