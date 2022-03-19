@@ -10,7 +10,9 @@
 		"start": "node __sapper__/build",
 		"cy:open": "cypress open",
 		"cy:dev:chromium": "cross-env NODE_ENV=development cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.env.json",
-		"cy:dev:browser": "start-server-and-test dev http://localhost:3000 cy:dev:chromium"
+    "cy:ci:chromium": "cross-env NODE_ENV=production PORT=5000 cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.json",
+		"cy:dev:browser": "start-server-and-test dev http://localhost:3000 cy:dev:chromium",
+    "cy:ci:browser": "start-server-and-test build http://localhost:5000 cy:ci:chromium"
 	},
 	"dependencies": {
 		"@babel/core": "7.0.x",
