@@ -9,8 +9,9 @@
 		"export": "sapper export --legacy",
 		"start": "node __sapper__/build",
 		"cy:open": "cypress open",
-		"cy:dev:chromium": "cross-env NODE_ENV=development cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.env.json",
-		"cy:dev:browser": "start-server-and-test dev http://localhost:3000 cy:dev:chromium"
+		"cy:dev:chromium": "cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.env.json",
+		"cy:dev:browser": "start-server-and-test dev http://localhost:3000 cy:dev:chromium",
+		"cy:ci:chromium": "cypress run --browser=chromium --ci-build-id=githubActions --record --parallel --config-file=./cypress.json"
 	},
 	"dependencies": {
 		"@babel/core": "7.0.x",
@@ -30,11 +31,9 @@
 		"rollup-plugin-sass": "1.2.x",
 		"rollup-plugin-svelte": "5.0.x",
 		"rollup-plugin-terser": "5.3.1",
-    "sapper": "0.29.3",
 		"sapper-sources": "0.0.2",
 		"sass": "1.49.x",
 		"sirv": "0.4.x",
-    "svelte": "3.0.x",
 		"svelte-preprocess": "^3.9.12"
 	},
 	"devDependencies": {
@@ -46,7 +45,6 @@
 		"eslint-plugin-cypress": "^2.12.1",
 		"eslint-plugin-prettier": "4.0.0",
 		"js-yaml": "^3.14.1",
-		"npm-run-all": "4.1.x",
 		"prettier": "^2.6.0",
 		"prettier-eslint": "^13.0.0",
 		"prettier-plugin-svelte": "^2.6.0",

@@ -1,21 +1,19 @@
-# Add 'repo' label to any root file changes
-repo:
-- '*'
+github_actions:
+- .github/**/*.yml
 
-# Add '@domain/core' label to any change within the 'core' package
-@domain/core:
-- package/core/*
-- package/core/**/*
+dependencies:
+- src/node_modules/**/*.js
 
-# Add 'test' label to any change to *.spec.js files within the source dir
 test:
-- src/**/*.spec.js
+- cypress/integration/*.spec.js
 
-# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
-source:
-- any: ['src/**/*', '!src/docs/*']
+documentaion:
+- '*.md'
 
-# Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
 frontend:
-- any: ['src/**/*.js']
-  all: ['!src/main.js']
+- any: ['src/**/*.js', 'src/*.html', 'src/**/*.svelte', 'src/**/*.scss']
+  all: ['!src/node_modules', '!src/server.js', '!src/client.js', '!src/service-worker.js', '!cypress/*', '!.vscode/*']
+
+backend:
+- any: ['src/server.js', 'src/client.js', 'src/service-worker.js']
+  all: ['!src/*.html', '!src/**/*.js', '!src/**/*.svelte', '!src/**/*.scss', '!cypress/*', '!.vscode/*']

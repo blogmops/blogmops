@@ -3,6 +3,7 @@
   "projectId": "5bdzpp",
   "video": true,
   "record": true,
+  "ci": true,
   "env": {
     "NODE_ENV": "production"
   }
