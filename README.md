@@ -7,6 +7,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 [![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
 
+[![Codiga](https://api.codiga.io/project/32057/score/svg)](https://app.codiga.io/public/project/32057/blogmops/dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
 [![CodeBeat](https://codebeat.co/badges/d8789c01-630d-43c5-bafd-a8fab4f939de)](https://codebeat.co/projects/github-com-blogmops-blogmops-main)
 [![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
