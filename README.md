@@ -2,7 +2,6 @@
 ![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
 
-[![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/5bdzpp&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/5bdzpp/runs)
 ![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 [![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
