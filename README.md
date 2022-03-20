@@ -6,7 +6,7 @@
 
 [![Codiga](https://api.codiga.io/project/32057/score/svg)](https://app.codiga.io/public/project/32057/blogmops/dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
-[![CodeBeat](https://codebeat.co/badges/d8789c01-630d-43c5-bafd-a8fab4f939de)](https://codebeat.co/projects/github-com-blogmops-blogmops-main)
+[![codebeat badge](https://codebeat.co/badges/d8789c01-630d-43c5-bafd-a8fab4f939de)](https://codebeat.co/projects/github-com-blogmops-blogmops-main)
 
 ![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
