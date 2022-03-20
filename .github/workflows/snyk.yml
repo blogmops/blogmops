@@ -1,5 +1,5 @@
-name: Snyk Runner
-on: push
+name: Snyk
+on: pull_request
 jobs:
   security:
     runs-on: ubuntu-latest
