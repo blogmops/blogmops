@@ -6,7 +6,10 @@ on:
       - '**.md'
   push:
     branches:
-      - prouction
+      - production
+      - main
+      - fix/*
+      - feature/*
       - releases/*
     paths-ignore:
       - '**.md'
