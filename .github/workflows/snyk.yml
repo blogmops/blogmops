@@ -1,5 +1,5 @@
 name: Snyk
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   synk:
     runs-on: ubuntu-latest
