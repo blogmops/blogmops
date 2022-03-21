@@ -1,7 +1,5 @@
 name: WIP
 on:
-  push:
-    types: [opened, synchronize, reopened, edited]
   pull_request:
     types: [opened, synchronize, reopened, edited]
 
