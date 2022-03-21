@@ -1,23 +1,6 @@
 name: nodejs
 
-on:
-  pull_request:
-    branches:
-      - production
-      - main
-      - fix/*
-      - feature/*
-      - releases/*
-    paths-ignore:
-      - '**.md'
-  push:
-    branches:
-      - main
-      - fix/*
-      - feature/*
-      - releases/*
-    paths-ignore:
-      - '**.md'
+on: [pull_request, push]
 
 jobs:
   build:
@@ -26,9 +9,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node 14
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14.x
       - run: |
