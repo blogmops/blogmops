@@ -1,0 +1,11 @@
+name: snyk
+on: pull_request
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3.0.0
+      - name: snyk-runner
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
