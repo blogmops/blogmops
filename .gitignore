@@ -56,8 +56,7 @@ typings/
 .nuxt
 screenshots/
 videos/
-/node_modules
-/test/**/node_modules
+node_modules/
 __sapper__
 dist
 /runtime/app.mjs
