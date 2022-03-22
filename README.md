@@ -64,7 +64,7 @@ This is the home of your blog. The most important file in here is `[slug].svelte
 
 This is where your markdown posts live in. All `.md` files in this directory are treated as blog posts and will be parsed automatically.
 
-- The markdown file name becomes the post slug. For example `mypost.md` becomes `http://localhost:3000/mypost`.
+- The markdown file name becomes the post slug. For example `mypost.md` becomes `http://localhost:3000/blog/mypost`.
 - Everything between the start of the post and the `<!-- more -->` tag becomes the article's "excerpt".
 - Frontmatter properties supported are `title` and `date`.
 
