@@ -58,17 +58,13 @@ The base structure of this template is the same as Sapper's [default template](h
 
 ### src/routes/blog
 
-This is the home of your blog. The most important files in here are:
+This is the home of your blog. The most important file in here is `[slug].svelte`, which this is template of your blog post page.
 
-- `_posts.js`: this module contains the logic for loading and parsing your markdown posts.
-- `[slug].svelte`: this is the template of your blog post page.
-- `index.svelte`: this is the template of your article list page.
+### contents/
 
-### src/routes/blog/posts
+This is where your markdown posts live in. All `.md` files in this directory are treated as blog posts and will be parsed automatically.
 
-This is where your markdown posts live in. All `.md` files in this directory are treated as blog posts and parsed automatically by the `_posts.js` module.
-
-- The markdown file name becomes the post slug. For example `hello-world.md` becomes `http://localhost:3000/blog/hello-world`.
+- The markdown file name becomes the post slug. For example `mypost.md` becomes `http://localhost:3000/blog/mypost`.
 - Everything between the start of the post and the `<!-- more -->` tag becomes the article's "excerpt".
 - Frontmatter properties supported are `title` and `date`.
 
