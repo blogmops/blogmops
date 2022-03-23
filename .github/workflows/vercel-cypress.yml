@@ -1,6 +1,13 @@
 name: vercel-cypress
 
-on: [pull_request]
+on:
+  pull_request:
+    branches-ignore:
+    - 'feature/*'
+    - 'merge/*'
+    - 'update/*'
+    - 'release/*'
+    - 'production/*'
 
 jobs:
   regression:
