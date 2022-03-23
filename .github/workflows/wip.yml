@@ -2,6 +2,8 @@ name: WIP
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+  push:
+    types: [opened, synchronize, reopened, edited]
 
 jobs:
   wip:
