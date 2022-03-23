@@ -1,0 +1,27 @@
+# https://github.com/marketplace/actions/cypress-io
+# https://github.com/cypress-io/github-action
+name: cypress
+on: [push]
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12, 14, 16]
+    name: E2E on Node v${{ matrix.node }}
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v3.0.0
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node -v
+      - name: Checkout
+        uses: actions/checkout@v3.0.0
+      - name: Cypress run
+        uses: cypress-io/github-action@v2.9.7
+        with:
+          record: true
+          tag: node-${{ matrix.node }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
