@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: blogmops feature reporter
+    url: https://github.com/blogmops/blogmops/issues/new?assignees=&labels=&template=feature_request.md&title=
+    about: Suggest any new idea for this project.
+  - name: blogmops bug reporter
+    url: https://github.com/blogmops/blogmops/issues/new?assignees=blogmops&labels=bug&template=bug_report.md&title=fix
+    about: Found a bug? Please report your issue here.
+  - name: blogmops security policy
+    url: https://github.com/blogmops/blogmops/security/policy
+    about: Have a security concern? Please read the blogmops security policy or report a bug.
