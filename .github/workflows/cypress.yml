@@ -20,10 +20,13 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2.9.7
         with:
+          config-file: cypress.json
           record: true
+          key: ${{ secrets.CYPRESS_RECORD_KEY }}
           tag: node-${{ matrix.node }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload
         uses: actions/upload-artifact@v2
