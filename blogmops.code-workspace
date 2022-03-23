@@ -53,6 +53,9 @@
         "**/node_modules": true
       },
       "explorerExclude.backup": {},
-      "workspace.isHidden": false
-    }
+      "workspace.isHidden": false,
+      "[svelte]": {
+          "editor.defaultFormatter": "svelte.svelte-vscode"
+      }
+   }
 }
