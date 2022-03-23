@@ -15,11 +15,11 @@ jobs:
       # For self-hosted runners, ensure dotnet version 3.1.201 or later is installed by including this action:
       # - uses: actions/setup-dotnet@v1
       #   with:
-      #     dotnet-version: '6.0.x'
-    - name: Run OSSAR
-      uses: github/ossar-action@v1
-      id: ossar
-    - name: Upload results to Security tab
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: ${{ steps.ossar.outputs.sarifFile }}
+      #      dotnet-version: '6.0.x'
+      - name: Run OSSAR
+        uses: github/ossar-action@v1
+        id: ossar
+      - name: Upload results to Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ steps.ossar.outputs.sarifFile }}
