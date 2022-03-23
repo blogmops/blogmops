@@ -1,0 +1,12 @@
+name: vercel-cypress
+
+on: [pull_request]
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/vercel-cypress@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TESTING_TOKEN }}
+          repo: blogmops
