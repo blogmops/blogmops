@@ -1,7 +1,15 @@
 name: WIP
+
 on:
+  push:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened, edited]
+    branches:
+      - production
+      - main
 
 jobs:
   wip:
