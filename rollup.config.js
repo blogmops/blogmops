@@ -28,12 +28,12 @@ export default {
     plugins: [
       json(),
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
       sass({
-        // update includePaths to what suits.
-        // node_modules is probably only necessary if you need to import from a css library
         includePaths: ["./src/styles"],
         output: "static/global.css"
       }),
@@ -82,6 +82,8 @@ export default {
     output: config.server.output(),
     plugins: [
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
@@ -109,6 +111,8 @@ export default {
     plugins: [
       resolve(),
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
