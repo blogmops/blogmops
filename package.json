@@ -11,7 +11,8 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --config-file=cypress.env.json --env={host=localhost,port=3000}",
     "cy:chromium": "yarn run cy:run --browser chromium --headed",
-    "cy:firefox": "yarn run cy:run --browser firefox --headed"
+    "cy:firefox": "yarn run cy:run --browser firefox --headed",
+    "update:browserslist": "browserslist --coverage=DE,global --mobile-to-desktop --ignore-unknown-versions && browserslist --update-db"
   },
   "dependencies": {
     "@babel/core": "7.17.5",
