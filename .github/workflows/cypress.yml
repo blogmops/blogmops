@@ -1,44 +1,42 @@
-# https://github.com/marketplace/actions/cypress-io
-# https://github.com/cypress-io/github-action
-name: cypress
+name: Cypress
+
 on:
   push:
     branches:
       - main
+
 jobs:
   cypress:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [14]
-    name: E2E on Node v${{ matrix.node }}
     steps:
-      - name: Setup Node
+      - name: Setup
         uses: actions/setup-node@v3.0.0
         with:
           node-version: ${{ matrix.node }}
-      - run: node -v
       - name: Checkout
         uses: actions/checkout@v3.0.0
-      - name: Cypress run
+      - name: Test on nodeJS v${{ matrix.node }}
         uses: cypress-io/github-action@v2.9.7
         with:
           config-file: cypress.json
           record: true
-          key: ${{ secrets.CYPRESS_RECORD_KEY }}
           tag: node-${{ matrix.node }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload
-        uses: actions/upload-artifact@v2
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v3.0.0
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-      - uses: actions/upload-artifact@v3.0.0
-        if: always()
+      - name: Upload Videos
+        uses: actions/upload-artifact@v3.0.0
+        if: failure()
         with:
           name: cypress-videos
           path: cypress/videos
