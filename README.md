@@ -4,7 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
 
 [![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/6ipd71/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/6ipd71/runs)
-[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)]
+[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
 
 [![CodeQL](https://github.com/blogmops/blogmops/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/blogmops/blogmops/actions/workflows/codeql-analysis.yml)
 [![Codiga](https://api.codiga.io/project/32057/score/svg)](https://app.codiga.io/public/project/32057/blogmops/dashboard)
