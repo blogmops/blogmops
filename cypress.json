@@ -1,5 +1,14 @@
 {
-  "baseUrl": "https://blogmops-git-main-blogmops.vercel.app",
-  "browser": "chrome",
-  "video": true
+  "baseUrl": "https://preview.blogmops.vercel.app/",
+  "env": {
+    "host": "localhost",
+    "port": 5000,
+    "ci": true
+  },
+  "projectId": "a7bq2k",
+  "browser": "chromium",
+  "video": true,
+  "record": true,
+  "parallel": true,
+  "ci-build-id": "githubActions"
 }
