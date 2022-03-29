@@ -28,7 +28,7 @@
   .teaser-image {
     max-height: 20rem;
   }
-  @media (max-width: 767px) {
+  @media (max-width: 560px) {
     .posts {
       grid-template-columns: 1fr;
     }
