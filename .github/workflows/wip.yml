@@ -3,18 +3,17 @@ name: WIP
 on:
   push:
     types: [opened, synchronize, reopened, edited]
-    branches:
-      - main
+    branches: [production, main]
+
   pull_request:
     types: [opened, synchronize, reopened, edited]
-    branches:
-      - production
-      - main
+    branches: [production, main]
 
 jobs:
   wip:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: wip/action@v1
+      - uses: wip/action@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

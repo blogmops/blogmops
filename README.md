@@ -2,12 +2,15 @@
 [![GitHub issues](https://img.shields.io/github/issues/blogmops/blogmops)](https://github.com/blogmops/blogmops)
 [![build](https://github.com/blogmops/blogmops/workflows/build/badge.svg)](https://blogmops.vercel.app)
 ![GitHub last commit](https://img.shields.io/github/last-commit/blogmops/blogmops)
-[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
 
 [![blogmops](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/6ipd71/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/6ipd71/runs)
+[![OSSAR](https://github.com/blogmops/blogmops/actions/workflows/ossar.yml/badge.svg?branch=main)](https://github.com/blogmops/blogmops/actions/workflows/ossar.yml)
+[![CodeQL](https://github.com/blogmops/blogmops/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/blogmops/blogmops/actions/workflows/codeql-analysis.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/blogmops/blogmops/badge.svg)](https://snyk.io/test/github/blogmops/blogmops)
+
 [![Codiga](https://api.codiga.io/project/32057/score/svg)](https://app.codiga.io/public/project/32057/blogmops/dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/blogmops/blogmops/badge)](https://www.codefactor.io/repository/github/blogmops/blogmops)
-[![codebeat badge](https://codebeat.co/badges/d8789c01-630d-43c5-bafd-a8fab4f939de)](https://codebeat.co/projects/github-com-blogmops-blogmops-main)
+[![CodeBeat](https://codebeat.co/badges/d8789c01-630d-43c5-bafd-a8fab4f939de)](https://codebeat.co/projects/github-com-blogmops-blogmops-main)
 
 ![Version](https://img.shields.io/github/package-json/v/blogmops/blogmops/master?color=violet&label=stable)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/blogmops/blogmops?label=size&color=violet)
