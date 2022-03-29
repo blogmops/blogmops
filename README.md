@@ -49,7 +49,7 @@ $ › yarn run export
 $ › npx serve __sapper__/export
 ```
 
-Open up [localhost:3000](http://localhost:3000) and start clicking around.
+Open up [localhost:3000](http://blogmops.vercel.app) and start clicking around.
 Consult [sapper.svelte.dev](https://sapper.svelte.dev) for help getting started.
 
 
