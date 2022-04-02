@@ -15,7 +15,7 @@
     "update:browserslist": "browserslist --coverage=DE,global --mobile-to-desktop --ignore-unknown-versions && browserslist --update-db"
   },
   "dependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.8",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-runtime": "7.17.0",
     "@babel/preset-env": "7.16.11",
@@ -35,7 +35,7 @@
     "sapper-sources": "0.0.2",
     "sass": "1.49.x",
     "sirv": "2.0.x",
-    "svelte-preprocess": "^3.9.12"
+    "svelte-preprocess": "^4.10.4"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.12",
