@@ -5343,10 +5343,10 @@ svelte-preprocess@^3.9.12:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
-svelte@3.0.x:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.0.1.tgz#a2db3c383b9bab9cf195f91a265ee64d873c5a18"
-  integrity sha512-JqbUSVC/8fCmZcqeNs4yR6XjJduRhH973n5g6Pvu7lYoP9NPxPqAmJxQ8UUF5FTxRHeijZSkxLatE8DCVR9z1w==
+svelte@3.46.x:
+  version "3.46.6"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.46.6.tgz#23046a361ba5f8bafcc9cf9f6fca6d011fb005a7"
+  integrity sha512-o9nNft/OzCz/9kJpmWa1S52GAM+huCjPIsNWydYmgei74ZWlOA9/hN9+Z12INdklghu31seEXZMRHhS1+8DETw==
 
 syntax-error@^1.1.1:
   version "1.4.0"
