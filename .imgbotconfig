@@ -1,0 +1,9 @@
+{
+  "schedule": "daily",
+  "ignoredFiles": [],
+  "aggressiveCompression": "true",
+  "compressWiki": "true",
+  "minKBReduced": 500,
+  "prTitle": "Image compression",
+  "prBody": " Ratio: {optimization_ratio} - Details: {optimization_details} "
+}

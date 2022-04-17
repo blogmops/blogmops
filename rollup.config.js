@@ -13,17 +13,12 @@ import pkg from "./package.json";
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-
 const onwarn = (warning, onwarn) =>
-  (warning.code === "CIRCULAR_DEPENDENCY" &&
-    /[/\\]@sapper[/\\]/.test(warning.message)) ||
-  onwarn(warning);
-const dedupe = importee =>
-  importee === "svelte" || importee.startsWith("svelte/");
-
-const preprocess = sveltePreprocess({
-  scss: true
-});
+    (warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
+    (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+    onwarn(warning);
+const dedupe = importee => importee === "svelte" || importee.startsWith("svelte/");
+const preprocess = sveltePreprocess({ scss: true });
 
 export default {
   client: {
@@ -33,12 +28,12 @@ export default {
     plugins: [
       json(),
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
       sass({
-        // update includePaths to what suits.
-        // node_modules is probably only necessary if you need to import from a css library
         includePaths: ["./src/styles"],
         output: "static/global.css"
       }),
@@ -87,6 +82,8 @@ export default {
     output: config.server.output(),
     plugins: [
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": false,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),
@@ -114,6 +111,8 @@ export default {
     plugins: [
       resolve(),
       replace({
+        "require.extensions": null,
+        "preventAssignment": true,
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode)
       }),

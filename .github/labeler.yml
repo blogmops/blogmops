@@ -1,0 +1,19 @@
+github_actions:
+- .github/**/*.yml
+
+dependencies:
+- src/node_modules/**/*.js
+
+test:
+- cypress/integration/*.spec.js
+
+documentaion:
+- '*.md'
+
+frontend:
+- any: ['src/**/*.js', 'src/*.html', 'src/**/*.svelte', 'src/**/*.scss']
+  all: ['!src/node_modules', '!src/server.js', '!src/client.js', '!src/service-worker.js', '!cypress/*', '!.vscode/*']
+
+backend:
+- any: ['src/server.js', 'src/client.js', 'src/service-worker.js']
+  all: ['!src/*.html', '!src/**/*.js', '!src/**/*.svelte', '!src/**/*.scss', '!cypress/*', '!.vscode/*']

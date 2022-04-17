@@ -37,6 +37,25 @@
         "**/node_modules/**": true,
         "**/__sapper__/build/**": true,
         "**/__sapper__/export/**": true
+      },
+      "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.lh": true,
+        "**/*cache": true,
+        "**/*DS_Store": true,
+        "**/*history": true,
+        "**/*tmp": true,
+        "**/node_modules": true
+      },
+      "explorerExclude.backup": {},
+      "workspace.isHidden": false,
+      "[svelte]": {
+          "editor.defaultFormatter": "svelte.svelte-vscode"
       }
-    }
+   }
 }
