@@ -58,6 +58,7 @@ screenshots/
 videos/
 node_modules/
 __sapper__
+cypress/
 dist
 /runtime/app.mjs
 /runtime/server.mjs
