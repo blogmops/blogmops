@@ -1,14 +1,11 @@
 {
-  "baseUrl": "https://preview.blogmops.vercel.app/",
-  "env": {
-    "host": "localhost",
-    "port": 5000,
-    "ci": true
-  },
-  "projectId": "a7bq2k",
+  "baseUrl": "https://preview.blogmops.vercel.app",
+  "projectId": "6ipd71",
   "browser": "chromium",
   "video": true,
   "record": true,
   "parallel": true,
-  "ci-build-id": "githubActions"
+  "ci-build-id": "githubActions",
+  "viewportWidth": 1920,
+  "viewportHeight": 1080
 }

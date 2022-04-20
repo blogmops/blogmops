@@ -82,6 +82,6 @@ build/*
 .serverless/
 .tern-port
 .yarn-integrity
-.env.local
+.env.local*
 .env.test
 .env
