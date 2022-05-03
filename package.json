@@ -17,7 +17,7 @@
     "dependencies": {
         "@babel/core": "7.17.9",
         "@babel/plugin-syntax-dynamic-import": "7.8.3",
-        "@babel/plugin-transform-runtime": "7.17.0",
+        "@babel/plugin-transform-runtime": "7.17.10",
         "@babel/preset-env": "7.16.11",
         "@babel/runtime": "7.17.x",
         "@rollup/plugin-commonjs": "21.1.0",
