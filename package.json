@@ -15,14 +15,14 @@
         "update:browserslist": "browserslist --coverage=DE,global --mobile-to-desktop --ignore-unknown-versions && browserslist --update-db"
     },
     "dependencies": {
-        "@babel/core": "7.17.9",
+        "@babel/core": "7.17.10",
         "@babel/plugin-syntax-dynamic-import": "7.8.3",
-        "@babel/plugin-transform-runtime": "7.17.0",
+        "@babel/plugin-transform-runtime": "7.17.10",
         "@babel/preset-env": "7.17.10",
         "@babel/runtime": "7.17.x",
         "@rollup/plugin-commonjs": "21.1.0",
         "@rollup/plugin-json": "4.1.0",
-        "@rollup/plugin-node-resolve": "13.2.1",
+        "@rollup/plugin-node-resolve": "13.3.0",
         "@rollup/plugin-replace": "4.0.0",
         "compression": "1.7.x",
         "polka": "next",
