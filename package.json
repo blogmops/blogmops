@@ -50,6 +50,6 @@
     "prettier-plugin-svelte": "^2.6.0",
     "sapper": "0.29.3",
     "start-server-and-test": "^1.14.0",
-    "svelte": "3.0.x"
+    "svelte": "3.48.x"
   }
 }
