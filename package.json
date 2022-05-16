@@ -19,7 +19,7 @@
     "@babel/plugin-transform-runtime": "7.0.x",
     "@babel/preset-env": "7.0.x",
     "@babel/runtime": "7.17.x",
-    "@rollup/plugin-commonjs": "11.0.x",
+    "@rollup/plugin-commonjs": "21.1.x",
     "@rollup/plugin-json": "4.0.x",
     "@rollup/plugin-node-resolve": "7.0.x",
     "@rollup/plugin-replace": "2.2.x",
