@@ -18,7 +18,7 @@
     "@babel/plugin-syntax-dynamic-import": "7.0.x",
     "@babel/plugin-transform-runtime": "7.0.x",
     "@babel/preset-env": "7.18.x",
-    "@babel/runtime": "7.17.x",
+    "@babel/runtime": "7.18.x",
     "@rollup/plugin-commonjs": "21.1.x",
     "@rollup/plugin-json": "4.0.x",
     "@rollup/plugin-node-resolve": "13.3.x",
