@@ -33,7 +33,7 @@
     "rollup-plugin-terser": "5.3.1",
     "sapper-sources": "0.0.2",
     "sass": "1.52.x",
-    "sirv": "0.4.x",
+    "sirv": "2.0.x",
     "svelte-preprocess": "^3.9.12"
   },
   "devDependencies": {
