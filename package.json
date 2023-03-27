@@ -49,7 +49,7 @@
     "prettier-eslint": "^15.0.0",
     "prettier-plugin-svelte": "^2.6.0",
     "sapper": "0.29.3",
-    "start-server-and-test": "^1.14.0",
+    "start-server-and-test": "^2.0.0",
     "svelte": "3.57.x"
   }
 }
