@@ -21,7 +21,7 @@
     "@babel/runtime": "7.18.x",
     "@rollup/plugin-commonjs": "24.0.x",
     "@rollup/plugin-json": "4.1.x",
-    "@rollup/plugin-node-resolve": "13.3.x",
+    "@rollup/plugin-node-resolve": "15.0.x",
     "@rollup/plugin-replace": "5.0.x",
     "compression": "1.7.x",
     "polka": "next",
