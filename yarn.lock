@@ -4209,10 +4209,10 @@ svelte-preprocess@^4.10.6:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
-svelte@3.57.x:
-  version "3.57.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.57.0.tgz#a3969cfe51f25f2a55e75f7b98dbd02c3af0980b"
-  integrity sha512-WMXEvF+RtAaclw0t3bPDTUe19pplMlfyKDsixbHQYgCWi9+O9VN0kXU1OppzrB9gPAvz4NALuoca2LfW2bOjTQ==
+svelte@3.59.x:
+  version "3.59.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.59.0.tgz#0d991cb1af5e4b61aad2021b004815aad05e7ee1"
+  integrity sha512-Di1wVPwdWriw5pSyInMRpr5EZmwrzKxtDKv5aXu8A/WDUi59Y5bIvl42eLef0x1vwz+ZtrjdnT8nXir2bDqR/A==
 
 terser@^5.0.0:
   version "5.14.2"
