@@ -20,7 +20,7 @@
     "@babel/preset-env": "7.18.x",
     "@babel/runtime": "7.18.x",
     "@rollup/plugin-commonjs": "24.0.x",
-    "@rollup/plugin-json": "4.1.x",
+    "@rollup/plugin-json": "6.0.x",
     "@rollup/plugin-node-resolve": "15.1.x",
     "@rollup/plugin-replace": "5.0.x",
     "compression": "1.7.x",
@@ -34,7 +34,7 @@
     "sapper-sources": "0.0.2",
     "sass": "1.60.x",
     "sirv": "2.0.x",
-    "svelte-preprocess": "^4.10.6"
+    "svelte-preprocess": "^5.0.4"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.12",
@@ -50,6 +50,6 @@
     "prettier-plugin-svelte": "^2.6.0",
     "sapper": "0.29.3",
     "start-server-and-test": "^2.0.0",
-    "svelte": "3.57.x"
+    "svelte": "3.59.x"
   }
 }
